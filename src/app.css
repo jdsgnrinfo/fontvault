@@ -1,0 +1,425 @@
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { font-family: 'Segoe UI', var(--font-body); background: var(--background); color: var(--foreground); overflow: hidden; }
+
+/* Zonas oscuras: redefinimos los tokens de Arc para que sus componentes se adapten */
+.topbar, .sidebar {
+  --background: #111111;
+  --surface: #1c1c1c;
+  --surface-muted: #1f1f1f;
+  --surface-raised: #222222;
+  --foreground: #ececec;
+  --text-secondary: #9a9a9a;
+  --text-muted: #6e6e6e;
+  --border: #2a2a2a;
+  --border-subtle: #1f1f1f;
+  --border-strong: #3a3a3a;
+  --accent: #e5e5e5;
+  --accent-foreground: #111111;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.shell { display: grid; grid-template-columns: 280px 1fr; grid-template-rows: 44px 1fr; height: 100%; background: #111; }
+
+.topbar { grid-column: 1 / -1; display: flex; align-items: center; padding: 0 160px 0 20px; -webkit-app-region: drag; }
+.brand { font-size: 14px; font-weight: 500; min-width: 120px; }
+.sidebar-search { padding: 4px 0 12px; }
+.sidebar-search label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+.sidebar { display: flex; flex-direction: column; padding: 8px 12px 16px; min-height: 0; }
+.sidebar nav { flex: 1; overflow-y: auto; }
+.sidebar h2 { font-size: 13px; font-weight: 500; color: var(--text-secondary); margin: 22px 10px 6px; }
+.nav-empty { font-size: 13px; color: var(--text-muted); margin: 4px 10px; }
+.nav-item { display: flex; align-items: center; border-radius: 10px; }
+.nav-item:hover { background: #1b1b1b; }
+.nav-item.selected { background: #262626; }
+.nav-main { flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0; background: none; border: 0; color: inherit; font: inherit; font-size: 14px; padding: 6px 10px; cursor: pointer; text-align: left; }
+.nav-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav-count { font-size: 12px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.nav-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid #ececec; flex: none; }
+.nav-dot.on { background: #22c55e; border-color: #22c55e; }
+.nav-dot.folder { border-color: #22c55e; }
+.nav-caret { background: none; border: 0; color: var(--text-secondary); font-size: 11px; width: 18px; padding: 0; margin-left: 4px; cursor: pointer; flex: none; }
+.nav-caret + .nav-main { padding-left: 4px; }
+.nav-remove { background: none; border: 0; color: var(--text-muted); font-size: 16px; padding: 0 10px; cursor: pointer; opacity: 0; }
+.nav-item:hover .nav-remove { opacity: 1; }
+.nav-remove:hover { color: var(--foreground); }
+.sidebar-foot { display: flex; justify-content: center; padding-top: 12px; }
+
+.content { display: flex; flex-direction: column; min-height: 0; background: var(--background); border-top-left-radius: 10px; overflow: hidden; }
+
+.toolbar { display: flex; align-items: center; gap: 20px; padding: 12px 20px; border-bottom: 1px solid var(--border); }
+.toolbar-slider { flex: 1; }
+
+.list { flex: 1; overflow-y: auto; padding: 8px 20px; }
+.row { padding: 12px 0 8px; }
+.row-meta { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); }
+.row-meta strong { color: var(--foreground); font-weight: 500; }
+.row-name { color: var(--foreground); }
+.dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--foreground); background: none; padding: 0; cursor: pointer; flex: none; }
+.dot:hover { border-color: #22c55e; }
+.dot.on { background: #22c55e; border-color: #22c55e; }
+.sample { white-space: nowrap; overflow: hidden; line-height: 1.3; padding-top: 4px; color: var(--foreground); }
+.empty { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; color: var(--text-secondary); padding: 24px 0; margin: 0; }
+
+.sample-bar { padding: 10px 20px 14px; }
+
+/* Barra de scroll fina y discreta, al estilo de la app de Claude */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-thumb { background: transparent; border-radius: 999px; border: 3px solid transparent; background-clip: padding-box; }
+:hover::-webkit-scrollbar-thumb { background-color: color-mix(in oklab, var(--foreground) 22%, transparent); }
+::-webkit-scrollbar-thumb:hover { background-color: color-mix(in oklab, var(--foreground) 38%, transparent); }
+::-webkit-scrollbar-button { display: none; }
+
+/* Vista de detalle de una familia */
+.list[hidden] { display: none; }
+.row-name { background: none; border: 0; padding: 0; font: inherit; color: var(--foreground); cursor: pointer; }
+.row-name.static { cursor: default; }
+.detail-head { display: flex; align-items: center; gap: 16px; padding: 8px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 4px; flex-wrap: wrap; }
+.detail-title { flex: 1; min-width: 160px; }
+.detail-title h1 { font-size: 22px; font-weight: 500; margin: 0; letter-spacing: -.01em; }
+.detail-title span { font-size: 13px; color: var(--text-secondary); }
+.glyphs { padding: 12px 0 24px; }
+.glyph-count { font-size: 13px; color: var(--text-secondary); margin: 0 0 12px; }
+.glyph-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); gap: 2px; }
+
+/* Buscador de la barra lateral con tonos oscuros */
+.sidebar-search { --border-strong: #2e2e2e; --surface: #1c1c1c; }
+.sidebar-search > div { gap: 0; }
+
+/* Controles de la misma altura (40px) en toda la app */
+.content, .sidebar-foot { --control-height-sm: 40px; }
+.seg { display: inline-flex; --control-height-sm: 32px; }
+
+/* Cascada */
+.waterfall { padding: 12px 0 24px; }
+.wf-row { display: grid; grid-template-columns: 1fr 60px; gap: 16px; align-items: center; }
+.wf-row p { margin: 0 0 14px; line-height: 1.2; max-width: 46em; overflow-wrap: break-word; }
+.wf-row span { font-family: 'Segoe UI', sans-serif; font-size: 12px; color: var(--text-muted); text-align: right; }
+
+/* Detalles */
+.details { padding: 8px 0 32px; }
+.details h3 { font-size: 14px; font-weight: 500; margin: 20px 0 10px; }
+.details .muted { color: var(--text-secondary); font-size: 13px; }
+.features { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.feature { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; }
+.feature b { font-weight: 500; min-width: 28px; padding: 3px 6px; text-align: center; border-radius: 6px; background: var(--surface-muted); }
+.details table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.details th { width: 180px; text-align: left; font-weight: 400; color: var(--text-secondary); padding: 9px 12px; vertical-align: top; }
+.details td { padding: 9px 12px; word-break: break-word; }
+.details tr:nth-child(odd) { background: var(--surface-muted); }
+
+/* Selector de estilo (Select de Arc) con la etiqueta oculta visualmente */
+.style-select { width: 240px; margin: 16px 0 0; --control-height-md: 40px; }
+.style-select label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.style-select > div { gap: 0; }
+.icon-only { width: var(--control-height-sm); padding: 0 !important; flex: none; }
+
+/* Caja de texto de ejemplo (Input de Arc) con la etiqueta oculta visualmente */
+.sample-bar label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.sample-bar > div { gap: 0; }
+
+/* Contraste suavizado: ni blanco ni negro puros */
+:root[data-theme="light"] { --background: #f7f7f5; --surface: #fbfbfa; --surface-raised: #fbfbfa; --surface-muted: #eeeeec; --foreground: #262626; }
+.topbar, .sidebar { --background: #1a1a1a; --surface: #232323; --surface-muted: #262626; --surface-raised: #2a2a2a; --foreground: #dedede; --border: #303030; --border-strong: #3a3a3a; --accent: #dedede; --accent-foreground: #1a1a1a; }
+.shell { background: #1a1a1a; }
+.nav-item:hover { background: #222222; }
+.nav-item.selected { background: #2c2c2c; }
+.nav-dot { border-color: #dedede; }
+.sidebar-search { --surface: #232323; }
+
+/* Corazón de favoritas junto al nombre de la familia */
+.detail-name { display: flex; align-items: center; gap: 8px; }
+.fav { display: grid; place-items: center; width: 32px; height: 32px; border: 0; border-radius: 50%; background: none; color: var(--text-muted); cursor: pointer; transition: color .15s, background-color .15s, transform .2s var(--ease-spring); }
+.fav:hover { color: var(--foreground); background: var(--surface-muted); }
+.fav:active { transform: scale(.88); }
+.fav.on { color: #e5484d; }
+.fav.on svg { fill: currentColor; animation: fav-pop .35s var(--ease-spring); }
+@keyframes fav-pop { 0% { transform: scale(.6); } 60% { transform: scale(1.2); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .fav, .fav.on svg { transition: none; animation: none; } }
+.glyph-grid span { display: grid; place-items: center; aspect-ratio: 1; font-size: 30px; border-radius: 10px; cursor: default; }
+.glyph-grid span:hover { background: var(--surface-muted); }
+
+/* El contador de caracteres va a la derecha, en la fila del desplegable */
+.tab-body { position: relative; }
+.tab-body .glyph-count { position: absolute; top: 16px; right: 0; margin: 0; line-height: 40px; }
+.tab-body .glyphs { padding-top: 16px; }
+.tab-body > .glyphs:first-child { padding-top: 64px; }
+
+/* Lista de familias al estilo de Google Fonts */
+.family-row { padding: 18px 20px 20px; border-bottom: 1px solid var(--border); border-radius: 0; transition: background-color .15s var(--ease-standard), border-radius .15s; }
+.family-row:hover { background: var(--surface-muted); border-radius: 12px; border-bottom-color: transparent; }
+.family-row:has(+ .family-row:hover) { border-bottom-color: transparent; }
+.family-row .row-meta { gap: 10px; font-size: 12px; }
+.family-row .row-name { font-weight: 600; font-size: 14px; }
+.family-row .sep { color: var(--border-strong); }
+.family-row .designer { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.family-row .sample { padding-top: 14px; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 64px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 64px), transparent); }
+.family-row { cursor: pointer; }
+
+/* Botón de ajustes en la barra superior, junto a los controles de ventana */
+.topbar-btn { margin-left: auto; display: grid; place-items: center; width: 40px; height: 32px; border: 0; border-radius: 8px; background: none; color: var(--foreground); cursor: pointer; -webkit-app-region: no-drag; transition: background-color .15s; }
+.topbar-btn:hover { background: #2a2a2a; }
+.topbar { padding-right: 140px; }
+
+/* Página de ajustes */
+[hidden] { display: none !important; }
+.settings-page { max-width: 660px; margin: 0 auto; padding: 24px 0 48px; }
+.settings-head { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+.settings-head h1 { font-size: 22px; font-weight: 500; margin: 0; }
+.settings-page section { display: grid; gap: 14px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+.settings-page h2 { font-size: 17px; font-weight: 600; margin: 0 0 2px; }
+.settings-page .hint { font-size: 13px; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+.setting-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 40px; }
+.setting-row > div:first-child { display: grid; gap: 2px; }
+.setting-row strong { font-size: 14px; font-weight: 400; }
+.setting-row span { font-size: 13px; color: var(--text-secondary); }
+.setting-select { width: 160px; --control-height-md: 40px; }
+.setting-select label, .sample-line label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.setting-select > div, .sample-line > div:first-child { gap: 0; }
+.folder-line { display: flex; align-items: center; gap: 10px; }
+.folder-line > span { flex: 1; min-width: 0; font-size: 13px; padding: 10px 14px; border-radius: 10px; background: var(--surface-muted); color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sample-line { display: flex; align-items: center; gap: 8px; }
+.sample-line > div:first-child { flex: 1; }
+.settings-about { margin: 20px 0 0; font-size: 12px; color: var(--text-muted); }
+.topbar-btn[aria-pressed="true"] { background: #2c2c2c; }
+
+/* Selector Fuentes / Iconos */
+.mode-switch { display: flex; padding: 4px 0 10px; --surface-muted: #222; --surface: #333; --border: #2c2c2c; }
+.mode-switch > * { flex: 1; }
+.mode-switch [role="radiogroup"], .mode-switch > div > div { width: 100%; }
+.mode-switch button { flex: 1; }
+
+/* Iconos */
+.icons-body { flex: 1; min-height: 0; display: flex; }
+.icons-body > .list { flex: 1; }
+.collections, .collection-view { padding-bottom: 32px; }
+.collections-head { display: flex; align-items: center; gap: 12px; padding: 12px 0 16px; flex-wrap: wrap; }
+.collections-filter { flex: 1; min-width: 220px; }
+.collections-filter label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.collections-filter > div { gap: 0; }
+.setting-select.wide { width: 220px; }
+.muted-count { font-size: 13px; color: var(--text-secondary); white-space: nowrap; }
+.muted-count.block { display: block; padding: 12px 0; }
+.collection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.collection-card { display: grid; gap: 4px; text-align: left; padding: 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); color: var(--foreground); font: inherit; cursor: pointer; transition: background-color .15s, border-color .15s; }
+.collection-card:hover { background: var(--surface-muted); border-color: transparent; }
+.collection-card strong { font-size: 14px; font-weight: 600; }
+.collection-card span { font-size: 12px; color: var(--text-secondary); }
+.collection-card .author { color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.collection-samples { display: flex; gap: 14px; padding: 4px 0 12px; }
+.collection-samples img { width: 26px; height: 26px; }
+.icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(var(--icon-size) + 36px), 1fr)); gap: 4px; }
+.icon-cell { display: grid; place-items: center; aspect-ratio: 1; border: 0; border-radius: 12px; background: none; cursor: pointer; transition: background-color .12s; }
+.icon-cell img { width: var(--icon-size); height: var(--icon-size); }
+.icon-cell:hover { background: var(--surface-muted); }
+.icon-cell.selected { background: var(--surface-muted); box-shadow: inset 0 0 0 1.5px var(--foreground); }
+.icon-panel { width: 280px; flex: none; border-left: 1px solid var(--border); padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+.icon-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.icon-panel-head strong { font-size: 15px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav-remove.visible { opacity: 1; }
+.icon-preview { display: grid; place-items: center; aspect-ratio: 1; border-radius: 14px; background: var(--surface-muted); }
+.icon-preview img { width: 55%; height: 55%; }
+.icon-panel code { font-size: 12px; color: var(--text-secondary); word-break: break-all; }
+.icon-actions { display: grid; gap: 8px; }
+.icon-actions > * { width: 100%; }
+.color-pick { display: flex; align-items: center; flex: none; }
+.detail-title a { color: inherit; }
+.icon-skeleton { display: block; width: calc(var(--icon-size, 26px) * .7); height: calc(var(--icon-size, 26px) * .7); border-radius: 6px; background: var(--surface-muted); }
+.collection-samples .icon-skeleton { width: 26px; height: 26px; }
+.icon-cell[draggable="true"], .icon-preview[draggable="true"] { cursor: grab; }
+.drag-hint { margin: -6px 0 0; font-size: 12px; color: var(--text-muted); }
+
+/* Resultados de búsqueda con el nombre del icono y su biblioteca */
+.icon-grid.labeled { grid-template-columns: repeat(auto-fill, minmax(max(132px, calc(var(--icon-size) + 72px)), 1fr)); gap: 8px; }
+.icon-grid.labeled .icon-cell { aspect-ratio: auto; grid-template-rows: calc(var(--icon-size) + 28px) auto; align-items: center; padding: 10px 8px 12px; gap: 6px; }
+.icon-caption { display: grid; gap: 1px; width: 100%; text-align: center; min-width: 0; }
+.icon-caption b, .icon-caption i { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-style: normal; }
+.icon-caption b { font-size: 12px; font-weight: 500; color: var(--foreground); }
+.icon-caption i { font-size: 11px; color: var(--text-muted); }
+
+/* Menú contextual con la misma estructura que la lista del Select de Arc (mismos valores que select.module.css).
+   Selectores reforzados porque el CSS del componente se carga después y tiene la misma especificidad */
+div[role="menu"][role="menu"] { border-radius: calc(var(--radius-control) + 2px); padding: 8px 6px; min-width: 210px; border: 1px solid var(--border); background: var(--surface-raised); box-shadow: var(--shadow-floating); }
+/* En lugar del resaltado que se desliza, cada fila se marca como en el Select */
+div[role="menu"] > span[aria-hidden="true"][aria-hidden="true"] { display: none; }
+div[role="menu"] button[role="menuitem"][role="menuitem"] { min-height: 36px; padding: 0 34px 0 11px; gap: 0; border-radius: calc(var(--radius-control) - 4px); font-size: var(--text-sm); color: var(--foreground); transition: background-color var(--duration-instant) var(--ease-standard); }
+div[role="menu"] button[role="menuitem"][role="menuitem"]:hover:not(:disabled),
+div[role="menu"] button[role="menuitem"][role="menuitem"]:focus-visible { background: var(--surface-muted); }
+div[role="menu"] button[role="menuitem"] > span[aria-hidden="true"]:empty { display: none; }
+
+/* Barras de búsqueda y cajas de texto a 40px, igual que botones y desplegables */
+.sidebar-search, .collections-filter, .sample-bar, .sample-line { --control-height-md: 40px; }
+
+/* Selector de color propio */
+.cpick { position: relative; }
+.cpick-swatch { width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--border-strong); box-shadow: inset 0 0 0 3px var(--background); cursor: pointer; padding: 0; transition: transform .15s var(--ease-standard); }
+.cpick-swatch:active { transform: scale(.94); }
+.cpick-pop { position: absolute; top: calc(100% + 8px); right: 0; z-index: 60; width: 236px; display: grid; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: calc(var(--radius-control) + 2px); background: var(--surface-raised); box-shadow: var(--shadow-floating); animation: cpick-in .16s var(--ease-enter) both; transform-origin: top right; }
+@keyframes cpick-in { from { opacity: 0; transform: scale(.96) translateY(-4px); } }
+.cpick-sv { position: relative; height: 140px; border-radius: 10px; cursor: crosshair; touch-action: none;
+  background-image: linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, transparent); }
+.cpick-sv span, .cpick-hue span { position: absolute; width: 16px; height: 16px; border-radius: 50%; border: 2.5px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 1px 3px rgba(0,0,0,.3); transform: translate(-50%, -50%); pointer-events: none; }
+.cpick-hue { position: relative; height: 12px; border-radius: 999px; cursor: pointer; touch-action: none; background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00); }
+.cpick-hue span { top: 50%; }
+.cpick-row { display: flex; align-items: center; gap: 8px; }
+.cpick-preview { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border); flex: none; }
+.cpick-row input { flex: 1; min-width: 0; height: 32px; padding: 0 10px; border: 1px solid var(--border-strong); border-radius: 8px; background: var(--surface); color: var(--foreground); font: inherit; font-size: 13px; font-variant-numeric: tabular-nums; outline: none; }
+.cpick-row input:focus { border-color: var(--foreground); }
+
+/* El panel claro queda enmarcado por el fondo oscuro también a la derecha y abajo,
+   con todas las esquinas redondeadas: así el borde de Windows se funde con el marco */
+.shell { overflow: hidden; padding: 0 8px 8px 0; }
+.content { border-radius: 10px; }
+
+/* Controles de ventana propios, con el tamaño y comportamiento de los de Windows 11 */
+.topbar { padding-right: 0; }
+.win-controls { display: flex; align-self: stretch; margin-left: 8px; -webkit-app-region: no-drag; }
+.win-controls button { width: 46px; height: 100%; display: grid; place-items: center; border: 0; background: none; color: var(--foreground); cursor: default; transition: background-color .1s; }
+.win-controls button:hover { background: #2c2c2c; }
+.win-controls button:active { background: #333; }
+.win-controls .close:hover { background: #c42b1c; color: #fff; }
+.win-controls .close:active { background: #b22a1b; color: #fff; }
+.topbar { margin-right: -8px; } /* los botones de ventana siguen pegados al borde */
+
+/* Más contraste en la barra lateral */
+.sidebar { --text-secondary: #ababab; --text-muted: #8a8a8a; --border: #343434; --border-strong: #444; }
+.sidebar-search { --surface: #262626; --border-strong: #3d3d3d; }
+.sidebar h2 { color: #ababab; }
+.nav-count { color: #a3a3a3; }
+.nav-item:hover { background: #262626; }
+.nav-item.selected { background: #333333; }
+.mode-switch { --surface-muted: #232323; --surface: #3a3a3a; --border: #343434; --text-muted: #9a9a9a; --foreground: #f0f0f0; }
+
+/* Modo oscuro completo: el panel principal también pasa a oscuro */
+:root[data-theme="dark"] { --background: #222222; --surface: #282828; --surface-raised: #2b2b2b; --surface-muted: #303030;
+  --foreground: #e4e4e4; --text-secondary: #a6a6a6; --text-muted: #7c7c7c; --border: #333333; --border-strong: #444444;
+  --control-track: #3a3a3a; --control-on: #e4e4e4; --control-thumb: #f0f0f0; --accent: #e4e4e4; --accent-foreground: #1a1a1a; }
+:root[data-theme="dark"] .family-row .sep { color: #4a4a4a; }
+
+/* Más contraste en la opción resaltada de los desplegables y del menú contextual */
+[role="listbox"] [role="option"][data-highlighted][data-highlighted],
+div[role="menu"] button[role="menuitem"][role="menuitem"]:hover:not(:disabled),
+div[role="menu"] button[role="menuitem"][role="menuitem"]:focus-visible { background: color-mix(in oklab, var(--foreground) 10%, var(--surface-raised)); }
+:root[data-theme="dark"] [role="listbox"] [role="option"][data-highlighted][data-highlighted],
+:root[data-theme="dark"] div[role="menu"] button[role="menuitem"][role="menuitem"]:hover:not(:disabled),
+:root[data-theme="dark"] div[role="menu"] button[role="menuitem"][role="menuitem"]:focus-visible { background: color-mix(in oklab, var(--foreground) 14%, var(--surface-raised)); }
+.download-progress { width: 220px; flex: none; }
+
+/* Tooltip global con los mismos valores que el Tooltip de Arc (tooltip.module.css) */
+.arc-tip { position: fixed; z-index: 200; transform: translate(-50%, -100%); max-width: 15rem; padding: var(--space-3) var(--space-4);
+  border: 1px solid color-mix(in oklab, var(--background) 14%, var(--foreground)); border-radius: var(--radius-control);
+  background: var(--foreground); color: var(--background); box-shadow: var(--shadow-raised); font-size: var(--text-sm); line-height: var(--leading-body);
+  pointer-events: none; white-space: normal; overflow-wrap: anywhere; animation: arc-tip-in var(--duration-fast) var(--ease-enter) both; }
+.arc-tip.below { transform: translate(-50%, 0); animation-name: arc-tip-in-below; }
+.arc-tip.instant { animation: arc-tip-fade var(--duration-instant) var(--ease-standard) both; }
+@keyframes arc-tip-in { from { opacity: 0; transform: translate(-50%, calc(-100% + 3px)) scale(.97); } }
+@keyframes arc-tip-in-below { from { opacity: 0; transform: translate(-50%, -3px) scale(.97); } }
+@keyframes arc-tip-fade { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .arc-tip, .arc-tip.below { animation: arc-tip-fade var(--duration-instant) both; } }
+
+/* Marco de la ventana (barra superior y lateral) según el tema: en modo claro toda la interfaz es clara */
+:root[data-theme="dark"] { --chrome-bg: #1a1a1a; --chrome-surface: #262626; --chrome-hover: #262626; --chrome-selected: #333333;
+  --chrome-fg: #dedede; --chrome-text2: #ababab; --chrome-muted: #8a8a8a; --chrome-border: #343434; --chrome-strong: #444444;
+  --chrome-seg: #232323; --chrome-seg-on: #3a3a3a; }
+:root[data-theme="light"] { --chrome-bg: #e9e9e6; --chrome-surface: #f4f4f2; --chrome-hover: #dfdfdc; --chrome-selected: #d5d5d1;
+  --chrome-fg: #262626; --chrome-text2: #5e5e5e; --chrome-muted: #7a7a7a; --chrome-border: #d3d3cf; --chrome-strong: #c2c2be;
+  --chrome-seg: #dcdcd9; --chrome-seg-on: #f7f7f5; }
+.topbar, .sidebar { --background: var(--chrome-bg); --surface: var(--chrome-surface); --surface-muted: var(--chrome-hover); --surface-raised: var(--chrome-surface);
+  --foreground: var(--chrome-fg); --text-secondary: var(--chrome-text2); --text-muted: var(--chrome-muted); --border: var(--chrome-border);
+  --border-strong: var(--chrome-strong); --accent: var(--chrome-fg); --accent-foreground: var(--chrome-bg); background: var(--chrome-bg); color: var(--chrome-fg); }
+.shell { background: var(--chrome-bg); }
+.nav-item:hover { background: var(--chrome-hover); }
+.nav-item.selected { background: var(--chrome-selected); }
+.nav-dot { border-color: var(--chrome-fg); }
+.sidebar-search { --surface: var(--chrome-surface); --border-strong: var(--chrome-strong); }
+.sidebar h2, .nav-count { color: var(--chrome-text2); }
+.mode-switch { --surface-muted: var(--chrome-seg); --surface: var(--chrome-seg-on); --border: var(--chrome-border); --text-muted: var(--chrome-muted); --foreground: var(--chrome-fg); }
+.topbar-btn:hover, .win-controls button:hover { background: var(--chrome-hover); }
+.topbar-btn[aria-pressed="true"], .win-controls button:active { background: var(--chrome-selected); }
+
+/* Tooltips del mismo tono que el tema: claros en modo claro, oscuros en modo oscuro */
+.arc-tip { background: var(--surface-raised); color: var(--foreground); border-color: var(--border-strong); box-shadow: var(--shadow-floating); }
+:root[data-theme="light"] .arc-tip { background: #ffffff; border-color: #dcdcd8; }
+:root[data-theme="dark"] .arc-tip { background: #2e2e2e; border-color: #444444; }
+
+/* Iconos Fluent en el menú contextual */
+div[role="menu"] button[role="menuitem"][role="menuitem"] { gap: 10px; padding-left: 10px; }
+div[role="menu"] button[role="menuitem"] > span[aria-hidden="true"] { width: 20px; color: var(--text-secondary); }
+div[role="menu"] button[role="menuitem"] > span[aria-hidden="true"] svg { width: 20px; height: 20px; }
+
+/* La interfaz no permite seleccionar texto, salvo en los campos donde se escribe */
+body { user-select: none; -webkit-user-select: none; }
+input, textarea, [contenteditable="true"] { user-select: text; -webkit-user-select: text; }
+
+/* Iconos Fluent de la barra lateral, el selector y los ajustes */
+.nav-icon { display: grid; place-items: center; width: 20px; height: 20px; flex: none; color: var(--text-secondary); }
+.nav-icon svg { width: 18px; height: 18px; }
+.nav-icon.green { color: #22c55e; }
+.nav-item.selected .nav-icon:not(.green) { color: var(--foreground); }
+.seg-ico { order: -1; width: 18px; height: 18px; }
+.settings-page h2 { display: flex; align-items: center; gap: 8px; }
+.settings-page h2 svg { width: 20px; height: 20px; color: var(--text-secondary); }
+.nav-caret { display: grid; place-items: center; height: 20px; } .nav-caret svg { width: 12px; height: 12px; }
+
+/* Flecha de textos predefinidos dentro de la caja de texto de ejemplo */
+.sample-bar { position: relative; }
+.sample-bar input[type][type], .sample-bar input:not([type]):not([type]) { padding-right: 48px; }
+.sample-picker { position: absolute; right: 26px; top: calc(50% - 2px); transform: translateY(-50%); }
+.sample-bar[hidden] .sample-picker { display: none; }
+.sample-toggle { display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 8px; background: none; color: var(--text-secondary); cursor: pointer; transition: background-color .12s, color .12s; }
+.sample-toggle:hover, .sample-toggle.open { background: var(--surface-muted); color: var(--foreground); }
+.sample-toggle svg { width: 18px; height: 18px; transition: transform .2s var(--ease-standard); }
+.sample-toggle.open svg { transform: rotate(180deg); }
+.sample-menu { position: absolute; right: -12px; bottom: calc(100% + 12px); width: min(560px, calc(100vw - 360px)); max-height: 320px; overflow-y: auto;
+  padding: 8px 6px; border: 1px solid var(--border); border-radius: calc(var(--radius-control) + 2px); background: var(--surface-raised); box-shadow: var(--shadow-floating);
+  animation: cpick-in .16s var(--ease-enter) both; transform-origin: bottom right; z-index: 60; }
+.sample-option { display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 0 11px; border-radius: calc(var(--radius-control) - 4px); font-size: var(--text-sm); color: var(--foreground); cursor: default; }
+.sample-option span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sample-option:hover, .sample-option:focus-visible { background: color-mix(in oklab, var(--foreground) 10%, var(--surface-raised)); outline: none; }
+.sample-option svg { flex: none; width: 16px; height: 16px; }
+
+/* Zonas de redimensionado en los bordes (la ventana no usa el marco de Windows) */
+.resize-handle { position: fixed; z-index: 500; -webkit-app-region: no-drag; }
+.resize-handle.n { top: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
+.resize-handle.s { bottom: 0; left: 8px; right: 8px; height: 5px; cursor: ns-resize; }
+.resize-handle.e { right: 0; top: 8px; bottom: 8px; width: 5px; cursor: ew-resize; }
+.resize-handle.w { left: 0; top: 8px; bottom: 8px; width: 5px; cursor: ew-resize; }
+.resize-handle.ne { top: 0; right: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+.resize-handle.sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: nesw-resize; }
+.resize-handle.nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nwse-resize; }
+.resize-handle.se { bottom: 0; right: 0; width: 10px; height: 10px; cursor: nwse-resize; }
+
+/* Control de tamaño en una sola fila: Tamaño · deslizador · valor · botón */
+.toolbar { gap: 14px; padding-top: 10px; padding-bottom: 10px; }
+.toolbar-label { font-size: var(--text-sm); font-weight: 500; flex: none; }
+.toolbar-value { font-size: var(--text-sm); color: var(--text-secondary); font-variant-numeric: tabular-nums; min-width: 44px; text-align: right; flex: none; }
+.toolbar-slider > div { gap: 0; }
+.toolbar-slider > div > div:first-child { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* Sin la burbuja con el valor al arrastrar: el valor ya se ve al lado del deslizador */
+.toolbar-slider [class*="slider_bubble"] { display: none; }
+
+/* Cuadrícula virtual de iconos: las celdas ocupan su hueco calculado */
+.icon-vgrid .icon-cell { width: 100%; height: 100%; aspect-ratio: auto; }
+.icon-vgrid.labeled .icon-cell { grid-template-rows: calc(var(--icon-size) + 28px) auto; align-items: center; padding: 10px 8px 12px; gap: 6px; }
+
+/* Iconos como SVG en línea */
+.svg-icon { display: grid; place-items: center; width: var(--icon-size, 26px); height: var(--icon-size, 26px); pointer-events: none; }
+.svg-icon svg { width: 100%; height: 100%; }
+.collection-samples .svg-icon { width: 26px; height: 26px; }
+
+/* Proveedores: cabecera de filtros y punto "descargando" */
+.provider-head { padding-top: 14px; }
+.dot.busy { border-color: var(--text-muted); border-top-color: #22c55e; border-radius: 50%; animation: dot-spin .8s linear infinite; cursor: progress; }
+@keyframes dot-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .dot.busy { animation: none; } }
+
+/* Etiqueta de origen: azul para local, morado para proveedores */
+.source-tag { font-size: 11px; font-weight: 500; line-height: 1; padding: 4px 8px; border-radius: 999px; white-space: nowrap; }
+.source-tag.local { color: #2563eb; background: color-mix(in oklab, #3b82f6 14%, transparent); }
+.source-tag.provider { color: #7c3aed; background: color-mix(in oklab, #8b5cf6 14%, transparent); }
+:root[data-theme="dark"] .source-tag.local { color: #7fb0ff; background: color-mix(in oklab, #3b82f6 22%, transparent); }
+:root[data-theme="dark"] .source-tag.provider { color: #b99cff; background: color-mix(in oklab, #8b5cf6 24%, transparent); }
