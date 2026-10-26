@@ -62,5 +62,6 @@
       "shortcutName": "FontVault",
       "runAfterFinish": true
     }
-  }
+  },
+  "license": "MIT"
 }

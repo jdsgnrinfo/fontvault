@@ -88,3 +88,18 @@ npm start        # compila la interfaz y abre la app
 npm test         # pruebas
 npm run dist     # genera el instalador en release/
 ```
+
+## Licencia
+
+FontVault es software libre bajo la [licencia MIT](LICENSE): puedes usarlo, copiarlo, modificarlo y distribuirlo, también con fines comerciales, siempre que conserves el aviso de copyright y la licencia.
+
+Las fuentes e iconos que descargas desde la app pertenecen a sus autores y tienen su propia licencia (OFL, Apache, MIT, CC BY, licencia de Fontshare…). FontVault muestra la licencia de cada familia y colección para que puedas comprobarla.
+
+## Invítame un café ☕
+
+FontVault es gratis y lo desarrollo en mi tiempo libre. Si te resulta útil y quieres apoyar su desarrollo, puedes invitarme un café:
+
+- [PayPal](https://paypal.me/jotica96)
+- [GitHub Sponsors](https://github.com/sponsors/jdsgnrinfo)
+
+¡Gracias!
