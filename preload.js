@@ -8,9 +8,9 @@ contextBridge.exposeInMainWorld('api', {
   setActive: (files, on) => ipcRenderer.invoke('setActive', files, on),
   setFavorite: (family, on) => ipcRenderer.invoke('setFavorite', family, on),
   fontInfo: (file) => ipcRenderer.invoke('fontInfo', file),
-  google: {
-    catalog: () => ipcRenderer.invoke('google:catalog'),
-    setActive: (family, on) => ipcRenderer.invoke('google:setActive', family, on),
+  providers: {
+    catalog: (id) => ipcRenderer.invoke('providers:catalog', id),
+    setActive: (id, family, on) => ipcRenderer.invoke('providers:setActive', id, family, on),
   },
   window: {
     minimize: () => ipcRenderer.send('win:minimize'),

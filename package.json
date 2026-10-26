@@ -1,6 +1,6 @@
 {
   "name": "fontvault",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "main": "main.js",
   "scripts": {
@@ -38,11 +38,13 @@
       "preload.js",
       "gdi.js",
       "icons.js",
-      "google.js",
       "index.html",
       "dist/**",
       "package.json",
-      "build/icon.png"
+      "build/icon.png",
+      "build/tray-white.png",
+      "build/tray-black.png",
+      "providers.js"
     ],
     "asarUnpack": [
       "node_modules/koffi/**"

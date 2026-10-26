@@ -10,16 +10,17 @@ import { Select } from '@/components/arc/select/select';
 import { Input } from '@/components/arc/input/input';
 import { Switch } from '@/components/arc/switch/switch';
 import { TextFont16Regular, Heart16Regular, CheckmarkCircle16Regular, Circle16Regular, Folder16Regular, FolderOpen16Regular,
-  Shapes16Regular, WeatherMoon16Regular, Eye16Regular, TextQuote16Regular, Settings16Regular, ChevronDown12Regular, ChevronRight12Regular, ChevronUp16Regular, Checkmark16Regular, Globe16Regular } from '@fluentui/react-icons';
+  Shapes16Regular, WeatherMoon16Regular, Eye16Regular, TextQuote16Regular, Settings16Regular, ChevronDown12Regular, ChevronRight12Regular, ChevronUp16Regular, Checkmark16Regular, Globe16Regular, Delete16Regular } from '@fluentui/react-icons';
 import { svg, IconBack, IconReset, IconHeart, IconGear, LoadMore, NavItem, GlobalTooltip, ResizeHandles, playFavoriteSound, useScrollTicks, playTick } from './shared';
 import { IconsSidebar, IconsMain, useIcons } from './icons';
 
 declare global { interface Window { api: any } }
 
 type FontFile = { file: string; folder: string; format: string; family: string; style: string; designer?: string };
-type Family = { name: string; files: FontFile[]; formats: string; folders: Set<string>; designer: string; provider?: 'google'; category?: string; popularity?: number };
-type GoogleEntry = { family: string; category: string; designers: string[]; popularity: number; styles: string[] };
-type Filter = { kind: 'all' | 'favorites' | 'active' | 'inactive' | 'google' } | { kind: 'folder'; folder: string };
+type ProviderId = 'google' | 'fontshare' | 'fontsource';
+type Family = { name: string; files: FontFile[]; formats: string; folders: Set<string>; designer: string; provider?: ProviderId; category?: string; popularity?: number; alts?: Family[] };
+type CatalogEntry = { family: string; category: string; designers: string[]; popularity: number; styles: string[] };
+type Filter = { kind: 'all' | 'favorites' | 'active' | 'inactive' } | { kind: 'folder'; folder: string } | { kind: 'provider'; id: ProviderId };
 
 const PAGE = 60;
 const DEFAULT_TEXT = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789!@#$%^&()';
@@ -67,13 +68,20 @@ function releaseFace(file: string) {
 }
 
 
-// "400" → Regular, "700i" → Bold Italic (claves de estilo de Google Fonts)
+// "400" → Regular, "700i" → Bold Italic (claves de estilo de los proveedores)
 const WEIGHT_NAMES: Record<string, string> = { 100: 'Thin', 200: 'ExtraLight', 300: 'Light', 400: 'Regular', 500: 'Medium', 600: 'SemiBold', 700: 'Bold', 800: 'ExtraBold', 900: 'Black' };
-const googleStyleName = (key: string) => {
+const providerStyleName = (key: string) => {
   const italic = key.endsWith('i'), w = WEIGHT_NAMES[parseInt(key, 10)] ?? key;
   return italic ? (w === 'Regular' ? 'Italic' : `${w} Italic`) : w;
 };
-const GOOGLE_CATEGORIES: Record<string, string> = { 'Sans Serif': 'Sans Serif', Serif: 'Serif', Display: 'Display', Handwriting: 'Manuscrita', Monospace: 'Monoespaciada' };
+// Proveedores en línea: nombre visible y prefijo de sus claves de archivo ("gf:Roboto:400")
+const PROVIDERS: { id: ProviderId; name: string; prefix: string; popularity: boolean }[] = [
+  { id: 'google', name: 'Google Fonts', prefix: 'gf', popularity: true },
+  { id: 'fontshare', name: 'Fontshare', prefix: 'fsh', popularity: true },
+  { id: 'fontsource', name: 'Fontsource', prefix: 'fso', popularity: false },
+];
+const providerName = (id?: ProviderId) => PROVIDERS.find((p) => p.id === id)?.name ?? '';
+const CATEGORIES: Record<string, string> = { 'Sans Serif': 'Sans Serif', Serif: 'Serif', Display: 'Display', Handwriting: 'Manuscrita', Monospace: 'Monoespaciada' };
 
 const folderName = (p: string) => p.split(/[\\/]/).filter(Boolean).pop() ?? p;
 const SEP = '\\';
@@ -101,15 +109,24 @@ function buildTree(root: string, fonts: FontFile[]): FolderNode {
   return tree;
 }
 
+// Carpetas desplegadas en la barra lateral: empiezan cerradas y se recuerda cómo se dejaron al cerrar la app
+const openFolders = new Set<string>((() => { try { return JSON.parse(localStorage.getItem('fv-open-folders') ?? '[]'); } catch { return []; } })());
+function toggleFolder(path: string) {
+  const open = !openFolders.has(path);
+  if (open) openFolders.add(path); else openFolders.delete(path);
+  try { localStorage.setItem('fv-open-folders', JSON.stringify([...openFolders])); } catch {}
+  return open;
+}
+
 function FolderTree({ node, depth, selected, onSelect, onRemove }: {
   node: FolderNode; depth: number; selected: string | null; onSelect: (path: string) => void; onRemove?: () => void;
 }) {
-  const [open, setOpen] = useState(depth === 0);
+  const [open, setOpen] = useState(() => openFolders.has(node.path));
   const hasChildren = node.children.length > 0;
   return (
     <>
       <div className={'nav-item' + (selected === node.path ? ' selected' : '')} style={{ paddingLeft: depth * 14 }}>
-        <button className="nav-caret" onClick={() => setOpen((o) => !o)} aria-label={open ? 'Contraer' : 'Expandir'}
+        <button className="nav-caret" onClick={() => setOpen(toggleFolder(node.path))} aria-label={open ? 'Contraer' : 'Expandir'}
           aria-expanded={open} style={{ visibility: hasChildren ? 'visible' : 'hidden' }}>{open ? <ChevronDown12Regular /> : <ChevronRight12Regular />}</button>
         <button className="nav-main" onClick={() => onSelect(node.path)}>
           <span className="nav-icon" aria-hidden="true">{open && hasChildren ? <FolderOpen16Regular /> : <Folder16Regular />}</span>
@@ -150,9 +167,9 @@ function FamilyRow({ family, isActive, busy, showSource, text, size, onToggle, o
           aria-label={(isActive ? 'Desactivar ' : 'Activar ') + family.name} aria-pressed={isActive} />
         <span className="row-name">{family.name}</span>
         {/* En las vistas que mezclan orígenes, una etiqueta indica si la fuente es local o de un proveedor */}
-        {showSource && (family.provider === 'google'
-          ? <span className="source-tag provider">Google Fonts</span>
-          : <span className="source-tag local">Local</span>)}
+        {showSource && [family, ...(family.alts ?? [])].map((f) => f.provider
+          ? <span key={f.provider} className="source-tag provider">{providerName(f.provider)}</span>
+          : <span key="local" className="source-tag local">Local</span>)}
         <span>{family.files.length} {family.files.length === 1 ? "estilo" : "estilos"} · {family.formats}</span>
         {family.designer && <><span className="sep">|</span><span className="designer">{family.designer}</span></>}
       </div>
@@ -285,7 +302,7 @@ function Details({ file }: { file: string }) {
             <tr key={k}><th>{NAME_LABELS[k] ?? k}</th><td>{v as string}</td></tr>
           ))}
           <tr><th>Glifos</th><td>{info.glyphCount}</td></tr>
-          <tr><th>Archivo</th><td>{file.startsWith('gf:') ? 'Google Fonts' : file}</td></tr>
+          <tr><th>Archivo</th><td>{PROVIDERS.find((p) => file.startsWith(p.prefix + ':'))?.name ?? file}</td></tr>
         </tbody>
       </table>
     </div>
@@ -300,8 +317,8 @@ function FamilyDetail({ family, active, text, size, onBack, onToggleFiles, isFav
   const [tab, setTab] = useState('styles');
   const styles = useMemo(() => [...family.files].sort((a, b) => weightOrder(a.style) - weightOrder(b.style)), [family]);
   const [styleFile, setStyleFile] = useState((styles.find((f) => REGULAR.test(f.style)) ?? styles[0]).file);
-  const google = family.provider === 'google';
-  const allOn = google ? familyActive : family.files.every((f) => active.has(f.file));
+  const remote = !!family.provider;
+  const allOn = remote ? familyActive : family.files.every((f) => active.has(f.file));
 
   return (
     <div className="detail">
@@ -319,14 +336,14 @@ function FamilyDetail({ family, active, text, size, onBack, onToggleFiles, isFav
           options={[{ value: 'styles', label: 'Estilos' }, { value: 'waterfall', label: 'Cascada' },
             { value: 'glyphs', label: 'Glifos' }, { value: 'details', label: 'Detalles' }]} /></span>
         <Button variant={allOn ? 'secondary' : 'primary'} size="sm" disabled={busy}
-          onClick={() => (google ? onToggleFamily() : onToggleFiles(family.files.map((f) => f.file), !allOn))}>
+          onClick={() => (remote ? onToggleFamily() : onToggleFiles(family.files.map((f) => f.file), !allOn))}>
           {busy ? 'Descargando…' : allOn ? 'Desactivar todo' : 'Activar todo'}
         </Button>
       </div>
 
       {tab === 'styles' ? styles.map((f) => (
         <StyleRow key={f.file} font={f} isActive={active.has(f.file)} text={text} size={size}
-          onToggle={google ? undefined : () => onToggleFiles([f.file], !active.has(f.file))} />
+          onToggle={remote ? undefined : () => onToggleFiles([f.file], !active.has(f.file))} />
       )) : (
         <div className="tab-body">
           {styles.length > 1 && tab !== 'details' && (
@@ -383,7 +400,7 @@ function SettingsPage({ settings, onChange, folders, onAddFolder, onRemoveFolder
           {folders.map((f) => (
             <div className="folder-line" key={f}>
               <span data-tip={f}>{f}</span>
-              <Button variant="secondary" size="sm" onClick={() => onRemoveFolder(f)}>Quitar</Button>
+              <Button variant="secondary" size="sm" className="icon-only" onClick={() => onRemoveFolder(f)} aria-label={"Quitar " + f} data-tip="Quitar carpeta"><Delete16Regular /></Button>
             </div>
           ))}
           <div><Button variant="secondary" size="sm" onClick={onAddFolder}>Añadir carpeta…</Button></div>
@@ -524,8 +541,8 @@ function App() {
   }
   const [limit, setLimit] = useState(PAGE);
   const [opened, setOpened] = useState<string | null>(null);
-  const [gCatalog, setGCatalog] = useState<GoogleEntry[] | null>(null);
-  const [googleFiles, setGoogleFiles] = useState<Record<string, string[]>>({});
+  const [catalogs, setCatalogs] = useState<Partial<Record<ProviderId, CatalogEntry[]>>>({});
+  const [providerFiles, setProviderFiles] = useState<Partial<Record<ProviderId, Record<string, string[]>>>>({});
   const [downloading, setDownloading] = useState<Set<string>>(new Set());
   const [gCategory, setGCategory] = useState('all');
   const [gSort, setGSort] = useState<'popular' | 'az'>('popular');
@@ -554,10 +571,10 @@ function App() {
     });
     window.api.getLibrary().then((lib: any) => {
       setFonts(lib.fonts); setFolders(lib.folders); setFavorites(lib.favorites); setActive(new Set(lib.active));
-      setGoogleFiles(lib.googleFiles ?? {});
+      setProviderFiles(lib.providerFiles ?? {});
       setLoading(false);
     });
-    window.api.google.catalog().then(setGCatalog).catch(() => setGCatalog([]));
+    for (const p of PROVIDERS) window.api.providers.catalog(p.id).catch(() => []).then((list: CatalogEntry[]) => setCatalogs((c) => ({ ...c, [p.id]: list })));
   }, []);
 
   const group = settings?.groupFamilies ?? true;
@@ -577,27 +594,42 @@ function App() {
 
   const trees = useMemo(() => folders.map((root) => buildTree(root, fonts)), [folders, fonts]);
 
-  // Familias de Google Fonts: cada estilo apunta a una vista previa remota ("gf:Familia:400")
-  const googleFamilies = useMemo<Family[]>(() => (gCatalog ?? []).map((g) => ({
-    name: g.family, provider: 'google', category: g.category, popularity: g.popularity,
-    designer: g.designers.join(', '), formats: 'Google Fonts', folders: new Set(['google']),
-    files: g.styles.map((st) => ({ file: `gf:${g.family}:${st}`, folder: 'google', format: 'Google', family: g.family, style: googleStyleName(st) })),
-  })), [gCatalog]);
+  // Familias de los proveedores: cada estilo apunta a una vista previa remota ("gf:Familia:400")
+  const providerFamilies = useMemo<Family[]>(() => PROVIDERS.flatMap((p) => (catalogs[p.id] ?? []).map((g) => ({
+    name: g.family, provider: p.id, category: g.category, popularity: g.popularity,
+    designer: g.designers.join(', '), formats: p.name, folders: new Set([p.id]),
+    files: g.styles.map((st) => ({ file: `${p.prefix}:${g.family}:${st}`, folder: p.id, format: p.name, family: g.family, style: providerStyleName(st) })),
+  }))), [catalogs]);
 
-  const isActive = (fam: Family) => fam.provider === 'google'
-    ? (googleFiles[fam.name] ?? []).some((f) => active.has(f))
+  const isActiveOne = (fam: Family) => fam.provider
+    ? (providerFiles[fam.provider]?.[fam.name] ?? []).some((f) => active.has(f))
     : fam.files.some((f) => active.has(f.file));
-  const googleActive = googleFamilies.filter(isActive);
-  const activeCount = families.filter(isActive).length + googleActive.length;
+  // Una familia repetida cuenta como activa si lo está en cualquiera de sus orígenes
+  const isActive = (fam: Family) => isActiveOne(fam) || (fam.alts ?? []).some(isActiveOne);
+
+  // Vista combinada: una sola fila por nombre. Manda la local (si existe) y el resto queda en "alts" para las etiquetas
+  const merged = useMemo(() => {
+    const byName = new Map<string, Family>();
+    for (const fam of [...families, ...providerFamilies]) {
+      const first = byName.get(fam.name);
+      if (!first) byName.set(fam.name, { ...fam, alts: [] });
+      else first.alts!.push(fam);
+    }
+    return [...byName.values()].sort((a, b) => a.name.localeCompare(b.name));
+  }, [families, providerFamilies]);
+  const activeCount = merged.filter(isActive).length;
+  // Clave única de una familia: el mismo nombre puede existir en local y en varios proveedores
+  const famKey = (fam: Family) => (fam.provider ?? 'local') + ':' + fam.name;
 
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (filter.kind === 'google') {
-      const list = googleFamilies.filter((g) => (gCategory === 'all' || g.category === gCategory) && (!q || g.name.toLowerCase().includes(q)));
+    if (filter.kind === 'provider') {
+      const id = filter.id;
+      const list = providerFamilies.filter((g) => g.provider === id && (gCategory === 'all' || g.category === gCategory) && (!q || g.name.toLowerCase().includes(q)));
       return gSort === 'az' ? list : [...list].sort((a, b) => (a.popularity ?? 0) - (b.popularity ?? 0));
     }
     // Todas las vistas generales incluyen también las de proveedores; las carpetas, solo las locales
-    const pool = filter.kind === 'folder' ? families : [...families, ...googleFamilies].sort((a, b) => a.name.localeCompare(b.name));
+    const pool = filter.kind === 'folder' ? families : merged;
     return pool.filter((fam) => {
       if (q && !fam.name.toLowerCase().includes(q)) return false;
       switch (filter.kind) {
@@ -608,7 +640,7 @@ function App() {
         default: return true;
       }
     });
-  }, [families, googleFamilies, query, filter, favorites, active, googleFiles, gCategory, gSort]);
+  }, [families, merged, providerFamilies, query, filter, favorites, active, providerFiles, gCategory, gSort]);
 
   useEffect(() => { setLimit(PAGE); setOpened(null); }, [query, filter]);
 
@@ -629,14 +661,15 @@ function App() {
   }
 
   async function toggle(fam: Family) {
-    if (fam.provider === 'google') {
-      // La primera activación descarga los .ttf; mientras tanto el punto muestra que está trabajando
-      setDownloading((d) => new Set(d).add(fam.name));
+    if (fam.provider) {
+      // La primera activación descarga los archivos; mientras tanto el punto muestra que está trabajando
+      const key = famKey(fam);
+      setDownloading((d) => new Set(d).add(key));
       try {
-        const r = await window.api.google.setActive(fam.name, !isActive(fam));
-        setActive(new Set(r.active)); setGoogleFiles(r.googleFiles);
+        const r = await window.api.providers.setActive(fam.provider, fam.name, !isActive(fam));
+        setActive(new Set(r.active)); setProviderFiles(r.providerFiles);
       } catch {} finally {
-        setDownloading((d) => { const n = new Set(d); n.delete(fam.name); return n; });
+        setDownloading((d) => { const n = new Set(d); n.delete(key); return n; });
       }
       return;
     }
@@ -652,9 +685,7 @@ function App() {
     setActive(new Set(await window.api.setActive(files, on)));
   }
 
-  const openedFamily = opened ? (filter.kind === 'google' || !families.some((f) => f.name === opened)
-    ? googleFamilies.find((f) => f.name === opened) ?? families.find((f) => f.name === opened)
-    : families.find((f) => f.name === opened)) : undefined;
+  const openedFamily = opened ? (merged.find((f) => famKey(f) === opened) ?? providerFamilies.find((f) => famKey(f) === opened)) : undefined;
 
   const sel = (k: Filter['kind']) => filter.kind === k;
 
@@ -663,7 +694,7 @@ function App() {
       <GlobalTooltip />
       <ResizeHandles />
       <header className="topbar">
-        <span className="brand">FontVault</span>
+        <img className="brand" src="build/icon.png" alt="FontVault" draggable={false} />
         <button className="topbar-btn" onClick={() => setSettingsOpen((o) => !o)} aria-pressed={settingsOpen} aria-label="Ajustes" data-tip="Ajustes"><IconGear /></button>
         <WindowControls />
       </header>
@@ -679,25 +710,25 @@ function App() {
           <SearchField label="Buscar fuentes" placeholder="Buscar fuentes…" value={query} onValueChange={setQuery} />
         </div>
         <nav>
-          <NavItem label="Todas" icon={<TextFont16Regular />} count={families.length + googleFamilies.length} selected={sel('all')} onClick={() => setFilter({ kind: 'all' })} />
+          <NavItem label="Todas" icon={<TextFont16Regular />} count={merged.length} selected={sel('all')} onClick={() => setFilter({ kind: 'all' })} />
           <NavItem label="Favoritas" icon={<Heart16Regular />} count={favorites.length} selected={sel('favorites')} onClick={() => setFilter({ kind: 'favorites' })} />
           <NavItem label="Activas" icon={<CheckmarkCircle16Regular />} tone="green" count={activeCount} selected={sel('active')} onClick={() => setFilter({ kind: 'active' })} />
-          <NavItem label="Inactivas" icon={<Circle16Regular />} count={families.length + googleFamilies.length - activeCount} selected={sel('inactive')} onClick={() => setFilter({ kind: 'inactive' })} />
+          <NavItem label="Inactivas" icon={<Circle16Regular />} count={merged.length - activeCount} selected={sel('inactive')} onClick={() => setFilter({ kind: 'inactive' })} />
 
           <h2>Proveedores</h2>
-          <NavItem label="Google Fonts" icon={<Globe16Regular />} count={gCatalog?.length} selected={sel('google')} onClick={() => setFilter({ kind: 'google' })} />
+          {PROVIDERS.map((p) => (
+            <NavItem key={p.id} label={p.name} icon={<Globe16Regular />} count={catalogs[p.id]?.length}
+              selected={filter.kind === 'provider' && filter.id === p.id} onClick={() => { setFilter({ kind: 'provider', id: p.id }); if (!p.popularity) setGSort('az'); }} />
+          ))}
 
           <h2>Carpetas</h2>
-          {folders.length === 0 && <p className="nav-empty">Sin carpetas todavía</p>}
+          {folders.length === 0 && <p className="nav-empty">Añade carpetas desde Ajustes</p>}
           {trees.map((tree) => (
             <FolderTree key={tree.path} node={tree} depth={0}
               selected={filter.kind === 'folder' ? filter.folder : null}
-              onSelect={(folder) => setFilter({ kind: 'folder', folder })} onRemove={() => removeFolder(tree.path)} />
+              onSelect={(folder) => setFilter({ kind: 'folder', folder })} />
           ))}
         </nav>
-        <div className="sidebar-foot">
-          <Button variant="secondary" size="sm" onClick={addFolder}>Añadir carpeta</Button>
-        </div>
         </>)}
       </aside>
 
@@ -721,31 +752,31 @@ function App() {
             <FamilyDetail family={openedFamily} active={active} text={text} size={size}
               onBack={() => setOpened(null)} onToggleFiles={toggleFiles}
               isFavorite={favorites.includes(openedFamily.name)} onFavorite={() => toggleFavorite(openedFamily.name)}
-              familyActive={isActive(openedFamily)} busy={downloading.has(openedFamily.name)} onToggleFamily={() => toggle(openedFamily)} />
+              familyActive={isActive(openedFamily)} busy={downloading.has(famKey(openedFamily))} onToggleFamily={() => toggle(openedFamily)} />
           </div>
         )}
 
         {/* La lista se oculta en lugar de desmontarse para conservar el scroll */}
         <div className="list" hidden={!!openedFamily || settingsOpen}>
-          {filter.kind === 'google' && (
+          {filter.kind === 'provider' && (
             <div className="collections-head provider-head">
               <div className="setting-select wide">
                 <Select label="Categoría" value={gCategory} onValueChange={setGCategory}
-                  options={[{ value: 'all', label: 'Todas las categorías' }, ...Object.entries(GOOGLE_CATEGORIES).map(([value, label]) => ({ value, label }))]} />
+                  options={[{ value: 'all', label: 'Todas las categorías' }, ...Object.entries(CATEGORIES).map(([value, label]) => ({ value, label }))]} />
               </div>
               <div className="setting-select">
                 <Select label="Orden" value={gSort} onValueChange={(v) => setGSort(v as 'popular' | 'az')}
-                  options={[{ value: 'popular', label: 'Más populares' }, { value: 'az', label: 'A–Z' }]} />
+                  options={[...(PROVIDERS.find((p) => p.id === filter.id)?.popularity ? [{ value: 'popular', label: 'Más populares' }] : []), { value: 'az', label: 'A–Z' }]} />
               </div>
               <span className="muted-count">{visible.length.toLocaleString('es')} familias</span>
             </div>
           )}
-          {filter.kind === 'google' ? (
-            gCatalog === null ? <p className="empty">Cargando Google Fonts…</p>
-            : gCatalog.length === 0 ? <p className="empty">No se pudo cargar Google Fonts. Revisa tu conexión a internet.</p>
+          {filter.kind === 'provider' ? (
+            !catalogs[filter.id] ? <p className="empty">Cargando {providerName(filter.id)}…</p>
+            : catalogs[filter.id]!.length === 0 ? <p className="empty">No se pudo cargar {providerName(filter.id)}. Revisa tu conexión a internet.</p>
             : visible.slice(0, limit).map((fam) => (
-              <FamilyRow key={fam.name} family={fam} isActive={isActive(fam)} busy={downloading.has(fam.name)} text={text} size={size}
-                onToggle={() => toggle(fam)} onOpen={() => setOpened(fam.name)} />
+              <FamilyRow key={famKey(fam)} family={fam} isActive={isActive(fam)} busy={downloading.has(famKey(fam))} text={text} size={size}
+                onToggle={() => toggle(fam)} onOpen={() => setOpened(famKey(fam))} />
             ))
           ) : loading ? <p className="empty">Cargando biblioteca…</p>
             : folders.length === 0 && filter.kind === 'folder' ? (
@@ -755,7 +786,7 @@ function App() {
               </div>
             ) : visible.length === 0 ? <p className="empty">Ninguna fuente coincide.</p>
             : visible.slice(0, limit).map((fam) => (
-              <FamilyRow key={(fam.provider ?? 'local') + fam.name} family={fam} isActive={isActive(fam)} busy={downloading.has(fam.name)} showSource={filter.kind !== 'folder'} text={text} size={size} onToggle={() => toggle(fam)} onOpen={() => setOpened(fam.name)} />
+              <FamilyRow key={famKey(fam)} family={fam} isActive={isActive(fam)} busy={downloading.has(famKey(fam))} showSource={filter.kind !== 'folder'} text={text} size={size} onToggle={() => toggle(fam)} onOpen={() => setOpened(famKey(fam))} />
             ))}
           {visible.length > limit && (
             <LoadMore onVisible={() => setLimit((l) => l + PAGE)} />

@@ -23,7 +23,7 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .shell { display: grid; grid-template-columns: 280px 1fr; grid-template-rows: 44px 1fr; height: 100%; background: #111; }
 
 .topbar { grid-column: 1 / -1; display: flex; align-items: center; padding: 0 160px 0 20px; -webkit-app-region: drag; }
-.brand { font-size: 14px; font-weight: 500; min-width: 120px; }
+.brand { width: 20px; height: 20px; flex: none; margin-left: -6px; }
 .sidebar-search { padding: 4px 0 12px; }
 .sidebar-search label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
@@ -31,7 +31,7 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .sidebar nav { flex: 1; overflow-y: auto; }
 .sidebar h2 { font-size: 13px; font-weight: 500; color: var(--text-secondary); margin: 22px 10px 6px; }
 .nav-empty { font-size: 13px; color: var(--text-muted); margin: 4px 10px; }
-.nav-item { display: flex; align-items: center; border-radius: 10px; }
+.nav-item { display: flex; align-items: center; border-radius: 12px; }
 .nav-item:hover { background: #1b1b1b; }
 .nav-item.selected { background: #262626; }
 .nav-main { flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0; background: none; border: 0; color: inherit; font: inherit; font-size: 14px; padding: 6px 10px; cursor: pointer; text-align: left; }
@@ -47,7 +47,7 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .nav-remove:hover { color: var(--foreground); }
 .sidebar-foot { display: flex; justify-content: center; padding-top: 12px; }
 
-.content { display: flex; flex-direction: column; min-height: 0; background: var(--background); border-top-left-radius: 10px; overflow: hidden; }
+.content { display: flex; flex-direction: column; min-height: 0; background: var(--background); border-top-left-radius: 4px; overflow: hidden; }
 
 .toolbar { display: flex; align-items: center; gap: 20px; padding: 12px 20px; border-bottom: 1px solid var(--border); }
 .toolbar-slider { flex: 1; }
@@ -105,7 +105,7 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .details .muted { color: var(--text-secondary); font-size: 13px; }
 .features { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 .feature { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; }
-.feature b { font-weight: 500; min-width: 28px; padding: 3px 6px; text-align: center; border-radius: 6px; background: var(--surface-muted); }
+.feature b { font-weight: 500; min-width: 28px; padding: 3px 6px; text-align: center; border-radius: 2px; background: var(--surface-muted); }
 .details table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .details th { width: 180px; text-align: left; font-weight: 400; color: var(--text-secondary); padding: 9px 12px; vertical-align: top; }
 .details td { padding: 9px 12px; word-break: break-word; }
@@ -139,7 +139,7 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .fav.on svg { fill: currentColor; animation: fav-pop .35s var(--ease-spring); }
 @keyframes fav-pop { 0% { transform: scale(.6); } 60% { transform: scale(1.2); } 100% { transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) { .fav, .fav.on svg { transition: none; animation: none; } }
-.glyph-grid span { display: grid; place-items: center; aspect-ratio: 1; font-size: 30px; border-radius: 10px; cursor: default; }
+.glyph-grid span { display: grid; place-items: center; aspect-ratio: 1; font-size: 30px; border-radius: 4px; cursor: default; }
 .glyph-grid span:hover { background: var(--surface-muted); }
 
 /* El contador de caracteres va a la derecha, en la fila del desplegable */
@@ -150,7 +150,7 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 
 /* Lista de familias al estilo de Google Fonts */
 .family-row { padding: 18px 20px 20px; border-bottom: 1px solid var(--border); border-radius: 0; transition: background-color .15s var(--ease-standard), border-radius .15s; }
-.family-row:hover { background: var(--surface-muted); border-radius: 12px; border-bottom-color: transparent; }
+.family-row:hover { background: var(--surface-muted); border-radius: 6px; border-bottom-color: transparent; }
 .family-row:has(+ .family-row:hover) { border-bottom-color: transparent; }
 .family-row .row-meta { gap: 10px; font-size: 12px; }
 .family-row .row-name { font-weight: 600; font-size: 14px; }
@@ -160,8 +160,7 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .family-row { cursor: pointer; }
 
 /* Botón de ajustes en la barra superior, junto a los controles de ventana */
-.topbar-btn { margin-left: auto; display: grid; place-items: center; width: 40px; height: 32px; border: 0; border-radius: 8px; background: none; color: var(--foreground); cursor: pointer; -webkit-app-region: no-drag; transition: background-color .15s; }
-.topbar-btn:hover { background: #2a2a2a; }
+.topbar-btn { margin-left: auto; display: grid; place-items: center; width: 40px; height: 32px; border: 0; border-radius: 2px; background: none; color: var(--foreground); cursor: pointer; -webkit-app-region: no-drag; transition: background-color .15s; }
 .topbar { padding-right: 140px; }
 
 /* Página de ajustes */
@@ -180,11 +179,10 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .setting-select label, .sample-line label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .setting-select > div, .sample-line > div:first-child { gap: 0; }
 .folder-line { display: flex; align-items: center; gap: 10px; }
-.folder-line > span { flex: 1; min-width: 0; font-size: 13px; padding: 10px 14px; border-radius: 10px; background: var(--surface-muted); color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.folder-line > span { box-sizing: border-box; height: 38px; display: flex; align-items: center; padding-top: 0 !important; padding-bottom: 0 !important; flex: 1; min-width: 0; font-size: 13px; padding: 10px 14px; border-radius: var(--radius-control); background: var(--surface-muted); color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sample-line { display: flex; align-items: center; gap: 8px; }
 .sample-line > div:first-child { flex: 1; }
 .settings-about { margin: 20px 0 0; font-size: 12px; color: var(--text-muted); }
-.topbar-btn[aria-pressed="true"] { background: #2c2c2c; }
 
 /* Selector Fuentes / Iconos */
 .mode-switch { display: flex; padding: 4px 0 10px; --surface-muted: #222; --surface: #333; --border: #2c2c2c; }
@@ -204,7 +202,7 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .muted-count { font-size: 13px; color: var(--text-secondary); white-space: nowrap; }
 .muted-count.block { display: block; padding: 12px 0; }
 .collection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-.collection-card { display: grid; gap: 4px; text-align: left; padding: 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); color: var(--foreground); font: inherit; cursor: pointer; transition: background-color .15s, border-color .15s; }
+.collection-card { display: grid; gap: 4px; text-align: left; padding: 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--foreground); font: inherit; cursor: pointer; transition: background-color .15s, border-color .15s; }
 .collection-card:hover { background: var(--surface-muted); border-color: transparent; }
 .collection-card strong { font-size: 14px; font-weight: 600; }
 .collection-card span { font-size: 12px; color: var(--text-secondary); }
@@ -212,7 +210,7 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .collection-samples { display: flex; gap: 14px; padding: 4px 0 12px; }
 .collection-samples img { width: 26px; height: 26px; }
 .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(var(--icon-size) + 36px), 1fr)); gap: 4px; }
-.icon-cell { display: grid; place-items: center; aspect-ratio: 1; border: 0; border-radius: 12px; background: none; cursor: pointer; transition: background-color .12s; }
+.icon-cell { display: grid; place-items: center; aspect-ratio: 1; border: 0; border-radius: 6px; background: none; cursor: pointer; transition: background-color .12s; }
 .icon-cell img { width: var(--icon-size); height: var(--icon-size); }
 .icon-cell:hover { background: var(--surface-muted); }
 .icon-cell.selected { background: var(--surface-muted); box-shadow: inset 0 0 0 1.5px var(--foreground); }
@@ -220,14 +218,14 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .icon-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .icon-panel-head strong { font-size: 15px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .nav-remove.visible { opacity: 1; }
-.icon-preview { display: grid; place-items: center; aspect-ratio: 1; border-radius: 14px; background: var(--surface-muted); }
+.icon-preview { display: grid; place-items: center; aspect-ratio: 1; border-radius: 8px; background: var(--surface-muted); }
 .icon-preview img { width: 55%; height: 55%; }
 .icon-panel code { font-size: 12px; color: var(--text-secondary); word-break: break-all; }
 .icon-actions { display: grid; gap: 8px; }
 .icon-actions > * { width: 100%; }
 .color-pick { display: flex; align-items: center; flex: none; }
 .detail-title a { color: inherit; }
-.icon-skeleton { display: block; width: calc(var(--icon-size, 26px) * .7); height: calc(var(--icon-size, 26px) * .7); border-radius: 6px; background: var(--surface-muted); }
+.icon-skeleton { display: block; width: calc(var(--icon-size, 26px) * .7); height: calc(var(--icon-size, 26px) * .7); border-radius: 2px; background: var(--surface-muted); }
 .collection-samples .icon-skeleton { width: 26px; height: 26px; }
 .icon-cell[draggable="true"], .icon-preview[draggable="true"] { cursor: grab; }
 .drag-hint { margin: -6px 0 0; font-size: 12px; color: var(--text-muted); }
@@ -259,20 +257,20 @@ div[role="menu"] button[role="menuitem"] > span[aria-hidden="true"]:empty { disp
 .cpick-swatch:active { transform: scale(.94); }
 .cpick-pop { position: absolute; top: calc(100% + 8px); right: 0; z-index: 60; width: 236px; display: grid; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: calc(var(--radius-control) + 2px); background: var(--surface-raised); box-shadow: var(--shadow-floating); animation: cpick-in .16s var(--ease-enter) both; transform-origin: top right; }
 @keyframes cpick-in { from { opacity: 0; transform: scale(.96) translateY(-4px); } }
-.cpick-sv { position: relative; height: 140px; border-radius: 10px; cursor: crosshair; touch-action: none;
+.cpick-sv { position: relative; height: 140px; border-radius: 4px; cursor: crosshair; touch-action: none;
   background-image: linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, transparent); }
 .cpick-sv span, .cpick-hue span { position: absolute; width: 16px; height: 16px; border-radius: 50%; border: 2.5px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 1px 3px rgba(0,0,0,.3); transform: translate(-50%, -50%); pointer-events: none; }
 .cpick-hue { position: relative; height: 12px; border-radius: 999px; cursor: pointer; touch-action: none; background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00); }
 .cpick-hue span { top: 50%; }
 .cpick-row { display: flex; align-items: center; gap: 8px; }
-.cpick-preview { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border); flex: none; }
-.cpick-row input { flex: 1; min-width: 0; height: 32px; padding: 0 10px; border: 1px solid var(--border-strong); border-radius: 8px; background: var(--surface); color: var(--foreground); font: inherit; font-size: 13px; font-variant-numeric: tabular-nums; outline: none; }
+.cpick-preview { width: 32px; height: 32px; border-radius: 2px; border: 1px solid var(--border); flex: none; }
+.cpick-row input { flex: 1; min-width: 0; height: 32px; padding: 0 10px; border: 1px solid var(--border-strong); border-radius: 2px; background: var(--surface); color: var(--foreground); font: inherit; font-size: 13px; font-variant-numeric: tabular-nums; outline: none; }
 .cpick-row input:focus { border-color: var(--foreground); }
 
 /* El panel claro queda enmarcado por el fondo oscuro también a la derecha y abajo,
    con todas las esquinas redondeadas: así el borde de Windows se funde con el marco */
 .shell { overflow: hidden; padding: 0 8px 8px 0; }
-.content { border-radius: 10px; }
+.content { border-radius: 4px; }
 
 /* Controles de ventana propios, con el tamaño y comportamiento de los de Windows 11 */
 .topbar { padding-right: 0; }
@@ -337,8 +335,8 @@ div[role="menu"] button[role="menuitem"][role="menuitem"]:focus-visible { backgr
 .sidebar-search { --surface: var(--chrome-surface); --border-strong: var(--chrome-strong); }
 .sidebar h2, .nav-count { color: var(--chrome-text2); }
 .mode-switch { --surface-muted: var(--chrome-seg); --surface: var(--chrome-seg-on); --border: var(--chrome-border); --text-muted: var(--chrome-muted); --foreground: var(--chrome-fg); }
-.topbar-btn:hover, .win-controls button:hover { background: var(--chrome-hover); }
-.topbar-btn[aria-pressed="true"], .win-controls button:active { background: var(--chrome-selected); }
+.win-controls button:hover { background: var(--chrome-hover); }
+.win-controls button:active { background: var(--chrome-selected); }
 
 /* Tooltips del mismo tono que el tema: claros en modo claro, oscuros en modo oscuro */
 .arc-tip { background: var(--surface-raised); color: var(--foreground); border-color: var(--border-strong); box-shadow: var(--shadow-floating); }
@@ -369,7 +367,7 @@ input, textarea, [contenteditable="true"] { user-select: text; -webkit-user-sele
 .sample-bar input[type][type], .sample-bar input:not([type]):not([type]) { padding-right: 48px; }
 .sample-picker { position: absolute; right: 26px; top: calc(50% - 2px); transform: translateY(-50%); }
 .sample-bar[hidden] .sample-picker { display: none; }
-.sample-toggle { display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 8px; background: none; color: var(--text-secondary); cursor: pointer; transition: background-color .12s, color .12s; }
+.sample-toggle { display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 2px; background: none; color: var(--text-secondary); cursor: pointer; transition: background-color .12s, color .12s; }
 .sample-toggle:hover, .sample-toggle.open { background: var(--surface-muted); color: var(--foreground); }
 .sample-toggle svg { width: 18px; height: 18px; transition: transform .2s var(--ease-standard); }
 .sample-toggle.open svg { transform: rotate(180deg); }
@@ -423,3 +421,20 @@ input, textarea, [contenteditable="true"] { user-select: text; -webkit-user-sele
 .source-tag.provider { color: #7c3aed; background: color-mix(in oklab, #8b5cf6 14%, transparent); }
 :root[data-theme="dark"] .source-tag.local { color: #7fb0ff; background: color-mix(in oklab, #3b82f6 22%, transparent); }
 :root[data-theme="dark"] .source-tag.provider { color: #b99cff; background: color-mix(in oklab, #8b5cf6 24%, transparent); }
+
+.push-right { margin-left: auto; }
+
+/* Radios de Arc UI 6px más pequeños en toda la app (los derivados, como +2 / -4, se ajustan solos) */
+:root { --radius-control: calc(1.125rem - 6px); --radius-panel: calc(1.625rem - 6px); --radius-surface: calc(2.125rem - 6px); }
+
+/* Opciones de la barra lateral de 36px de alto */
+.nav-item { min-height: 36px; }
+.nav-item > .nav-main { align-self: stretch; }
+
+/* La barra lateral se desplaza sin mostrar la barra de scroll, así las opciones ocupan todo el ancho */
+.sidebar nav { scrollbar-width: none; }
+.sidebar nav::-webkit-scrollbar { display: none; width: 0; }
+.folder-line .icon-only svg { width: 18px; height: 18px; }
+
+/* Cabecera del detalle (familia o colección) fija arriba al desplazarse, como la barra de tamaño */
+.list .detail-head { position: sticky; top: -8px; z-index: 5; background: var(--background); margin: -8px -20px 4px; padding: 16px 20px; }

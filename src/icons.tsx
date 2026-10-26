@@ -71,8 +71,6 @@ function requestIcons(prefix: string, names: string[]) {
   }).catch(() => {}).finally(() => missing.forEach((n) => pending.delete(prefix + ':' + n)));
 }
 
-// Al minimizar la ventana se vacía la caché de iconos remotos (se vuelven a pedir si hacen falta)
-(window as any).api.window.onTrim(() => { remote.clear(); listeners.forEach((l) => l()); });
 
 function useRemote() {
   const [, bump] = useState(0);
@@ -248,8 +246,8 @@ function CollectionCard({ prefix, info: c, owned, onOpen }: { prefix: string; in
   );
 }
 
-function Collections({ onOpen, libraries, query, setQuery, children }: {
-  onOpen: (prefix: string) => void; libraries: Library[]; query: string; setQuery: (q: string) => void; children?: React.ReactNode;
+function Collections({ onOpen, libraries, query, children }: {
+  onOpen: (prefix: string) => void; libraries: Library[]; query: string; children?: React.ReactNode;
 }) {
   const [all, setAll] = useState<Record<string, Info> | null>(null);
   const [error, setError] = useState('');
@@ -267,20 +265,16 @@ function Collections({ onOpen, libraries, query, setQuery, children }: {
 
   return (
     <div className="collections">
-      <div className="collections-head">
-        <div className="collections-filter">
-          <Input label="Buscar iconos" placeholder="Buscar iconos en todas las bibliotecas…" value={query} onChange={(e) => setQuery(e.target.value)} />
+      {/* La búsqueda se hace desde la barra lateral; aquí solo el filtro de categoría y el total */}
+      {!searching && all && (
+        <div className="collections-head">
+          <div className="setting-select wide">
+            <Select label="Categoría" value={category} onValueChange={setCategory}
+              options={[{ value: 'all', label: 'Todas las categorías' }, ...categories.map((c) => ({ value: c, label: c }))]} />
+          </div>
+          <span className="muted-count push-right">{list.length} colecciones</span>
         </div>
-        {!searching && all && (
-          <>
-            <div className="setting-select wide">
-              <Select label="Categoría" value={category} onValueChange={setCategory}
-                options={[{ value: 'all', label: 'Todas las categorías' }, ...categories.map((c) => ({ value: c, label: c }))]} />
-            </div>
-            <span className="muted-count">{list.length} colecciones</span>
-          </>
-        )}
-      </div>
+      )}
       {searching ? children : error ? <p className="empty">{error}</p> : !all ? <p className="empty">Cargando colecciones…</p> : (
       <div className="collection-grid">
         {list.map(([prefix, c]) => (
@@ -463,7 +457,7 @@ export function IconsMain({ state }: { state: IconsState }) {
           ) : view.kind === 'collection' ? (
             <CollectionView prefix={view.prefix} state={state} color={color} sel={sel} setSel={setSel} setLocal={setLocal} size={size} />
           ) : (
-            <Collections libraries={state.libraries} query={query} setQuery={state.setQuery}
+            <Collections libraries={state.libraries} query={query}
               onOpen={(prefix) => state.setView({ kind: 'collection', prefix })}>
               {query.trim() && <SearchResults query={query.trim()} color={color} sel={sel} setSel={setSel} size={size} />}
             </Collections>

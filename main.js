@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog, Tray, Menu, nativeImage, shell } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, Tray, Menu, nativeImage, shell, nativeTheme } = require('electron');
 const path = require('path');
 const fs = require('fs/promises');
 const opentype = require('opentype.js');
@@ -7,7 +7,7 @@ const gdi = require('./gdi');
 require('v8').setFlagsFromString('--expose-gc');
 const collectGarbage = require('vm').runInNewContext('gc');
 require('./icons');
-const google = require('./google');
+const providers = require('./providers');
 const APP_ICON = path.join(__dirname, 'build', 'icon.png');
 
 const FONT_EXT = new Set(['.ttf', '.otf', '.ttc', '.woff', '.woff2']);
@@ -30,6 +30,8 @@ async function loadStore() {
   // Versiones anteriores guardaban un único texto de ejemplo
   if (store.settings.sampleText) store.settings.samples = [store.settings.sampleText, ...DEFAULT_SAMPLES.slice(1)];
   delete store.settings.sampleText;
+  // Antes solo existía Google Fonts: sus archivos pasan a la lista general de proveedores
+  if (store.googleFiles) { store.providerFiles = { ...store.providerFiles, google: store.googleFiles }; delete store.googleFiles; }
 }
 // Los guardados van en cola y se escriben a un archivo temporal que luego se renombra: así dos guardados
 // seguidos no se mezclan y un cierre a mitad nunca deja library.json corrupto (que borraría carpetas y ajustes)
@@ -110,7 +112,7 @@ async function scanFolder(folder) {
 ipcMain.handle('getLibrary', async () => {
   const fonts = (await Promise.all(store.folders.map(scanFolder))).flat();
   setTimeout(collectGarbage, 1000);
-  return { folders: store.folders, favorites: store.favorites, active: [...active], fonts, googleFiles: store.googleFiles ?? {} };
+  return { folders: store.folders, favorites: store.favorites, active: [...active], fonts, providerFiles: store.providerFiles ?? {} };
 });
 
 ipcMain.handle('addFolder', async () => {
@@ -128,8 +130,9 @@ ipcMain.handle('removeFolder', async (_e, folder) => {
 });
 
 ipcMain.handle('readFont', async (_e, file) => {
-  // "gf:Familia:estilo" es una vista previa de Google Fonts que se descarga al vuelo
-  if (file.startsWith('gf:')) return google.readPreview(file.slice(3));
+  // "gf:Familia:estilo" (y "fsh:", "fso:") es una vista previa de un proveedor que se descarga al vuelo
+  const remote = providers.parse(file);
+  if (remote) return providers.readPreview(remote);
   const buf = await fs.readFile(file);
   return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
 });
@@ -140,9 +143,10 @@ const NAME_FIELDS = ['copyright', 'designer', 'designerURL', 'fontFamily', 'font
 // Caché de la información de las últimas fuentes consultadas (pestañas Glifos y Detalles)
 const infoCache = new Map();
 ipcMain.handle('fontInfo', async (_e, file) => {
-  // En Google Fonts descargamos (una vez) el .ttf de ese estilo y lo analizamos como una fuente local
-  if (file.startsWith('gf:')) {
-    try { file = await google.styleFile(file.slice(3)); } catch { return null; }
+  // En los proveedores descargamos (una vez) el archivo de ese estilo y lo analizamos como una fuente local
+  const remote = providers.parse(file);
+  if (remote) {
+    try { file = await providers.styleFile(remote); } catch { return null; }
   }
   const st = await fs.stat(file).catch(() => null);
   const hit = infoCache.get(file);
@@ -176,16 +180,16 @@ async function readFontInfo(file) {
   }
 }
 
-// Activa o desactiva una familia de Google Fonts: la primera vez descarga sus .ttf a la carpeta del proveedor
-ipcMain.handle('google:setActive', async (_e, family, on) => {
-  const files = on ? await google.download(family) : (store.googleFiles?.[family] ?? []);
-  store.googleFiles = { ...(store.googleFiles ?? {}), [family]: files };
+// Activa o desactiva una familia de un proveedor: la primera vez descarga sus archivos a la carpeta del proveedor
+ipcMain.handle('providers:setActive', async (_e, id, family, on) => {
+  const files = on ? await providers.download(id, family) : (store.providerFiles?.[id]?.[family] ?? []);
+  store.providerFiles = { ...store.providerFiles, [id]: { ...store.providerFiles?.[id], [family]: files } };
   for (const file of files) {
     const ok = on ? gdi.activate(file) : gdi.deactivate(file);
     if (ok) on ? active.add(file) : active.delete(file);
   }
   await saveStore();
-  return { active: [...active], googleFiles: store.googleFiles };
+  return { active: [...active], providerFiles: store.providerFiles };
 });
 
 // Activa o desactiva archivos sueltos; devuelve los que quedaron activos
@@ -236,11 +240,22 @@ let quitting = false;
 
 function showWindow() { win.show(); win.focus(); }
 
+// La bandeja sigue el tema de la barra de tareas de Windows (que puede ser distinto del de las apps):
+// icono blanco sobre barra oscura y negro sobre barra clara
+function trayIcon() {
+  let light = false;
+  try {
+    const out = require('child_process').execFileSync('reg', ['query', 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize', '/v', 'SystemUsesLightTheme'], { encoding: 'utf8', windowsHide: true });
+    light = /0x1\b/.test(out);
+  } catch {} // sin la clave, Windows usa barra oscura
+  return nativeImage.createFromPath(path.join(__dirname, 'build', light ? 'tray-black.png' : 'tray-white.png'));
+}
+nativeTheme.on('updated', () => tray?.setImage(trayIcon()));
+
 function updateTray() {
   if (!store.settings.hideToTray) { tray?.destroy(); tray = null; return; }
   if (tray) return;
-  // 32 px y Windows lo reduce: queda nítido también con escalado de pantalla al 125-150 %
-  tray = new Tray(nativeImage.createFromPath(APP_ICON).resize({ width: 32, height: 32 }));
+  tray = new Tray(trayIcon());
   tray.setToolTip('FontVault');
   tray.setContextMenu(Menu.buildFromTemplate([
     { label: 'Abrir FontVault', click: showWindow },
