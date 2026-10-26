@@ -80,8 +80,6 @@ El instalador no está firmado con un certificado de editor, así que Windows Sm
 
 ## Desarrollo
 
-Hecho con Electron, React y componentes de [Arc UI](https://uiarc.dev).
-
 ```bash
 npm install
 npm start        # compila la interfaz y abre la app
@@ -101,5 +99,3 @@ FontVault es gratis y lo desarrollo en mi tiempo libre. Si te resulta útil y qu
 
 - [PayPal](https://paypal.me/jotica96)
 - [GitHub Sponsors](https://github.com/sponsors/jdsgnrinfo)
-
-¡Gracias!
