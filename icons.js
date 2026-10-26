@@ -90,7 +90,7 @@ ipcMain.handle('icons:download', async (e, prefix) => {
     e.sender.send('icons:progress', prefix, Math.min(i + BATCH, names.length), names.length);
   }
   await fs.mkdir(DIR, { recursive: true });
-  await fs.writeFile(path.join(DIR, `${prefix}.json`), JSON.stringify(data));
+  await fs.writeFile(path.join(DIR, `${path.basename(prefix)}.json`), JSON.stringify(data));
   return Object.keys(data.icons).length;
 });
 
@@ -128,7 +128,7 @@ const DRAG_DIR = path.join(os.tmpdir(), 'fontvault-drag');
 // Electron cancela el arrastre si el icono está vacío, así que lo preparamos al arrancar
 let dragIcon = null;
 app.whenReady().then(async () => {
-  dragIcon = (await app.getFileIcon(process.execPath, { size: 'normal' })).resize({ width: 32, height: 32 });
+  dragIcon = nativeImage.createFromPath(path.join(__dirname, 'build', 'icon.png')).resize({ width: 32, height: 32 });
 });
 
 ipcMain.on('icons:startDrag', (e, name, svg) => {

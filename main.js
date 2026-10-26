@@ -8,6 +8,7 @@ require('v8').setFlagsFromString('--expose-gc');
 const collectGarbage = require('vm').runInNewContext('gc');
 require('./icons');
 const google = require('./google');
+const APP_ICON = path.join(__dirname, 'build', 'icon.png');
 
 const FONT_EXT = new Set(['.ttf', '.otf', '.ttc', '.woff', '.woff2']);
 const STORE = path.join(app.getPath('userData'), 'library.json');
@@ -30,9 +31,17 @@ async function loadStore() {
   if (store.settings.sampleText) store.settings.samples = [store.settings.sampleText, ...DEFAULT_SAMPLES.slice(1)];
   delete store.settings.sampleText;
 }
+// Los guardados van en cola y se escriben a un archivo temporal que luego se renombra: así dos guardados
+// seguidos no se mezclan y un cierre a mitad nunca deja library.json corrupto (que borraría carpetas y ajustes)
+let saving = Promise.resolve();
 function saveStore() {
   store.active = [...active];
-  return fs.writeFile(STORE, JSON.stringify(store, null, 2)).catch(() => {});
+  const data = JSON.stringify(store, null, 2);
+  saving = saving.then(async () => {
+    await fs.writeFile(STORE + '.tmp', data);
+    await fs.rename(STORE + '.tmp', STORE);
+  }).catch(() => {});
+  return saving;
 }
 
 async function walk(dir, out = []) {
@@ -77,8 +86,12 @@ async function loadScanCache() {
 async function scanFolder(folder) {
   const cache = await loadScanCache();
   const fonts = [];
+  const files = await walk(folder);
+  // Se olvidan las fuentes de esta carpeta que ya no existen, para que la caché no crezca para siempre
+  const seen = new Set(files);
   let dirty = false;
-  for (const file of await walk(folder)) {
+  for (const f of Object.keys(cache)) if (f.startsWith(folder + path.sep) && !seen.has(f)) { delete cache[f]; dirty = true; }
+  for (const file of files) {
     try {
       const st = await fs.stat(file);
       let meta = cache[file];
@@ -124,7 +137,6 @@ ipcMain.handle('readFont', async (_e, file) => {
 const NAME_FIELDS = ['copyright', 'designer', 'designerURL', 'fontFamily', 'fontSubfamily', 'fullName', 'license', 'licenseURL',
   'manufacturer', 'manufacturerURL', 'postScriptName', 'uniqueID', 'version', 'description', 'trademark'];
 
-// Tabla de nombres y funciones OpenType (GSUB/GPOS) de un archivo
 // Caché de la información de las últimas fuentes consultadas (pestañas Glifos y Detalles)
 const infoCache = new Map();
 ipcMain.handle('fontInfo', async (_e, file) => {
@@ -141,6 +153,7 @@ ipcMain.handle('fontInfo', async (_e, file) => {
   return info;
 });
 
+// Tabla de nombres y funciones OpenType (GSUB/GPOS) de un archivo
 async function readFontInfo(file) {
   try {
     const buf = await fs.readFile(file);
@@ -163,7 +176,6 @@ async function readFontInfo(file) {
   }
 }
 
-// Activa o desactiva todos los archivos de una familia; devuelve los que quedaron activos
 // Activa o desactiva una familia de Google Fonts: la primera vez descarga sus .ttf a la carpeta del proveedor
 ipcMain.handle('google:setActive', async (_e, family, on) => {
   const files = on ? await google.download(family) : (store.googleFiles?.[family] ?? []);
@@ -176,6 +188,7 @@ ipcMain.handle('google:setActive', async (_e, family, on) => {
   return { active: [...active], googleFiles: store.googleFiles };
 });
 
+// Activa o desactiva archivos sueltos; devuelve los que quedaron activos
 ipcMain.handle('setActive', async (_e, files, on) => {
   for (const file of files) {
     const ok = on ? gdi.activate(file) : gdi.deactivate(file);
@@ -223,13 +236,11 @@ let quitting = false;
 
 function showWindow() { win.show(); win.focus(); }
 
-async function updateTray() {
+function updateTray() {
   if (!store.settings.hideToTray) { tray?.destroy(); tray = null; return; }
   if (tray) return;
-  // Usamos el icono del ejecutable hasta que la app tenga uno propio
-  const icon = await app.getFileIcon(process.execPath, { size: 'small' });
-  if (tray || !store.settings.hideToTray) return;
-  tray = new Tray(icon);
+  // 32 px y Windows lo reduce: queda nítido también con escalado de pantalla al 125-150 %
+  tray = new Tray(nativeImage.createFromPath(APP_ICON).resize({ width: 32, height: 32 }));
   tray.setToolTip('FontVault');
   tray.setContextMenu(Menu.buildFromTemplate([
     { label: 'Abrir FontVault', click: showWindow },
@@ -263,6 +274,7 @@ app.whenReady().then(async () => {
     // Sin marco: dibujamos nuestros propios botones de ventana (como FontBase), así Windows no pinta
     // la línea oscura del marco en los bordes derecho e inferior
     frame: false,
+    icon: APP_ICON,
     // Sin marco grueso desaparece la línea oscura de Windows; el redimensionado lo hacen los bordes de la propia página
     thickFrame: false,
     webPreferences: { preload: path.join(__dirname, 'preload.js'), spellcheck: false },

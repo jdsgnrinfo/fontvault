@@ -11,6 +11,13 @@ const CATALOG_MAX_AGE = 7 * 24 * 3600 * 1000; // se actualiza una vez por semana
 // Las respuestas de fonts.google.com empiezan con ")]}'" para evitar que se ejecuten como JS
 const parseGoogle = (text) => JSON.parse(text.replace(/^\)\]\}'?\s*/, ''));
 
+// Descarga que falla si el servidor responde con error, para no guardar una página de error como si fuera una fuente
+async function fetchBuffer(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Google Fonts respondió ${res.status}`);
+  return Buffer.from(await res.arrayBuffer());
+}
+
 let catalog = null;
 
 async function loadCatalog() {
@@ -27,7 +34,6 @@ async function loadCatalog() {
       designers: f.designers ?? [],
       popularity: f.popularity ?? 9999,
       styles: Object.keys(f.fonts ?? {}),
-      subsets: (f.subsets ?? []).filter((s) => s !== 'menu'),
     }));
     await fs.mkdir(DIR, { recursive: true });
     await fs.writeFile(CATALOG, JSON.stringify(catalog));
@@ -54,7 +60,7 @@ exports.readPreview = async (key) => {
   // El último bloque suele ser el subconjunto "latin"
   const urls = [...css.matchAll(/url\((https:[^)]+\.woff2)\)/g)].map((m) => m[1]);
   if (!urls.length) throw new Error('Sin vista previa');
-  const buf = Buffer.from(await (await fetch(urls[urls.length - 1])).arrayBuffer());
+  const buf = await fetchBuffer(urls[urls.length - 1]);
   const ab = buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
   previewCache.set(key, ab);
   if (previewCache.size > 40) previewCache.delete(previewCache.keys().next().value);
@@ -72,19 +78,20 @@ exports.download = async (family) => {
   const refs = list.manifest.fileRefs.filter((r) => /\.(ttf|otf)$/i.test(r.filename));
   const statics = refs.filter((r) => r.filename.startsWith('static/'));
   const chosen = statics.length ? statics : refs;
-  await fs.mkdir(folder, { recursive: true });
-  const files = [];
-  for (const r of chosen) {
-    const buf = Buffer.from(await (await fetch(r.url)).arrayBuffer());
-    const file = path.join(folder, path.basename(r.filename));
-    await fs.writeFile(file, buf);
-    files.push(file);
+  // Se descarga en una carpeta temporal y solo se renombra al terminar: si se corta, no queda una familia a medias
+  const tmp = folder + '.descargando';
+  await fs.rm(tmp, { recursive: true, force: true });
+  await fs.mkdir(tmp, { recursive: true });
+  try {
+    for (const r of chosen) await fs.writeFile(path.join(tmp, path.basename(r.filename)), await fetchBuffer(r.url));
+    await fs.rm(folder, { recursive: true, force: true });
+    await fs.rename(tmp, folder);
+  } catch (err) {
+    await fs.rm(tmp, { recursive: true, force: true });
+    throw err;
   }
-  return files;
+  return chosen.map((r) => path.join(folder, path.basename(r.filename)));
 };
-
-exports.folderOf = (family) => path.join(DIR, family.replace(/[^\w -]+/g, '_'));
-exports.DIR = DIR;
 
 // Un solo .ttf de un estilo concreto ("Familia:700i"), para las pestañas Glifos y Detalles sin descargar la familia entera.
 // Primero busca el estático con el nombre del estilo (Familia-BoldItalic.ttf); si no hay, usa el variable
@@ -108,12 +115,12 @@ exports.styleFile = async (key) => {
   }
   const base = family.replace(/\s+/g, '');
   const pick =
-    refs.find((r) => new RegExp(`(^|/)${base}-${want}\.(ttf|otf)$`, 'i').test(r.filename)) ??
+    refs.find((r) => new RegExp(`(^|/)${base}-${want}\\.(ttf|otf)$`, 'i').test(r.filename)) ??
     refs.find((r) => !r.filename.startsWith('static/') && /italic/i.test(r.filename) === italic) ??
     refs.find((r) => !r.filename.startsWith('static/')) ??
     refs[0];
   if (!pick) throw new Error('Sin archivo');
   await fs.mkdir(folder, { recursive: true });
-  await fs.writeFile(cached, Buffer.from(await (await fetch(pick.url)).arrayBuffer()));
+  await fs.writeFile(cached, await fetchBuffer(pick.url));
   return cached;
 };
