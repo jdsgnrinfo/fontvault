@@ -2,6 +2,7 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('api', {
   getLibrary: () => ipcRenderer.invoke('getLibrary'),
+  onLibraryChanged: (cb) => ipcRenderer.on('library:changed', (_e, data) => cb(data)),
   addFolder: () => ipcRenderer.invoke('addFolder'),
   removeFolder: (folder) => ipcRenderer.invoke('removeFolder', folder),
   readFont: (file) => ipcRenderer.invoke('readFont', file),

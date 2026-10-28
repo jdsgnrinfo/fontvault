@@ -574,6 +574,10 @@ function App() {
       setProviderFiles(lib.providerFiles ?? {});
       setLoading(false);
     });
+    // Fuentes nuevas, borradas o renombradas en una carpeta: se reemplazan solo las de esa carpeta
+    window.api.onLibraryChanged(({ folder, fonts: fresh }: { folder: string; fonts: FontFile[] }) => {
+      setFonts((fs) => [...fs.filter((f) => f.folder !== folder), ...fresh]);
+    });
     for (const p of PROVIDERS) window.api.providers.catalog(p.id).catch(() => []).then((list: CatalogEntry[]) => setCatalogs((c) => ({ ...c, [p.id]: list })));
   }, []);
 

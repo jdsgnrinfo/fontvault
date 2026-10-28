@@ -109,7 +109,29 @@ async function scanFolder(folder) {
   return fonts;
 }
 
+// Vigila las carpetas añadidas: al copiar, borrar o renombrar fuentes se vuelve a escanear esa carpeta
+// y la interfaz se actualiza sin reiniciar la app
+const watchers = new Map();
+function watchFolder(folder) {
+  if (watchers.has(folder)) return;
+  let timer = null;
+  try {
+    const w = require('fs').watch(folder, { recursive: true }, () => {
+      // Una copia de varias fuentes genera muchos avisos seguidos: esperamos a que se calme
+      clearTimeout(timer);
+      timer = setTimeout(async () => {
+        if (!store.folders.includes(folder)) return;
+        win?.webContents.send('library:changed', { folder, fonts: await scanFolder(folder) });
+      }, 800);
+    });
+    w.on('error', () => unwatchFolder(folder)); // p. ej. la carpeta se borró o el disco se desconectó
+    watchers.set(folder, w);
+  } catch {}
+}
+function unwatchFolder(folder) { watchers.get(folder)?.close(); watchers.delete(folder); }
+
 ipcMain.handle('getLibrary', async () => {
+  store.folders.forEach(watchFolder);
   const fonts = (await Promise.all(store.folders.map(scanFolder))).flat();
   setTimeout(collectGarbage, 1000);
   return { folders: store.folders, favorites: store.favorites, active: [...active], fonts, providerFiles: store.providerFiles ?? {} };
@@ -120,11 +142,13 @@ ipcMain.handle('addFolder', async () => {
   if (r.canceled) return null;
   const folder = r.filePaths[0];
   if (!store.folders.includes(folder)) { store.folders.push(folder); await saveStore(); }
+  watchFolder(folder);
   return { folder, fonts: await scanFolder(folder) };
 });
 
 ipcMain.handle('removeFolder', async (_e, folder) => {
   store.folders = store.folders.filter((f) => f !== folder);
+  unwatchFolder(folder);
   for (const f of [...active]) if (f.startsWith(folder + path.sep)) { gdi.deactivate(f); active.delete(f); }
   await saveStore();
 });
