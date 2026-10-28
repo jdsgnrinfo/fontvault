@@ -34,16 +34,19 @@ async function loadStore() {
   if (store.googleFiles) { store.providerFiles = { ...store.providerFiles, google: store.googleFiles }; delete store.googleFiles; }
 }
 // Los guardados van en cola y se escriben a un archivo temporal que luego se renombra: así dos guardados
-// seguidos no se mezclan y un cierre a mitad nunca deja library.json corrupto (que borraría carpetas y ajustes)
-let saving = Promise.resolve();
+// seguidos no se mezclan y un cierre a mitad nunca deja library.json (carpetas y ajustes) ni scan-cache.json corruptos
+const writeQueues = new Map();
+function writeAtomic(file, data) {
+  const next = (writeQueues.get(file) ?? Promise.resolve()).then(async () => {
+    await fs.writeFile(file + '.tmp', data);
+    await fs.rename(file + '.tmp', file);
+  }).catch(() => {});
+  writeQueues.set(file, next);
+  return next;
+}
 function saveStore() {
   store.active = [...active];
-  const data = JSON.stringify(store, null, 2);
-  saving = saving.then(async () => {
-    await fs.writeFile(STORE + '.tmp', data);
-    await fs.rename(STORE + '.tmp', STORE);
-  }).catch(() => {});
-  return saving;
+  return writeAtomic(STORE, JSON.stringify(store, null, 2));
 }
 
 async function walk(dir, out = []) {
@@ -105,7 +108,7 @@ async function scanFolder(folder) {
       fonts.push({ file, folder, format: path.extname(file).slice(1).toUpperCase(), family: meta.family, style: meta.style, designer: meta.designer });
     } catch {}
   }
-  if (dirty) await fs.writeFile(SCAN_CACHE, JSON.stringify(cache)).catch(() => {});
+  if (dirty) await writeAtomic(SCAN_CACHE, JSON.stringify(cache));
   return fonts;
 }
 

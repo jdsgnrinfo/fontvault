@@ -37,7 +37,17 @@ function buildSvg(set: IconSet, name: string, color = 'currentColor') {
 // Los iconos se insertan como SVG en línea y no como imágenes data:, porque Chromium guarda en caché cada
 // imagen data: distinta y al recorrer colecciones grandes la interfaz llegaba a casi 2 GB.
 // Antes de insertarlos se quitan scripts y atributos de eventos por seguridad.
-const clean = (svg: string) => svg.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/\son\w+\s*=\s*("[^"]*"|'[^']*')/gi, '');
+// Se limpia con el analizador del navegador (una expresión regular se salta con trucos como <svg/onload=…>)
+function clean(svg: string) {
+  const doc = new DOMParser().parseFromString(svg, 'image/svg+xml');
+  doc.querySelectorAll('script, foreignObject').forEach((el) => el.remove());
+  for (const el of doc.querySelectorAll('*')) {
+    for (const { name, value } of [...el.attributes]) {
+      if (/^on/i.test(name) || (/href$/i.test(name) && !value.startsWith('#'))) el.removeAttribute(name);
+    }
+  }
+  return new XMLSerializer().serializeToString(doc.documentElement);
+}
 const iconSrc = (set: IconSet | null | undefined, name: string, color: string) =>
   set?.icons[name] ? clean(buildSvg(set, name, color)) : '';
 const SvgIcon = ({ markup }: { markup: string }) => <span className="svg-icon" dangerouslySetInnerHTML={{ __html: markup }} />;

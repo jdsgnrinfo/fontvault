@@ -7,7 +7,7 @@
     "build": "esbuild src/app.tsx --bundle --outdir=dist --entry-names=app --loader:.module.css=local-css --jsx=automatic",
     "start": "npm run build && electron .",
     "dist": "npm run build && electron-builder --win nsis",
-    "test": "node --test tests/*.test.ts"
+    "test": "node --test \"tests/*.test.*\""
   },
   "dependencies": {
     "koffi": "^3.3.3",
@@ -44,7 +44,8 @@
       "build/icon.png",
       "build/tray-white.png",
       "build/tray-black.png",
-      "providers.js"
+      "providers.js",
+      "font-names.js"
     ],
     "asarUnpack": [
       "node_modules/koffi/**"

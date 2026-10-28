@@ -11,7 +11,7 @@ import { Input } from '@/components/arc/input/input';
 import { Switch } from '@/components/arc/switch/switch';
 import { TextFont16Regular, Heart16Regular, CheckmarkCircle16Regular, Circle16Regular, Folder16Regular, FolderOpen16Regular,
   Shapes16Regular, WeatherMoon16Regular, Eye16Regular, TextQuote16Regular, Settings16Regular, ChevronDown12Regular, ChevronRight12Regular, ChevronUp16Regular, Checkmark16Regular, Globe16Regular, Delete16Regular } from '@fluentui/react-icons';
-import { svg, IconBack, IconReset, IconHeart, IconGear, LoadMore, NavItem, GlobalTooltip, ResizeHandles, playFavoriteSound, useScrollTicks, playTick } from './shared';
+import { IconBack, IconReset, IconHeart, IconGear, LoadMore, NavItem, GlobalTooltip, ResizeHandles, playFavoriteSound, useScrollTicks, playTick } from './shared';
 import { IconsSidebar, IconsMain, useIcons } from './icons';
 
 declare global { interface Window { api: any } }

@@ -6,16 +6,13 @@ const { app, ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs/promises');
 const { execFile } = require('child_process');
+const { splitKey, styleName, category } = require('./font-names');
 
 const ROOT = path.join(app.getPath('userData'), 'providers');
 const CATALOG_MAX_AGE = 7 * 24 * 3600 * 1000; // los catálogos se actualizan una vez por semana
-const WEIGHTS = { 100: 'Thin', 200: 'ExtraLight', 300: 'Light', 400: 'Regular', 500: 'Medium', 600: 'SemiBold', 700: 'Bold', 800: 'ExtraBold', 900: 'Black' };
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
 
 const safe = (name) => name.replace(/[^\w -]+/g, '_');
-const splitKey = (key) => { const [family, style = '400'] = key.split(':'); return { family, style, weight: parseInt(style, 10) || 400, italic: style.endsWith('i') }; };
-// Nombre del estilo como aparece en los archivos: "Bold", "BoldItalic", "Italic"
-const styleName = (weight, italic) => { const w = WEIGHTS[weight] ?? 'Regular'; return italic ? (w === 'Regular' ? 'Italic' : `${w}Italic`) : w; };
 
 // Descarga que falla si el servidor responde con error, para no guardar una página de error como si fuera una fuente
 async function fetchOk(url, opts) {
@@ -26,16 +23,6 @@ async function fetchOk(url, opts) {
 const fetchBuffer = async (url) => Buffer.from(await (await fetchOk(url)).arrayBuffer());
 const toArrayBuffer = (buf) => buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
 
-// Categorías comunes para el filtro, sea cual sea el proveedor
-function category(raw) {
-  const c = String(raw).toLowerCase();
-  if (c.includes('mono')) return 'Monospace';
-  if (c.includes('hand') || c.includes('script')) return 'Handwriting';
-  if (c.includes('display') || c.includes('blackletter')) return 'Display';
-  if (c.includes('sans')) return 'Sans Serif';
-  if (c.includes('serif') || c.includes('slab')) return 'Serif';
-  return 'Display';
-}
 
 // Guarda en una carpeta temporal y solo la renombra al terminar: si algo falla, no queda una familia a medias
 async function saveAtomically(folder, fill) {
@@ -72,7 +59,6 @@ async function googleRefs(family) {
 }
 
 const google = {
-  name: 'Google Fonts',
   async fetchCatalog() {
     const meta = parseGoogle(await (await fetchOk('https://fonts.google.com/metadata/fonts')).text());
     return meta.familyMetadataList.map((f) => ({
@@ -107,7 +93,6 @@ const google = {
 
 // ---------- Fontshare (Indian Type Foundry, licencia gratuita para uso personal y comercial) ----------
 const fontshare = {
-  name: 'Fontshare',
   slugs: new Map(),
   async fetchCatalog() {
     const fonts = [];
@@ -135,30 +120,33 @@ const fontshare = {
     return url && (url.startsWith('//') ? 'https:' + url : url);
   },
   // Fontshare entrega la familia en un ZIP; lo descomprime el tar de Windows (incluido desde Windows 10)
+  // Todo se hace en una carpeta temporal (saveAtomically): si la descarga o la copia fallan, no queda a medias
   async extract(family) {
     const dir = path.join(ROOT, 'fontshare', '_zip', safe(family));
     if (await existing(dir)) return dir;
-    await fs.rm(dir, { recursive: true, force: true });
-    await fs.mkdir(dir, { recursive: true });
-    const zip = path.join(dir, 'familia.zip');
-    await fs.writeFile(zip, await fetchBuffer(`https://api.fontshare.com/v2/fonts/download/${await this.slug(family)}`));
-    const tar = path.join(process.env.SystemRoot ?? 'C:\\Windows', 'System32', 'tar.exe');
-    await new Promise((ok, fail) => execFile(tar, ['-xf', zip, '-C', dir], (err) => (err ? fail(err) : ok())));
-    // Nos quedamos con los OTF estáticos (o TTF si no hay) en la raíz de la carpeta
-    const all = [];
-    const walk = async (d) => { for (const e of await fs.readdir(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) await walk(p); else all.push(p); } };
-    await walk(dir);
-    const otf = all.filter((f) => /[\\/]OTF[\\/].+\.otf$/i.test(f));
-    const ttf = all.filter((f) => /\.ttf$/i.test(f) && !/[\\/]WEB[\\/]/i.test(f) && !/variable/i.test(f));
-    for (const f of otf.length ? otf : ttf) await fs.copyFile(f, path.join(dir, path.basename(f)));
-    for (const e of await fs.readdir(dir, { withFileTypes: true })) if (e.isDirectory() || e.name.endsWith('.zip')) await fs.rm(path.join(dir, e.name), { recursive: true, force: true });
+    const slug = await this.slug(family);
+    await saveAtomically(dir, async (tmp) => {
+      const zip = path.join(tmp, 'familia.zip');
+      await fs.writeFile(zip, await fetchBuffer(`https://api.fontshare.com/v2/fonts/download/${slug}`));
+      const tar = path.join(process.env.SystemRoot ?? 'C:\\Windows', 'System32', 'tar.exe');
+      await new Promise((ok, fail) => execFile(tar, ['-xf', zip, '-C', tmp], (err) => (err ? fail(err) : ok())));
+      // Nos quedamos con los OTF estáticos (o TTF si no hay) en la raíz de la carpeta
+      const all = [];
+      const walk = async (d) => { for (const e of await fs.readdir(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) await walk(p); else all.push(p); } };
+      await walk(tmp);
+      const otf = all.filter((f) => /[\\/]OTF[\\/].+\.otf$/i.test(f));
+      const ttf = all.filter((f) => /\.ttf$/i.test(f) && !/[\\/]WEB[\\/]/i.test(f) && !/variable/i.test(f));
+      const chosen = otf.length ? otf : ttf;
+      if (!chosen.length) throw new Error('El ZIP de Fontshare no trae fuentes');
+      for (const f of chosen) await fs.copyFile(f, path.join(tmp, path.basename(f)));
+      for (const e of await fs.readdir(tmp, { withFileTypes: true })) if (e.isDirectory() || e.name.endsWith('.zip')) await fs.rm(path.join(tmp, e.name), { recursive: true, force: true });
+    });
     return dir;
   },
   async download(family, folder) {
     const src = await this.extract(family);
     return saveAtomically(folder, async (tmp) => { for (const f of await existing(src) ?? []) await fs.copyFile(f, path.join(tmp, path.basename(f))); });
   },
-  async styleUrl() { return null; }, // se resuelve con el ZIP en styleFile
   async styleFile(key) {
     const { family, weight, italic } = splitKey(key);
     const files = (await existing(await this.extract(family))) ?? [];
@@ -183,7 +171,6 @@ const fontsourceUrl = (info, weight, italic, format) => {
 };
 
 const fontsource = {
-  name: 'Fontsource',
   async fetchCatalog() {
     const list = await (await fetchOk('https://api.fontsource.org/v1/fonts?type=other')).json();
     return list.map((f) => ({
