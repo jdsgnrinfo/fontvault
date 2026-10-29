@@ -1,6 +1,6 @@
 {
   "name": "fontvault",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "main": "main.js",
   "scripts": {
@@ -31,7 +31,11 @@
   "build": {
     "appId": "com.jdsgnr.fontvault",
     "productName": "FontVault",
-    "publish": { "provider": "github", "owner": "jdsgnrinfo", "repo": "fontvault" },
+    "publish": {
+      "provider": "github",
+      "owner": "jdsgnrinfo",
+      "repo": "fontvault"
+    },
     "directories": {
       "output": "release"
     },
