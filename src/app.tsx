@@ -170,8 +170,7 @@ function FamilyRow({ family, isActive, busy, showSource, text, size, onToggle, o
         {showSource && [family, ...(family.alts ?? [])].map((f) => f.provider
           ? <span key={f.provider} className="source-tag provider">{providerName(f.provider)}</span>
           : <span key="local" className="source-tag local">Local</span>)}
-        <span>{family.files.length} {family.files.length === 1 ? "estilo" : "estilos"} · {family.formats}</span>
-        {family.designer && <><span className="sep">|</span><span className="designer">{family.designer}</span></>}
+        <span>{family.files.length} {family.files.length === 1 ? "variable" : "variables"}</span>
       </div>
       <div className="sample" style={{ fontFamily: face ? `"${face}"` : 'inherit', fontSize: size, opacity: face ? 1 : 0.25 }}>
         {text || DEFAULT_TEXT}
@@ -330,7 +329,7 @@ function FamilyDetail({ family, active, text, size, onBack, onToggleFiles, isFav
             <button className={"fav" + (isFavorite ? " on" : "")} onClick={onFavorite} aria-pressed={isFavorite}
               aria-label={isFavorite ? "Quitar de favoritas" : "Añadir a favoritas"} data-tip={isFavorite ? "Quitar de favoritas" : "Añadir a favoritas"}><IconHeart /></button>
           </div>
-          <span>{family.files.length} {family.files.length === 1 ? 'estilo' : 'estilos'} · {family.formats}</span>
+          <span>{family.files.length} {family.files.length === 1 ? 'variable' : 'variables'} · {family.formats}</span>
         </div>
         <span className="seg"><SegmentedControl label="Vista" value={tab} onValueChange={setTab}
           options={[{ value: 'styles', label: 'Estilos' }, { value: 'waterfall', label: 'Cascada' },
@@ -393,7 +392,7 @@ function UpdatesSection({ settings, onChange }: { settings: Settings; onChange: 
 
 const SCROLL_FACTOR: Record<ScrollSpeed, number> = { slow: 0.5, normal: 1, fast: 2 };
 
-const SIZE_OPTIONS = [12, 14, 16, 18, 24, 32, 36, 42, 48, 64, 72, 96, 120].map((v) => ({ value: String(v), label: `${v}px` }));
+const SIZE_OPTIONS = [12, 14, 16, 18, 24, 32, 36, 42, 48, 56, 64, 72, 96, 120].map((v) => ({ value: String(v), label: `${v}px` }));
 
 function SettingRow({ title, hint, children }: { title: string; hint?: string; children: React.ReactNode }) {
   return (
@@ -560,7 +559,7 @@ function App() {
   const [filter, setFilter] = useState<Filter>({ kind: 'all' });
   const [query, setQuery] = useState('');
   const [text, setText] = useState(DEFAULT_TEXT);
-  const [size, setSize] = useState(42);
+  const [size, setSize] = useState(56);
   const [settings, setSettings] = useState<Settings | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   // Aplicamos el tema a toda la página (los tokens de Arc y los nuestros cuelgan de data-theme)
@@ -778,7 +777,7 @@ function App() {
             <Slider label="Tamaño" value={size} onValueChange={(v) => { if (v !== size) playTick(); setSize(v); }} min={12} max={160} format={(v) => `${v}px`} showValue={false} />
           </div>
           <span className="toolbar-value">{size}px</span>
-          <Button variant="secondary" size="sm" className="icon-only" onClick={() => { setSize(settings?.size ?? 42); setText(settings?.samples[0] || DEFAULT_TEXT); }} aria-label="Restablecer"><IconReset /></Button>
+          <Button variant="secondary" size="sm" className="icon-only" onClick={() => { setSize(settings?.size ?? 56); setText(settings?.samples[0] || DEFAULT_TEXT); }} aria-label="Restablecer"><IconReset /></Button>
         </div>
 
         {openedFamily && !settingsOpen && (

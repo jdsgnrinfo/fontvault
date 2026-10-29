@@ -49,6 +49,23 @@ export default function SegmentedControl({ options, value, onValueChange, label,
     first.current = false;
   }, [value, reduced]);
 
+  // A white copy of the labels, clipped to the highlight every frame, so the text turns white exactly where the highlight passes under it.
+  const ink = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    let frame = 0;
+    const end = performance.now() + 900;
+    const clip = () => {
+      const node = track.current, sel = node?.querySelector<HTMLElement>(`.${styles.selection}`);
+      if (node && sel && ink.current) {
+        const t = node.getBoundingClientRect(), r = sel.getBoundingClientRect();
+        ink.current.style.clipPath = `inset(${r.top - t.top}px ${t.right - r.right}px ${t.bottom - r.bottom}px ${r.left - t.left}px round ${getComputedStyle(sel).borderRadius})`;
+      }
+      if (performance.now() < end) frame = requestAnimationFrame(clip);
+    };
+    clip();
+    return () => cancelAnimationFrame(frame);
+  }, [value]);
+
   // Arrow keys, Home and End move the selection like a tab list; only the selected option is a tab stop.
   const selectedIndex = Math.max(0, options.findIndex(option => option.value === value));
   const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
@@ -68,6 +85,10 @@ export default function SegmentedControl({ options, value, onValueChange, label,
         {value === option.value && <motion.span className={styles.selection} layoutId="selection" layoutDependency={value} transition={reduced ? { duration: 0 } : motionTokens.spring.morph} aria-hidden="true" />}
         <span className={styles.label}>{option.label}{option.accessory}</span>
       </button>)}
+      {/* shortcut: the copy ignores the track's own horizontal scroll, fine while options fit */}
+      <div ref={ink} className={styles.ink} aria-hidden="true">
+        {options.map(option => <span key={option.value} className={styles.button}><span className={styles.label}>{option.label}{option.accessory}</span></span>)}
+      </div>
     </motion.div></LayoutGroup>
   </div>;
 }

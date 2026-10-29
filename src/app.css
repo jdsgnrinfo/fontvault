@@ -20,14 +20,14 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
   color: var(--foreground);
 }
 
-.shell { display: grid; grid-template-columns: 280px 1fr; grid-template-rows: 44px 1fr; height: 100%; background: #111; }
+.shell { display: grid; grid-template-columns: 280px 1fr; grid-template-rows: 34px 1fr; height: 100%; background: #111; }
 
 .topbar { grid-column: 1 / -1; display: flex; align-items: center; padding: 0 160px 0 20px; -webkit-app-region: drag; }
-.brand { width: 20px; height: 20px; flex: none; margin-left: -6px; }
+.brand { width: 18px; height: 18px; flex: none; margin: 6px 0 0 -6px; }
 .sidebar-search { padding: 4px 0 12px; }
 .sidebar-search label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
-.sidebar { display: flex; flex-direction: column; padding: 8px 12px 16px; min-height: 0; }
+.sidebar { display: flex; flex-direction: column; padding: 4px 12px 16px; min-height: 0; }
 .sidebar nav { flex: 1; overflow-y: auto; }
 .sidebar h2 { font-size: 13px; font-weight: 500; color: var(--text-secondary); margin: 22px 10px 6px; }
 .nav-empty { font-size: 13px; color: var(--text-muted); margin: 4px 10px; }
@@ -52,7 +52,7 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .toolbar { display: flex; align-items: center; gap: 20px; padding: 12px 20px; border-bottom: 1px solid var(--border); }
 .toolbar-slider { flex: 1; }
 
-.list { flex: 1; overflow-y: auto; padding: 8px 20px; }
+.list { flex: 1; overflow-y: auto; scrollbar-gutter: stable; padding: 8px 20px; }
 .row { padding: 12px 0 8px; }
 .row-meta { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); }
 .row-meta strong { color: var(--foreground); font-weight: 500; }
@@ -149,18 +149,16 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .tab-body > .glyphs:first-child { padding-top: 64px; }
 
 /* Lista de familias al estilo de Google Fonts */
-.family-row { padding: 18px 20px 20px; border-bottom: 1px solid var(--border); border-radius: 0; transition: background-color .15s var(--ease-standard), border-radius .15s; }
+.family-row { padding: 28px 24px; border-bottom: 1px solid var(--border); border-radius: 0; transition: background-color .15s var(--ease-standard), border-radius .15s; }
 .family-row:hover { background: var(--surface-muted); border-radius: 6px; border-bottom-color: transparent; }
 .family-row:has(+ .family-row:hover) { border-bottom-color: transparent; }
 .family-row .row-meta { gap: 10px; font-size: 12px; }
 .family-row .row-name { font-weight: 600; font-size: 14px; }
-.family-row .sep { color: var(--border-strong); }
-.family-row .designer { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.family-row .sample { padding-top: 14px; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 64px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 64px), transparent); }
+.family-row .sample { padding-top: 8px; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 64px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 64px), transparent); }
 .family-row { cursor: pointer; }
 
 /* Botón de ajustes en la barra superior, junto a los controles de ventana */
-.topbar-btn { margin-left: auto; display: grid; place-items: center; width: 40px; height: 32px; border: 0; border-radius: 2px; background: none; color: var(--foreground); cursor: pointer; -webkit-app-region: no-drag; transition: background-color .15s; }
+.topbar-btn { margin-left: auto; display: grid; place-items: center; width: 40px; height: 28px; border: 0; border-radius: 2px; background: none; color: var(--foreground); cursor: pointer; -webkit-app-region: no-drag; transition: background-color .15s; }
 .topbar { padding-right: 140px; }
 
 /* Página de ajustes */
@@ -190,7 +188,7 @@ body { font-family: 'Segoe UI', var(--font-body); background: var(--background);
 .mode-switch { display: flex; padding: 4px 0 10px; --surface-muted: #222; --surface: #333; --border: #2c2c2c; }
 .mode-switch > * { flex: 1; }
 .mode-switch [role="radiogroup"], .mode-switch > div > div { width: 100%; }
-.mode-switch button { flex: 1; }
+.mode-switch button, .mode-switch [class*="ink"] > span { flex: 1; }
 
 /* Iconos */
 .icons-body { flex: 1; min-height: 0; display: flex; }
@@ -297,7 +295,6 @@ div[role="menu"] button[role="menuitem"] > span[aria-hidden="true"]:empty { disp
 :root[data-theme="dark"] { --background: #222222; --surface: #282828; --surface-raised: #2b2b2b; --surface-muted: #303030;
   --foreground: #e4e4e4; --text-secondary: #a6a6a6; --text-muted: #7c7c7c; --border: #333333; --border-strong: #444444;
   --control-track: #3a3a3a; --control-on: #e4e4e4; --control-thumb: #f0f0f0; --accent: #e4e4e4; --accent-foreground: #1a1a1a; }
-:root[data-theme="dark"] .family-row .sep { color: #4a4a4a; }
 
 /* Más contraste en la opción resaltada de los desplegables y del menú contextual */
 [role="listbox"] [role="option"][data-highlighted][data-highlighted],
@@ -321,12 +318,12 @@ div[role="menu"] button[role="menuitem"][role="menuitem"]:focus-visible { backgr
 @media (prefers-reduced-motion: reduce) { .arc-tip, .arc-tip.below { animation: arc-tip-fade var(--duration-instant) both; } }
 
 /* Marco de la ventana (barra superior y lateral) según el tema: en modo claro toda la interfaz es clara */
-:root[data-theme="dark"] { --chrome-bg: #1a1a1a; --chrome-surface: #262626; --chrome-hover: #262626; --chrome-selected: #333333;
-  --chrome-fg: #dedede; --chrome-text2: #ababab; --chrome-muted: #8a8a8a; --chrome-border: #343434; --chrome-strong: #444444;
-  --chrome-seg: #232323; --chrome-seg-on: #3a3a3a; }
-:root[data-theme="light"] { --chrome-bg: #e9e9e6; --chrome-surface: #f4f4f2; --chrome-hover: #dfdfdc; --chrome-selected: #d5d5d1;
-  --chrome-fg: #262626; --chrome-text2: #5e5e5e; --chrome-muted: #7a7a7a; --chrome-border: #d3d3cf; --chrome-strong: #c2c2be;
-  --chrome-seg: #dcdcd9; --chrome-seg-on: #f7f7f5; }
+:root[data-theme="dark"] { --chrome-bg: #1a1a1a; --chrome-surface: #282828; --chrome-hover: #262626; --chrome-selected: #2b2b2b;
+  --chrome-fg: #dedede; --chrome-text2: #ababab; --chrome-muted: #8a8a8a; --chrome-border: #3d3d3d; --chrome-strong: #3d3d3d;
+  --chrome-seg: #282828; --chrome-seg-on: #3a3a3a; }
+:root[data-theme="light"] { --chrome-bg: #e9e9e6; --chrome-surface: #fcfcfc; --chrome-hover: #dfdfdc; --chrome-selected: #d5d5d1;
+  --chrome-fg: #262626; --chrome-text2: #5e5e5e; --chrome-muted: #7a7a7a; --chrome-border: #e0e0de; --chrome-strong: #e0e0de;
+  --chrome-seg: #fcfcfc; --chrome-seg-on: #f7f7f5; }
 .topbar, .sidebar { --background: var(--chrome-bg); --surface: var(--chrome-surface); --surface-muted: var(--chrome-hover); --surface-raised: var(--chrome-surface);
   --foreground: var(--chrome-fg); --text-secondary: var(--chrome-text2); --text-muted: var(--chrome-muted); --border: var(--chrome-border);
   --border-strong: var(--chrome-strong); --accent: var(--chrome-fg); --accent-foreground: var(--chrome-bg); background: var(--chrome-bg); color: var(--chrome-fg); }
@@ -369,7 +366,7 @@ input, textarea, [contenteditable="true"] { user-select: text; -webkit-user-sele
 .sample-bar input[type][type], .sample-bar input:not([type]):not([type]) { padding-right: 48px; }
 .sample-picker { position: absolute; right: 26px; top: calc(50% - 2px); transform: translateY(-50%); }
 .sample-bar[hidden] .sample-picker { display: none; }
-.sample-toggle { display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 2px; background: none; color: var(--text-secondary); cursor: pointer; transition: background-color .12s, color .12s; }
+.sample-toggle { display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: calc(var(--radius-control) - 5px); background: none; color: var(--text-secondary); cursor: pointer; transition: background-color .12s, color .12s; }
 .sample-toggle:hover, .sample-toggle.open { background: var(--surface-muted); color: var(--foreground); }
 .sample-toggle svg { width: 18px; height: 18px; transition: transform .2s var(--ease-standard); }
 .sample-toggle.open svg { transform: rotate(180deg); }
@@ -440,3 +437,13 @@ input, textarea, [contenteditable="true"] { user-select: text; -webkit-user-sele
 
 /* Cabecera del detalle (familia o colección) fija arriba al desplazarse, como la barra de tamaño */
 .list .detail-head { position: sticky; top: -8px; z-index: 5; background: var(--background); margin: -8px -20px 4px; padding: 16px 20px; }
+:root[data-theme="light"] .nav-item:hover { background: rgb(255 255 255 / .6); }
+:root[data-theme="light"] .nav-item.selected { background: #fcfcfc; }
+/* Botones principales en el morado de la marca, con texto blanco */
+button[class*="primary"] { --foreground: #5b3ff5; --background: #ffffff; gap: 6px; }
+/* Selección activa de los controles segmentados y botones secundarios al pulsarlos: morado con texto blanco */
+[class*="selection"] { background: #5b3ff5 !important; border-color: #5b3ff5 !important; }
+[class*="track"] { --segment-ink: #ffffff; }
+[class*="track"] > button[aria-pressed="true"] { color: var(--text-muted); }
+button[class*="secondary"]:active:not(:disabled) { background: #5b3ff5 !important; border-color: #5b3ff5 !important; color: #ffffff !important; }
+:root[data-theme="dark"] .content [role="group"][class*="root"] { background: #282828; border-color: #383838; }

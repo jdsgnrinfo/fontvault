@@ -12,3 +12,8 @@
 .label { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; }
 @media (max-width: 380px) { .button { padding: 0 10px; } }
 @media (prefers-reduced-motion: reduce) { .button { transition: none; } }
+.track { position: relative; }
+.ink { position: absolute; inset: 0; z-index: 2; display: flex; gap: 2px; padding: 3px; pointer-events: none; clip-path: inset(50%); }
+.button { display: inline-flex; align-items: center; justify-content: center; }
+.ink .button { cursor: default; color: var(--segment-ink, var(--foreground)); }
+.ink .label { color: inherit; }

@@ -22,7 +22,7 @@ const DEFAULT_SAMPLES = [
   'Jovencillo emponzoñado de whisky: ¡qué figurota exhibe!',
   'The quick brown fox jumps over the lazy dog.',
 ];
-const DEFAULT_SETTINGS = { samples: DEFAULT_SAMPLES, size: 42, restoreActive: true, autoStart: false,
+const DEFAULT_SETTINGS = { samples: DEFAULT_SAMPLES, size: 56, restoreActive: true, autoStart: false,
   hideToTray: false, scrollSpeed: 'normal', groupFamilies: true, theme: 'light', scrollSound: true, autoUpdate: true };
 let store = { folders: [], favorites: [], active: [], iconFavorites: [], settings: { ...DEFAULT_SETTINGS } };
 async function loadStore() {
@@ -252,6 +252,7 @@ ipcMain.handle('getSettings', () => ({ ...store.settings, version: app.getVersio
 ipcMain.handle('setSettings', async (_e, patch) => {
   store.settings = { ...store.settings, ...patch };
   if ('autoStart' in patch) setLoginItem(patch.autoStart);
+  if (patch.autoUpdate && app.isPackaged) checkUpdates();
   if ('hideToTray' in patch) updateTray();
   if ('theme' in patch) win?.setBackgroundColor(patch.theme === 'dark' ? '#1a1a1a' : '#e9e9e6');
   await saveStore();
@@ -347,7 +348,7 @@ app.whenReady().then(async () => {
   });
   updateTray();
   // Las entradas de inicio antiguas no llevan --hidden
-  if (store.settings.autoStart) setLoginItem(true);
+  if (app.isPackaged && store.settings.autoStart) setLoginItem(true);
   initUpdates();
 });
 
@@ -369,8 +370,8 @@ function initUpdates() {
   autoUpdater.on('download-progress', (p) => sendUpdate({ ...updateState, status: 'downloading', percent: Math.round(p.percent) }));
   autoUpdater.on('update-downloaded', (i) => sendUpdate({ status: 'ready', version: i.version }));
   autoUpdater.on('error', (e) => sendUpdate({ status: 'error', message: String(e?.message || e).split('\n')[0] }));
-  if (app.isPackaged && store.settings.autoUpdate) {
-    setTimeout(checkUpdates, 5000);
+  if (app.isPackaged) {
+    if (store.settings.autoUpdate) setTimeout(checkUpdates, 5000);
     setInterval(() => store.settings.autoUpdate && checkUpdates(), 6 * 3600e3);
   }
 }
