@@ -10,7 +10,7 @@ import { Select } from '@/components/arc/select/select';
 import { Input } from '@/components/arc/input/input';
 import { Switch } from '@/components/arc/switch/switch';
 import { TextFont16Regular, Heart16Regular, CheckmarkCircle16Regular, Circle16Regular, Folder16Regular, FolderOpen16Regular,
-  Shapes16Regular, WeatherMoon16Regular, Eye16Regular, TextQuote16Regular, Settings16Regular, ChevronDown12Regular, ChevronRight12Regular, ChevronUp16Regular, Checkmark16Regular, Globe16Regular, Delete16Regular } from '@fluentui/react-icons';
+  Shapes16Regular, WeatherMoon16Regular, Eye16Regular, TextQuote16Regular, Settings16Regular, ChevronDown12Regular, ChevronRight12Regular, ChevronUp16Regular, Checkmark16Regular, Globe16Regular, Delete16Regular, ArrowSync16Regular, DrinkCoffee16Regular, Code16Regular } from '@fluentui/react-icons';
 import { IconBack, IconReset, IconHeart, IconGear, LoadMore, NavItem, GlobalTooltip, ResizeHandles, playFavoriteSound, useScrollTicks, playTick } from './shared';
 import { IconsSidebar, IconsMain, useIcons } from './icons';
 
@@ -365,7 +365,31 @@ function FamilyDetail({ family, active, text, size, onBack, onToggleFiles, isFav
 
 type ScrollSpeed = 'slow' | 'normal' | 'fast';
 type Settings = { samples: string[]; size: number; restoreActive: boolean; autoStart: boolean;
-  hideToTray: boolean; scrollSpeed: ScrollSpeed; groupFamilies: boolean; theme: 'light' | 'dark'; scrollSound: boolean; version?: string };
+  hideToTray: boolean; scrollSpeed: ScrollSpeed; groupFamilies: boolean; theme: 'light' | 'dark'; scrollSound: boolean; autoUpdate: boolean; version?: string };
+type UpdateState = { status: 'idle' | 'checking' | 'latest' | 'available' | 'downloading' | 'ready' | 'error'; version?: string; percent?: number; message?: string };
+
+function UpdatesSection({ settings, onChange }: { settings: Settings; onChange: (patch: Partial<Settings>) => void }) {
+  const [u, setU] = useState<UpdateState>({ status: 'idle' });
+  useEffect(() => { window.api.updates.state().then(setU); return window.api.updates.onState(setU); }, []);
+  const text = {
+    idle: '', checking: 'Buscando actualizaciones…', latest: 'Tienes la última versión.',
+    available: `Versión ${u.version} disponible.`, downloading: `Descargando ${u.version ?? ''}… ${u.percent ?? 0}%`,
+    ready: `Versión ${u.version} lista. Se instalará al salir.`, error: `No se pudo comprobar: ${u.message}`,
+  }[u.status];
+  return (
+    <section>
+      <h2><ArrowSync16Regular />Actualizaciones</h2>
+      <SettingRow title="Actualizaciones automáticas" hint="Descarga las nuevas versiones en segundo plano y las instala al salir de FontVault.">
+        <Switch checked={settings.autoUpdate} onCheckedChange={(v) => onChange({ autoUpdate: v })} aria-label="Actualizaciones automáticas" />
+      </SettingRow>
+      <SettingRow title="Versión instalada" hint={text || `FontVault ${settings.version}`}>
+        {u.status === 'available' && !settings.autoUpdate ? <Button variant="primary" size="sm" onClick={window.api.updates.download}>Descargar</Button>
+          : u.status === 'ready' ? <Button variant="primary" size="sm" onClick={window.api.updates.install}>Reiniciar y actualizar</Button>
+          : <Button variant="secondary" size="sm" disabled={u.status === 'checking' || u.status === 'downloading'} onClick={window.api.updates.check}>Comprobar actualizaciones</Button>}
+      </SettingRow>
+    </section>
+  );
+}
 
 const SCROLL_FACTOR: Record<ScrollSpeed, number> = { slow: 0.5, normal: 1, fast: 2 };
 
@@ -461,12 +485,18 @@ function SettingsPage({ settings, onChange, folders, onAddFolder, onRemoveFolder
           <SettingRow title="Reactivar fuentes al abrir" hint="Vuelve a activar las fuentes que estaban activas al cerrar la app.">
             <Switch checked={settings.restoreActive} onCheckedChange={(v) => onChange({ restoreActive: v })} aria-label="Reactivar fuentes al abrir" />
           </SettingRow>
-          <SettingRow title="Iniciar con Windows" hint="Abre FontVault al iniciar sesión.">
+          <SettingRow title="Iniciar con Windows" hint="Abre FontVault minimizado en la bandeja del sistema al iniciar sesión.">
             <Switch checked={settings.autoStart} onCheckedChange={(v) => onChange({ autoStart: v })} aria-label="Iniciar con Windows" />
           </SettingRow>
         </section>
 
-        <p className="settings-about">FontVault {settings.version}</p>
+        <UpdatesSection settings={settings} onChange={onChange} />
+
+        <div className="settings-about">
+          <span>FontVault {settings.version} · Por un diseñador para diseñadores ❤️</span>
+          <a href="https://paypal.me/jotica96" target="_blank" rel="noreferrer"><DrinkCoffee16Regular />Invítame un café</a>
+          <a href="https://github.com/jdsgnrinfo/fontvault" target="_blank" rel="noreferrer"><Code16Regular />Repositorio</a>
+        </div>
       </div>
     </div>
   );

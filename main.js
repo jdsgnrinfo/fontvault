@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain, dialog, Tray, Menu, nativeImage, shell, nativeTheme } = require('electron');
+const { autoUpdater } = require('electron-updater');
 const path = require('path');
 const fs = require('fs/promises');
 const opentype = require('opentype.js');
@@ -22,7 +23,7 @@ const DEFAULT_SAMPLES = [
   'The quick brown fox jumps over the lazy dog.',
 ];
 const DEFAULT_SETTINGS = { samples: DEFAULT_SAMPLES, size: 42, restoreActive: true, autoStart: false,
-  hideToTray: false, scrollSpeed: 'normal', groupFamilies: true, theme: 'light', scrollSound: true };
+  hideToTray: false, scrollSpeed: 'normal', groupFamilies: true, theme: 'light', scrollSound: true, autoUpdate: true };
 let store = { folders: [], favorites: [], active: [], iconFavorites: [], settings: { ...DEFAULT_SETTINGS } };
 async function loadStore() {
   try { store = { ...store, ...JSON.parse(await fs.readFile(STORE, 'utf8')) }; } catch {}
@@ -250,16 +251,20 @@ ipcMain.handle('getSettings', () => ({ ...store.settings, version: app.getVersio
 
 ipcMain.handle('setSettings', async (_e, patch) => {
   store.settings = { ...store.settings, ...patch };
-  if ('autoStart' in patch) {
-    // En desarrollo hay que pasar la ruta del proyecto para que Electron abra esta app
-    const args = app.isPackaged ? [] : [app.getAppPath()];
-    app.setLoginItemSettings({ openAtLogin: !!patch.autoStart, path: process.execPath, args });
-  }
+  if ('autoStart' in patch) setLoginItem(patch.autoStart);
   if ('hideToTray' in patch) updateTray();
   if ('theme' in patch) win?.setBackgroundColor(patch.theme === 'dark' ? '#1a1a1a' : '#e9e9e6');
   await saveStore();
   return store.settings;
 });
+
+// Al iniciar con Windows la app arranca oculta en la bandeja
+function setLoginItem(on) {
+  // En desarrollo hay que pasar la ruta del proyecto para que Electron abra esta app
+  const args = [...(app.isPackaged ? [] : [app.getAppPath()]), '--hidden'];
+  app.setLoginItemSettings({ openAtLogin: !!on, path: process.execPath, args });
+}
+const startHidden = process.argv.includes('--hidden');
 
 let win = null;
 let tray = null;
@@ -280,7 +285,7 @@ function trayIcon() {
 nativeTheme.on('updated', () => tray?.setImage(trayIcon()));
 
 function updateTray() {
-  if (!store.settings.hideToTray) { tray?.destroy(); tray = null; return; }
+  if (!store.settings.hideToTray && !startHidden) { tray?.destroy(); tray = null; return; }
   if (tray) return;
   tray = new Tray(trayIcon());
   tray.setToolTip('FontVault');
@@ -319,6 +324,7 @@ app.whenReady().then(async () => {
     icon: APP_ICON,
     // Sin marco grueso desaparece la línea oscura de Windows; el redimensionado lo hacen los bordes de la propia página
     thickFrame: false,
+    show: !startHidden,
     webPreferences: { preload: path.join(__dirname, 'preload.js'), spellcheck: false },
   });
   win.loadFile('index.html');
@@ -340,7 +346,38 @@ app.whenReady().then(async () => {
     if (store.settings.hideToTray && !quitting) { e.preventDefault(); win.hide(); }
   });
   updateTray();
+  // Las entradas de inicio antiguas no llevan --hidden
+  if (store.settings.autoStart) setLoginItem(true);
+  initUpdates();
 });
+
+// Actualizaciones desde las releases de GitHub. Con "automáticas" se descargan solas y se instalan al salir
+let updateState = { status: 'idle' };
+function sendUpdate(s) { updateState = s; win?.webContents.send('update:state', s); }
+function checkUpdates() {
+  if (!app.isPackaged) return sendUpdate({ status: 'error', message: 'solo disponible en la app instalada' });
+  autoUpdater.checkForUpdates().catch(() => {}); // el error llega por el evento 'error'
+}
+function initUpdates() {
+  autoUpdater.autoDownload = false;
+  autoUpdater.on('checking-for-update', () => sendUpdate({ status: 'checking' }));
+  autoUpdater.on('update-not-available', () => sendUpdate({ status: 'latest' }));
+  autoUpdater.on('update-available', (i) => {
+    sendUpdate({ status: 'available', version: i.version });
+    if (store.settings.autoUpdate) autoUpdater.downloadUpdate().catch(() => {});
+  });
+  autoUpdater.on('download-progress', (p) => sendUpdate({ ...updateState, status: 'downloading', percent: Math.round(p.percent) }));
+  autoUpdater.on('update-downloaded', (i) => sendUpdate({ status: 'ready', version: i.version }));
+  autoUpdater.on('error', (e) => sendUpdate({ status: 'error', message: String(e?.message || e).split('\n')[0] }));
+  if (app.isPackaged && store.settings.autoUpdate) {
+    setTimeout(checkUpdates, 5000);
+    setInterval(() => store.settings.autoUpdate && checkUpdates(), 6 * 3600e3);
+  }
+}
+ipcMain.handle('update:state', () => updateState);
+ipcMain.on('update:check', checkUpdates);
+ipcMain.on('update:download', () => autoUpdater.downloadUpdate().catch(() => {}));
+ipcMain.on('update:install', () => { quitting = true; autoUpdater.quitAndInstall(true, true); });
 
 // Las fuentes se liberan al cerrar y se reactivan en el siguiente arranque
 app.on('before-quit', () => { quitting = true; for (const f of active) gdi.deactivate(f); });

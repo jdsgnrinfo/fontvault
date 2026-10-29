@@ -25,6 +25,13 @@ contextBridge.exposeInMainWorld('api', {
   },
   getSettings: () => ipcRenderer.invoke('getSettings'),
   setSettings: (patch) => ipcRenderer.invoke('setSettings', patch),
+  updates: {
+    state: () => ipcRenderer.invoke('update:state'),
+    check: () => ipcRenderer.send('update:check'),
+    download: () => ipcRenderer.send('update:download'),
+    install: () => ipcRenderer.send('update:install'),
+    onState: (cb) => { const h = (_e, s) => cb(s); ipcRenderer.on('update:state', h); return () => ipcRenderer.off('update:state', h); },
+  },
   icons: {
     collections: () => ipcRenderer.invoke('icons:collections'),
     collection: (prefix) => ipcRenderer.invoke('icons:collection', prefix),
