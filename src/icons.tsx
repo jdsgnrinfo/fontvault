@@ -139,7 +139,7 @@ export function IconsSidebar({ state }: { state: IconsState }) {
           selected={view.kind === 'favorites'} onClick={() => { setQuery(''); setView({ kind: 'favorites' }); }} />
         <h2>Mis bibliotecas</h2>
         {libraries.length === 0 && <p className="nav-empty">Descarga una colección para tenerla sin conexión</p>}
-        {libraries.map((l) => (
+        {[...libraries].sort((a, b) => (a.info?.name ?? a.prefix).localeCompare(b.info?.name ?? b.prefix, 'es')).map((l) => (
           <NavItem key={l.prefix} label={l.info?.name ?? l.prefix} count={l.count} icon={<Library16Regular />}
             selected={view.kind === 'collection' && view.prefix === l.prefix}
             onClick={() => setView({ kind: 'collection', prefix: l.prefix })} onRemove={() => remove(l.prefix)} />
@@ -204,7 +204,7 @@ function FavoritesView({ state }: { state: IconsState }) {
       </div>
       {state.favorites.length === 0 ? <p className="empty">Abre una colección y pulsa el corazón junto a su nombre para añadirla aquí.</p> : (
         <div className="collection-grid">
-          {state.favorites.map((p) => (
+          {[...state.favorites].sort((a, b) => info(a).name.localeCompare(info(b).name, 'es')).map((p) => (
             <CollectionCard key={p} prefix={p} info={info(p)} owned={owned.has(p)} onOpen={() => state.setView({ kind: 'collection', prefix: p })} />
           ))}
         </div>
@@ -268,7 +268,7 @@ function Collections({ onOpen, libraries, query, children }: {
   const categories = useMemo(() => [...new Set(Object.values(all ?? {}).map((c) => c.category || 'Otras'))].sort(), [all]);
   const list = useMemo(() => Object.entries(all ?? {})
     .filter(([, c]) => category === 'all' || (c.category || 'Otras') === category)
-    .sort((a, b) => (b[1].total ?? 0) - (a[1].total ?? 0)), [all, category]);
+    .sort((a, b) => a[1].name.localeCompare(b[1].name, 'es')), [all, category]);
 
   const owned = new Set(libraries.map((l) => l.prefix));
   const searching = query.trim() !== '';
