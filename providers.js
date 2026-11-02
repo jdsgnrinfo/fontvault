@@ -1,4 +1,4 @@
-// Proveedores de fuentes en línea: Google Fonts, Fontshare y Fontsource.
+// Proveedores de fuentes en línea: Google Fonts, Fontshare, Fontsource y fundiciones libres de GitHub.
 // Cada uno da su catálogo, vistas previas (woff2), la descarga de la familia para activarla
 // y un solo archivo de un estilo para las pestañas Glifos y Detalles.
 // Claves de estilo: "Familia:400" o "Familia:700i" (peso + i si es cursiva).
@@ -197,12 +197,37 @@ const fontsource = {
   },
 };
 
-const PROVIDERS = { google, fontshare, fontsource };
-// Prefijo de las claves de archivo en la interfaz: "gf:Roboto:400", "fsh:Satoshi:700", "fso:Bagnard:400"
-const PREFIX = { gf: 'google', fsh: 'fontshare', fso: 'fontsource' };
+// ---------- Fuentes libres (fundiciones en GitHub; catálogo revisado en libres.json, ver scripts/build-libres.js) ----------
+// Los archivos se piden por commit, así una familia no cambia ni desaparece aunque se reorganice su repositorio
+const libres = {
+  catalog: require('./libres.json'),
+  entry(family) {
+    const e = this.catalog.find((f) => f.family === family);
+    if (!e) throw new Error('Familia desconocida');
+    return e;
+  },
+  url(e, file) { return `https://raw.githubusercontent.com/${e.repo}/${e.sha}/${file.split('/').map(encodeURIComponent).join('/')}`; },
+  styleUrl(key) {
+    const { family, style } = splitKey(key);
+    const e = this.entry(family);
+    return e.files[style] && this.url(e, e.files[style]);
+  },
+  previewUrl(key) { return this.styleUrl(key); },
+  async download(family, folder) {
+    const e = this.entry(family);
+    return saveAtomically(folder, async (tmp) => {
+      for (const file of Object.values(e.files)) await fs.writeFile(path.join(tmp, path.basename(file)), await fetchBuffer(this.url(e, file)));
+    });
+  },
+};
+
+const PROVIDERS = { google, fontshare, fontsource, libres };
+// Prefijo de las claves de archivo en la interfaz: "gf:Roboto:400", "fsh:Satoshi:700", "fso:Bagnard:400", "fl:Ronzino:400"
+const PREFIX = { gf: 'google', fsh: 'fontshare', fso: 'fontsource', fl: 'libres' };
 
 const catalogs = {};
 async function loadCatalog(id) {
+  if (PROVIDERS[id].catalog) return PROVIDERS[id].catalog;
   if (catalogs[id]) return catalogs[id];
   const file = path.join(ROOT, id, 'catalog.json');
   try {
@@ -251,7 +276,7 @@ exports.styleFile = async ({ id, key }) => {
   const p = PROVIDERS[id];
   if (p.styleFile) return p.styleFile(key);
   const { family, weight, italic } = splitKey(key);
-  const cached = path.join(ROOT, id, '_estilos', safe(family), `${styleName(weight, italic)}.ttf`);
+  const cached = path.join(ROOT, id, '_estilos', safe(family), `${styleName(weight, italic)}${splitKey(key).style.includes('-') ? splitKey(key).style : ''}.ttf`);
   try { await fs.access(cached); return cached; } catch {}
   const url = await p.styleUrl(key);
   if (!url) throw new Error('Sin archivo');

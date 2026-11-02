@@ -51,6 +51,7 @@
       "build/tray-white.png",
       "build/tray-black.png",
       "providers.js",
+      "libres.json",
       "font-names.js"
     ],
     "asarUnpack": [

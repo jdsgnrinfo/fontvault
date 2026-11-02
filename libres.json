@@ -1,0 +1,3415 @@
+[
+ {
+  "family": "Absans",
+  "category": "Sans Serif",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "collletttivo/absans",
+  "sha": "e1ba5d9a2359934df024b4ebef4c1be76e0db263",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/Absans-Regular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Accessiway Accessible Archivo",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Archivo",
+  "sha": "211127690e8ff106c36c935f7e5e697114cff103",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "700",
+   "700i",
+   "400i",
+   "400"
+  ],
+  "files": {
+   "400": "AAA/fonts/OTF/ArchivoAccWay-Regular.otf",
+   "700": "AAA/fonts/OTF/ArchivoAccWay-Bold.otf",
+   "700i": "AAA/fonts/OTF/ArchivoAccWay-BoldItalic.otf",
+   "400i": "AAA/fonts/OTF/ArchivoAccWay-Italic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Apfel Grotezk",
+  "category": "Sans Serif",
+  "designers": [
+   "Luigi Gorlero"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/apfel-grotezk",
+  "sha": "8b4c9f2682d274d7fae81d8eceef24f7f2fba4ea",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "300",
+   "700",
+   "500",
+   "400",
+   "900"
+  ],
+  "files": {
+   "300": "fonts/ApfelGrotezk-Brukt.otf",
+   "400": "fonts/ApfelGrotezk-Regular.otf",
+   "500": "fonts/ApfelGrotezk-Mittel.otf",
+   "700": "fonts/ApfelGrotezk-Fett.otf",
+   "900": "fonts/ApfelGrotezk-Satt.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Archivo",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Archivo",
+  "sha": "211127690e8ff106c36c935f7e5e697114cff103",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/Archivo-Thin.otf",
+   "200": "fonts/otf/Archivo-ExtraLight.otf",
+   "300": "fonts/otf/Archivo-Light.otf",
+   "400": "fonts/otf/Archivo-Regular.otf",
+   "500": "fonts/otf/Archivo-Medium.otf",
+   "600": "fonts/otf/Archivo-SemiBold.otf",
+   "700": "fonts/otf/Archivo-Bold.otf",
+   "800": "fonts/otf/Archivo-ExtraBold.otf",
+   "900": "fonts/otf/Archivo-Black.otf",
+   "900i": "fonts/otf/Archivo-BlackItalic.otf",
+   "700i": "fonts/otf/Archivo-BoldItalic.otf",
+   "800i": "fonts/otf/Archivo-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/Archivo-ExtraLightItalic.otf",
+   "400i": "fonts/otf/Archivo-Italic.otf",
+   "300i": "fonts/otf/Archivo-LightItalic.otf",
+   "500i": "fonts/otf/Archivo-MediumItalic.otf",
+   "600i": "fonts/otf/Archivo-SemiBoldItalic.otf",
+   "100i": "fonts/otf/Archivo-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Archivo Black",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/ArchivoBlack",
+  "sha": "30a0eb7112a7b84e45f922c70bf53644dbfb0c74",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400",
+   "400i"
+  ],
+  "files": {
+   "400": "fonts/_old files/ArchivoBlack-Regular.otf",
+   "400i": "fonts/otf/ArchivoBlack-Italic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Archivo Condensed",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Archivo",
+  "sha": "211127690e8ff106c36c935f7e5e697114cff103",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "680",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/ArchivoCondensed-Thin.otf",
+   "200": "fonts/otf/ArchivoCondensed-ExtraLight.otf",
+   "300": "fonts/otf/ArchivoCondensed-Light.otf",
+   "400": "fonts/otf/ArchivoCondensed-Regular.otf",
+   "500": "fonts/otf/ArchivoCondensed-Medium.otf",
+   "600": "fonts/otf/ArchivoCondensed-SemiBold.otf",
+   "680": "fonts/otf/ArchivoCondensed-Bold.otf",
+   "800": "fonts/otf/ArchivoCondensed-ExtraBold.otf",
+   "900": "fonts/otf/ArchivoCondensed-Black.otf",
+   "900i": "fonts/otf/ArchivoCondensed-BlackItalic.otf",
+   "700i": "fonts/otf/ArchivoCondensed-BoldItalic.otf",
+   "800i": "fonts/otf/ArchivoCondensed-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/ArchivoCondensed-ExtraLightItalic.otf",
+   "400i": "fonts/otf/ArchivoCondensed-Italic.otf",
+   "300i": "fonts/otf/ArchivoCondensed-LightItalic.otf",
+   "500i": "fonts/otf/ArchivoCondensed-MediumItalic.otf",
+   "600i": "fonts/otf/ArchivoCondensed-SemiBoldItalic.otf",
+   "100i": "fonts/otf/ArchivoCondensed-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Archivo Expanded",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Archivo",
+  "sha": "211127690e8ff106c36c935f7e5e697114cff103",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/ArchivoExpanded-Thin.otf",
+   "200": "fonts/otf/ArchivoExpanded-ExtraLight.otf",
+   "300": "fonts/otf/ArchivoExpanded-Light.otf",
+   "400": "fonts/otf/ArchivoExpanded-Regular.otf",
+   "500": "fonts/otf/ArchivoExpanded-Medium.otf",
+   "600": "fonts/otf/ArchivoExpanded-SemiBold.otf",
+   "700": "fonts/otf/ArchivoExpanded-Bold.otf",
+   "800": "fonts/otf/ArchivoExpanded-ExtraBold.otf",
+   "900": "fonts/otf/ArchivoExpanded-Black.otf",
+   "900i": "fonts/otf/ArchivoExpanded-BlackItalic.otf",
+   "700i": "fonts/otf/ArchivoExpanded-BoldItalic.otf",
+   "800i": "fonts/otf/ArchivoExpanded-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/ArchivoExpanded-ExtraLightItalic.otf",
+   "400i": "fonts/otf/ArchivoExpanded-Italic.otf",
+   "300i": "fonts/otf/ArchivoExpanded-LightItalic.otf",
+   "500i": "fonts/otf/ArchivoExpanded-MediumItalic.otf",
+   "600i": "fonts/otf/ArchivoExpanded-SemiBoldItalic.otf",
+   "100i": "fonts/otf/ArchivoExpanded-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Archivo ExtraCondensed",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Archivo",
+  "sha": "211127690e8ff106c36c935f7e5e697114cff103",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "680",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/ArchivoExtraCondensed-Thin.otf",
+   "200": "fonts/otf/ArchivoExtraCondensed-ExtraLight.otf",
+   "300": "fonts/otf/ArchivoExtraCondensed-Light.otf",
+   "400": "fonts/otf/ArchivoExtraCondensed-Regular.otf",
+   "500": "fonts/otf/ArchivoExtraCondensed-Medium.otf",
+   "600": "fonts/otf/ArchivoExtraCondensed-SemiBold.otf",
+   "680": "fonts/otf/ArchivoExtraCondensed-Bold.otf",
+   "800": "fonts/otf/ArchivoExtraCondensed-ExtraBold.otf",
+   "900": "fonts/otf/ArchivoExtraCondensed-Black.otf",
+   "900i": "fonts/otf/ArchivoExtraCondensed-BlackItalic.otf",
+   "700i": "fonts/otf/ArchivoExtraCondensed-BoldItalic.otf",
+   "800i": "fonts/otf/ArchivoExtraCondensed-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/ArchivoExtraCondensed-ExtraLightItalic.otf",
+   "400i": "fonts/otf/ArchivoExtraCondensed-Italic.otf",
+   "300i": "fonts/otf/ArchivoExtraCondensed-LightItalic.otf",
+   "500i": "fonts/otf/ArchivoExtraCondensed-MediumItalic.otf",
+   "600i": "fonts/otf/ArchivoExtraCondensed-SemiBoldItalic.otf",
+   "100i": "fonts/otf/ArchivoExtraCondensed-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Archivo Narrow",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/ArchivoNarrow",
+  "sha": "9793ec77b6682a26bc7a6ed523ca65cc3cb90aec",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "700",
+   "700i",
+   "400i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i"
+  ],
+  "files": {
+   "400": "fonts/otf/ArchivoNarrow-Regular.otf",
+   "500": "fonts/otf/ArchivoNarrow-Medium.otf",
+   "600": "fonts/otf/ArchivoNarrow-SemiBold.otf",
+   "700": "fonts/otf/ArchivoNarrow-Bold.otf",
+   "700i": "fonts/otf/ArchivoNarrow-BoldItalic.otf",
+   "400i": "fonts/otf/ArchivoNarrow-Italic.otf",
+   "500i": "fonts/otf/ArchivoNarrow-MediumItalic.otf",
+   "600i": "fonts/otf/ArchivoNarrow-SemiBoldItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Archivo SemiCondensed",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Archivo",
+  "sha": "211127690e8ff106c36c935f7e5e697114cff103",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "680",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/ArchivoSemiCondensed-Thin.otf",
+   "200": "fonts/otf/ArchivoSemiCondensed-ExtraLight.otf",
+   "300": "fonts/otf/ArchivoSemiCondensed-Light.otf",
+   "400": "fonts/otf/ArchivoSemiCondensed-Regular.otf",
+   "500": "fonts/otf/ArchivoSemiCondensed-Medium.otf",
+   "600": "fonts/otf/ArchivoSemiCondensed-SemiBold.otf",
+   "680": "fonts/otf/ArchivoSemiCondensed-Bold.otf",
+   "800": "fonts/otf/ArchivoSemiCondensed-ExtraBold.otf",
+   "900": "fonts/otf/ArchivoSemiCondensed-Black.otf",
+   "900i": "fonts/otf/ArchivoSemiCondensed-BlackItalic.otf",
+   "700i": "fonts/otf/ArchivoSemiCondensed-BoldItalic.otf",
+   "800i": "fonts/otf/ArchivoSemiCondensed-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/ArchivoSemiCondensed-ExtraLightItalic.otf",
+   "400i": "fonts/otf/ArchivoSemiCondensed-Italic.otf",
+   "300i": "fonts/otf/ArchivoSemiCondensed-LightItalic.otf",
+   "500i": "fonts/otf/ArchivoSemiCondensed-MediumItalic.otf",
+   "600i": "fonts/otf/ArchivoSemiCondensed-SemiBoldItalic.otf",
+   "100i": "fonts/otf/ArchivoSemiCondensed-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Archivo SemiExpanded",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Archivo",
+  "sha": "211127690e8ff106c36c935f7e5e697114cff103",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/ArchivoSemiExpanded-Thin.otf",
+   "200": "fonts/otf/ArchivoSemiExpanded-ExtraLight.otf",
+   "300": "fonts/otf/ArchivoSemiExpanded-Light.otf",
+   "400": "fonts/otf/ArchivoSemiExpanded-Regular.otf",
+   "500": "fonts/otf/ArchivoSemiExpanded-Medium.otf",
+   "600": "fonts/otf/ArchivoSemiExpanded-SemiBold.otf",
+   "700": "fonts/otf/ArchivoSemiExpanded-Bold.otf",
+   "800": "fonts/otf/ArchivoSemiExpanded-ExtraBold.otf",
+   "900": "fonts/otf/ArchivoSemiExpanded-Black.otf",
+   "900i": "fonts/otf/ArchivoSemiExpanded-BlackItalic.otf",
+   "700i": "fonts/otf/ArchivoSemiExpanded-BoldItalic.otf",
+   "800i": "fonts/otf/ArchivoSemiExpanded-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/ArchivoSemiExpanded-ExtraLightItalic.otf",
+   "400i": "fonts/otf/ArchivoSemiExpanded-Italic.otf",
+   "300i": "fonts/otf/ArchivoSemiExpanded-LightItalic.otf",
+   "500i": "fonts/otf/ArchivoSemiExpanded-MediumItalic.otf",
+   "600i": "fonts/otf/ArchivoSemiExpanded-SemiBoldItalic.otf",
+   "100i": "fonts/otf/ArchivoSemiExpanded-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Asap",
+  "category": "Sans Serif",
+  "designers": [
+   "Pablo Cosgaya"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Asap",
+  "sha": "ca471c0ccf90a5c66155d4bcaa020859804ffd00",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/Asap-Thin.otf",
+   "200": "fonts/otf/Asap-ExtraLight.otf",
+   "300": "fonts/otf/Asap-Light.otf",
+   "400": "fonts/otf/Asap-Regular.otf",
+   "500": "fonts/otf/Asap-Medium.otf",
+   "600": "fonts/otf/Asap-SemiBold.otf",
+   "700": "fonts/otf/Asap-Bold.otf",
+   "800": "fonts/otf/Asap-ExtraBold.otf",
+   "900": "fonts/otf/Asap-Black.otf",
+   "900i": "fonts/otf/Asap-BlackItalic.otf",
+   "700i": "fonts/otf/Asap-BoldItalic.otf",
+   "800i": "fonts/otf/Asap-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/Asap-ExtraLightItalic.otf",
+   "400i": "fonts/otf/Asap-Italic.otf",
+   "300i": "fonts/otf/Asap-LightItalic.otf",
+   "500i": "fonts/otf/Asap-MediumItalic.otf",
+   "600i": "fonts/otf/Asap-SemiBoldItalic.otf",
+   "100i": "fonts/otf/Asap-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Asap Condensed",
+  "category": "Sans Serif",
+  "designers": [
+   "Pablo Cosgaya"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Asap",
+  "sha": "ca471c0ccf90a5c66155d4bcaa020859804ffd00",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/AsapCondensed-Thin.otf",
+   "200": "fonts/otf/AsapCondensed-ExtraLight.otf",
+   "300": "fonts/otf/AsapCondensed-Light.otf",
+   "400": "fonts/otf/AsapCondensed-Regular.otf",
+   "500": "fonts/otf/AsapCondensed-Medium.otf",
+   "600": "fonts/otf/AsapCondensed-SemiBold.otf",
+   "700": "fonts/otf/AsapCondensed-Bold.otf",
+   "800": "fonts/otf/AsapCondensed-ExtraBold.otf",
+   "900": "fonts/otf/AsapCondensed-Black.otf",
+   "900i": "fonts/otf/AsapCondensed-BlackItalic.otf",
+   "700i": "fonts/otf/AsapCondensed-BoldItalic.otf",
+   "800i": "fonts/otf/AsapCondensed-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/AsapCondensed-ExtraLightItalic.otf",
+   "400i": "fonts/otf/AsapCondensed-Italic.otf",
+   "300i": "fonts/otf/AsapCondensed-LightItalic.otf",
+   "500i": "fonts/otf/AsapCondensed-MediumItalic.otf",
+   "600i": "fonts/otf/AsapCondensed-SemiBoldItalic.otf",
+   "100i": "fonts/otf/AsapCondensed-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Asap Expanded",
+  "category": "Sans Serif",
+  "designers": [
+   "Pablo Cosgaya"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Asap",
+  "sha": "ca471c0ccf90a5c66155d4bcaa020859804ffd00",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/AsapExpanded-Thin.otf",
+   "200": "fonts/otf/AsapExpanded-ExtraLight.otf",
+   "300": "fonts/otf/AsapExpanded-Light.otf",
+   "400": "fonts/otf/AsapExpanded-Regular.otf",
+   "500": "fonts/otf/AsapExpanded-Medium.otf",
+   "600": "fonts/otf/AsapExpanded-SemiBold.otf",
+   "700": "fonts/otf/AsapExpanded-Bold.otf",
+   "800": "fonts/otf/AsapExpanded-ExtraBold.otf",
+   "900": "fonts/otf/AsapExpanded-Black.otf",
+   "900i": "fonts/otf/AsapExpanded-BlackItalic.otf",
+   "700i": "fonts/otf/AsapExpanded-BoldItalic.otf",
+   "800i": "fonts/otf/AsapExpanded-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/AsapExpanded-ExtraLightItalic.otf",
+   "400i": "fonts/otf/AsapExpanded-Italic.otf",
+   "300i": "fonts/otf/AsapExpanded-LightItalic.otf",
+   "500i": "fonts/otf/AsapExpanded-MediumItalic.otf",
+   "600i": "fonts/otf/AsapExpanded-SemiBoldItalic.otf",
+   "100i": "fonts/otf/AsapExpanded-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Asap Semi Condensed",
+  "category": "Sans Serif",
+  "designers": [
+   "Pablo Cosgaya"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Asap",
+  "sha": "ca471c0ccf90a5c66155d4bcaa020859804ffd00",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/AsapSemiCondensed-Thin.otf",
+   "200": "fonts/otf/AsapSemiCondensed-ExtraLight.otf",
+   "300": "fonts/otf/AsapSemiCondensed-Light.otf",
+   "400": "fonts/otf/AsapSemiCondensed-Regular.otf",
+   "500": "fonts/otf/AsapSemiCondensed-Medium.otf",
+   "600": "fonts/otf/AsapSemiCondensed-SemiBold.otf",
+   "700": "fonts/otf/AsapSemiCondensed-Bold.otf",
+   "800": "fonts/otf/AsapSemiCondensed-ExtraBold.otf",
+   "900": "fonts/otf/AsapSemiCondensed-Black.otf",
+   "900i": "fonts/otf/AsapSemiCondensed-BlackItalic.otf",
+   "700i": "fonts/otf/AsapSemiCondensed-BoldItalic.otf",
+   "800i": "fonts/otf/AsapSemiCondensed-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/AsapSemiCondensed-ExtraLightItalic.otf",
+   "400i": "fonts/otf/AsapSemiCondensed-Italic.otf",
+   "300i": "fonts/otf/AsapSemiCondensed-LightItalic.otf",
+   "500i": "fonts/otf/AsapSemiCondensed-MediumItalic.otf",
+   "600i": "fonts/otf/AsapSemiCondensed-SemiBoldItalic.otf",
+   "100i": "fonts/otf/AsapSemiCondensed-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Asap Semi Expanded",
+  "category": "Sans Serif",
+  "designers": [
+   "Pablo Cosgaya"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Asap",
+  "sha": "ca471c0ccf90a5c66155d4bcaa020859804ffd00",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/AsapSemiExpanded-Thin.otf",
+   "200": "fonts/otf/AsapSemiExpanded-ExtraLight.otf",
+   "300": "fonts/otf/AsapSemiExpanded-Light.otf",
+   "400": "fonts/otf/AsapSemiExpanded-Regular.otf",
+   "500": "fonts/otf/AsapSemiExpanded-Medium.otf",
+   "600": "fonts/otf/AsapSemiExpanded-SemiBold.otf",
+   "700": "fonts/otf/AsapSemiExpanded-Bold.otf",
+   "800": "fonts/otf/AsapSemiExpanded-ExtraBold.otf",
+   "900": "fonts/otf/AsapSemiExpanded-Black.otf",
+   "900i": "fonts/otf/AsapSemiExpanded-BlackItalic.otf",
+   "700i": "fonts/otf/AsapSemiExpanded-BoldItalic.otf",
+   "800i": "fonts/otf/AsapSemiExpanded-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/AsapSemiExpanded-ExtraLightItalic.otf",
+   "400i": "fonts/otf/AsapSemiExpanded-Italic.otf",
+   "300i": "fonts/otf/AsapSemiExpanded-LightItalic.otf",
+   "500i": "fonts/otf/AsapSemiExpanded-MediumItalic.otf",
+   "600i": "fonts/otf/AsapSemiExpanded-SemiBoldItalic.otf",
+   "100i": "fonts/otf/AsapSemiExpanded-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Asap Sharp",
+  "category": "Sans Serif",
+  "designers": [
+   "Pablo Cosgaya"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Asap_Sharp",
+  "sha": "41d013ad7c374fd7fc3f5fc99571b582020d509b",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400i",
+   "400"
+  ],
+  "files": {
+   "400": "fonts/VARIABLE/AsapSharp[wdth,wght].ttf",
+   "400i": "fonts/VARIABLE/AsapSharp-Italic[wdth,wght].ttf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Asap Symbol",
+  "category": "Sans Serif",
+  "designers": [
+   "Tania Quindós, Elena González Miranda, Marcela Romero, Pablo Cosgaya"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Asap-Symbol",
+  "sha": "1111826a792ef6ebf1548c195939f9ec691c08dc",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400",
+   "400-2",
+   "400-3",
+   "500",
+   "400-4",
+   "400-5"
+  ],
+  "files": {
+   "400": "Fonts/Fonts-by-SS/Arrows/AsapSymbol-Arrows.otf",
+   "500": "Fonts/Fonts-by-SS/People/AsapSymbol-People.otf",
+   "400-2": "Fonts/Fonts-by-SS/Elevators/AsapSymbol-Elevators.otf",
+   "400-3": "Fonts/Fonts-by-SS/Objects/AsapSymbol-Objects.otf",
+   "400-4": "Fonts/Fonts-by-SS/Signal/AsapSymbol-Signal.otf",
+   "400-5": "Fonts/Fonts-by-SS/Transport/AsapSymbol-Transport.otf"
+  },
+  "names": {
+   "400-2": "Elevators",
+   "400-3": "Objects",
+   "400-4": "Signal",
+   "400-5": "Transport"
+  }
+ },
+ {
+  "family": "Aujournuit",
+  "category": "Display",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "collletttivo/aujournuit",
+  "sha": "8b8aed12b67454ea6ae37009ad719bf33617b80d",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400",
+   "400-2",
+   "400-3",
+   "400-4",
+   "400-5"
+  ],
+  "files": {
+   "400": "fonts/Aujournuit-Airy.otf",
+   "400-2": "fonts/Aujournuit-Condensed.otf",
+   "400-3": "fonts/Aujournuit-Densed.otf",
+   "400-4": "fonts/Aujournuit-Regular.otf",
+   "400-5": "fonts/Aujournuit-Wide.otf"
+  },
+  "names": {
+   "400-2": "Condensed",
+   "400-3": "Densed",
+   "400-4": "Aujournuit-Regular",
+   "400-5": "Wide"
+  }
+ },
+ {
+  "family": "Bahiana",
+  "category": "Display",
+  "designers": [
+   "Pablo Cosgaya & Dani Raskovsky"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Bahiana",
+  "sha": "8d9348204f22e5175c122488d59bf1e58be8c3bc",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "BahianaGF/Fonts/Bahiana-Regular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Bahianita",
+  "category": "Display",
+  "designers": [
+   "Pablo Cosgaya & Dani Raskovsky"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Bahiana",
+  "sha": "8d9348204f22e5175c122488d59bf1e58be8c3bc",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "Bahianita/fonts/otf/Bahianita-Regular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Ballet 16pt",
+  "category": "Display",
+  "designers": [
+   "Maximiliano R. Sproviero"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Ballet",
+  "sha": "bd239d606894c2139ad997b60d2141bee7856817",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/otf/Ballet16pt-Regular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Ballet 72pt",
+  "category": "Display",
+  "designers": [
+   "Maximiliano R. Sproviero"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Ballet",
+  "sha": "bd239d606894c2139ad997b60d2141bee7856817",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/otf/Ballet72pt-Regular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Barriecito",
+  "category": "Display",
+  "designers": [
+   "Pablo Cosgaya & Sergio Jiménez"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Barrio",
+  "sha": "8bf59043662d122c9fef91e651b65f561476ff9a",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "Barriecito/fonts/otf/Barriecito-Regular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Barrio",
+  "category": "Display",
+  "designers": [
+   "Pablo Cosgaya & Sergio Jiménez"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Barrio",
+  "sha": "8bf59043662d122c9fef91e651b65f561476ff9a",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "BarrioGF/Fonts/Barrio-Regular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Blackout",
+  "category": "Display",
+  "designers": [
+   "Tyler Finck"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/blackout",
+  "sha": "4864cfc1749590e9f78549c6e57116fe98480c0f",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "Blackout Two AM.ttf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Blackout 2AM",
+  "category": "Display",
+  "designers": [
+   "Tyler Finck"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/blackout",
+  "sha": "4864cfc1749590e9f78549c6e57116fe98480c0f",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "Blackout 2 AM.ttf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Blackout Midnight",
+  "category": "Display",
+  "designers": [
+   "Tyler Finck"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/blackout",
+  "sha": "4864cfc1749590e9f78549c6e57116fe98480c0f",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "Blackout Midnight.ttf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Blackout Sunrise",
+  "category": "Display",
+  "designers": [
+   "Tyler Finck"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/blackout",
+  "sha": "4864cfc1749590e9f78549c6e57116fe98480c0f",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "Blackout Sunrise.ttf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Boeticher",
+  "category": "Display",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "velvetyne/Boeticher",
+  "sha": "57388369a5a1e2554a93dff872d2c50a62f36bc5",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/Boeticher_Desktop_OTF/Boeticher-Roman.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Borges",
+  "category": "Display",
+  "designers": [
+   "Matteo Bertin"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/borges",
+  "sha": "f0c85182388603998ab55f84f9bc8cd8e8719383",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/Borges-SquarePixelRegular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Chivo",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Chivo",
+  "sha": "dc61c468d79781eb5183426e88e844af16cdc3e5",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800-2",
+   "200",
+   "200-2",
+   "400",
+   "300",
+   "300-2",
+   "500",
+   "500-2",
+   "400-2",
+   "600",
+   "600-2",
+   "100",
+   "100-2"
+  ],
+  "files": {
+   "100": "fonts/Chivo/otf/Chivo-Thin.otf",
+   "200": "fonts/Chivo/otf/Chivo-ExtraLight.otf",
+   "300": "fonts/Chivo/otf/Chivo-Light.otf",
+   "400": "fonts/Chivo/otf/Chivo-Italic.otf",
+   "500": "fonts/Chivo/otf/Chivo-Medium.otf",
+   "600": "fonts/Chivo/otf/Chivo-SemiBold.otf",
+   "700": "fonts/Chivo/otf/Chivo-Bold.otf",
+   "800": "fonts/Chivo/otf/Chivo-ExtraBold.otf",
+   "900": "fonts/Chivo/otf/Chivo-Black.otf",
+   "900i": "fonts/Chivo/otf/Chivo-BlackItalic.otf",
+   "700i": "fonts/Chivo/otf/Chivo-BoldItalic.otf",
+   "800-2": "fonts/Chivo/otf/Chivo-ExtraBoldItalic.otf",
+   "200-2": "fonts/Chivo/otf/Chivo-ExtraLightItalic.otf",
+   "300-2": "fonts/Chivo/otf/Chivo-LightItalic.otf",
+   "500-2": "fonts/Chivo/otf/Chivo-MediumItalic.otf",
+   "400-2": "fonts/Chivo/otf/Chivo-Regular.otf",
+   "600-2": "fonts/Chivo/otf/Chivo-SemiBoldItalic.otf",
+   "100-2": "fonts/Chivo/otf/Chivo-ThinItalic.otf"
+  },
+  "names": {
+   "800-2": "ExtraBold Italic",
+   "200-2": "ExtraLight Italic",
+   "300-2": "Light Italic",
+   "500-2": "Medium Italic",
+   "400-2": "Chivo-Regular",
+   "600-2": "SemiBold Italic",
+   "100-2": "Thin Italic"
+  }
+ },
+ {
+  "family": "Chivo Mono",
+  "category": "Monospace",
+  "designers": [
+   "Hector Gatti"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Chivo",
+  "sha": "dc61c468d79781eb5183426e88e844af16cdc3e5",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/Chivo Mono/otf/ChivoMono-Thin.otf",
+   "200": "fonts/Chivo Mono/otf/ChivoMono-ExtraLight.otf",
+   "300": "fonts/Chivo Mono/otf/ChivoMono-Light.otf",
+   "400": "fonts/Chivo Mono/otf/ChivoMono-Regular.otf",
+   "500": "fonts/Chivo Mono/otf/ChivoMono-Medium.otf",
+   "600": "fonts/Chivo Mono/otf/ChivoMono-SemiBold.otf",
+   "700": "fonts/Chivo Mono/otf/ChivoMono-Bold.otf",
+   "800": "fonts/Chivo Mono/otf/ChivoMono-ExtraBold.otf",
+   "900": "fonts/Chivo Mono/otf/ChivoMono-Black.otf",
+   "900i": "fonts/Chivo Mono/otf/ChivoMono-BlackItalic.otf",
+   "700i": "fonts/Chivo Mono/otf/ChivoMono-BoldItalic.otf",
+   "800i": "fonts/Chivo Mono/otf/ChivoMono-ExtraBoldItalic.otf",
+   "200i": "fonts/Chivo Mono/otf/ChivoMono-ExtraLightItalic.otf",
+   "400i": "fonts/Chivo Mono/otf/ChivoMono-Italic.otf",
+   "300i": "fonts/Chivo Mono/otf/ChivoMono-LightItalic.otf",
+   "500i": "fonts/Chivo Mono/otf/ChivoMono-MediumItalic.otf",
+   "600i": "fonts/Chivo Mono/otf/ChivoMono-SemiBoldItalic.otf",
+   "100i": "fonts/Chivo Mono/otf/ChivoMono-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "ChunkFive",
+  "category": "Serif",
+  "designers": [
+   "Meredith Mandel"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/chunk",
+  "sha": "12a243f3fb7c7a68844901023f7d95d6eaf14104",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "ChunkFive-Regular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "ChunkFive Print",
+  "category": "Serif",
+  "designers": [
+   "Meredith Mandel"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/chunk",
+  "sha": "12a243f3fb7c7a68844901023f7d95d6eaf14104",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "Chunk Five Print.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Coconat",
+  "category": "Serif",
+  "designers": [
+   "Sara Lavazza"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/coconat",
+  "sha": "75f0bf21470de362ebee2f173e99505b7a7e977b",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "400",
+   "400-2"
+  ],
+  "files": {
+   "400": "fonts/Coconat-Demi.otf",
+   "900": "fonts/Coconat-Bold.otf",
+   "400-2": "fonts/Coconat-Regular.otf"
+  },
+  "names": {
+   "400-2": "Coconat-Regular"
+  }
+ },
+ {
+  "family": "Commune",
+  "category": "Display",
+  "designers": [
+   "Sébastien Marchal"
+  ],
+  "popularity": 9999,
+  "repo": "velvetyne/Commune-Nuit-Debout",
+  "sha": "260989f3fef5ff3189603b17280dc40ba8e1c097",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400",
+   "400-2"
+  ],
+  "files": {
+   "400": "fonts/Commune NuitDebout-Pochoir.otf",
+   "400-2": "fonts/Commune NuitDebout.otf"
+  },
+  "names": {
+   "400-2": "Nuit Debout"
+  }
+ },
+ {
+  "family": "Courrrier",
+  "category": "Display",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "velvetyne/courrrier",
+  "sha": "05bd07f8852c53d6258a4b8024f31209638be9a3",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "500"
+  ],
+  "files": {
+   "500": "fonts/Courrrier.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Daubenton",
+  "category": "Display",
+  "designers": [
+   "Olivier Dolbeau"
+  ],
+  "popularity": 9999,
+  "repo": "velvetyne/Daubenton",
+  "sha": "71206c4d747b9d37db7b942deff8ed5e54b2f617",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/Daubenton.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Fanwood",
+  "category": "Serif",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "theleagueof/fanwood",
+  "sha": "cbaaed9704e7d37d3dcdbdf0b472e9efd0e39432",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400i",
+   "400"
+  ],
+  "files": {
+   "400": "Fanwood.otf",
+   "400i": "Fanwood Italic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Fanwood Text",
+  "category": "Serif",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "theleagueof/fanwood",
+  "sha": "cbaaed9704e7d37d3dcdbdf0b472e9efd0e39432",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400i",
+   "400"
+  ],
+  "files": {
+   "400": "Fanwood Text.otf",
+   "400i": "Fanwood Text Italic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Faustina",
+  "category": "Serif",
+  "designers": [
+   "Alfonso Garcia"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Faustina",
+  "sha": "eaed5823e55b6256571a2bb379b5203083cab452",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i"
+  ],
+  "files": {
+   "300": "fonts/otf/Faustina-Light.otf",
+   "400": "fonts/otf/Faustina-Regular.otf",
+   "500": "fonts/otf/Faustina-Medium.otf",
+   "600": "fonts/otf/Faustina-SemiBold.otf",
+   "700": "fonts/otf/Faustina-Bold.otf",
+   "800": "fonts/otf/Faustina-ExtraBold.otf",
+   "700i": "fonts/otf/Faustina-BoldItalic.otf",
+   "800i": "fonts/otf/Faustina-ExtraBoldItalic.otf",
+   "400i": "fonts/otf/Faustina-Italic.otf",
+   "300i": "fonts/otf/Faustina-LightItalic.otf",
+   "500i": "fonts/otf/Faustina-MediumItalic.otf",
+   "600i": "fonts/otf/Faustina-SemiBoldItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Format_1452",
+  "category": "Display",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "velvetyne/Format_1452",
+  "sha": "2ec54c3e070225266956ed1406e5e089d3c49fe8",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "500"
+  ],
+  "files": {
+   "500": "fonts/format_1452_Desktop_OTF/Format_1452.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Goudy Bookletter 1911",
+  "category": "Serif",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "theleagueof/goudy-bookletter-1911",
+  "sha": "85ff5b834b4f63feb36fd2053949c19660580e48",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "GoudyBookletter1911.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Grenze",
+  "category": "Serif",
+  "designers": [
+   "Renata Polastri"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Grenze",
+  "sha": "2af38b2f951f5d2d601825c896c2be9b8b282092",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/Grenze-Thin.otf",
+   "200": "fonts/otf/Grenze-ExtraLight.otf",
+   "300": "fonts/otf/Grenze-Light.otf",
+   "400": "fonts/otf/Grenze-Regular.otf",
+   "500": "fonts/otf/Grenze-Medium.otf",
+   "600": "fonts/otf/Grenze-SemiBold.otf",
+   "700": "fonts/otf/Grenze-Bold.otf",
+   "800": "fonts/otf/Grenze-ExtraBold.otf",
+   "900": "fonts/otf/Grenze-Black.otf",
+   "900i": "fonts/otf/Grenze-BlackItalic.otf",
+   "700i": "fonts/otf/Grenze-BoldItalic.otf",
+   "800i": "fonts/otf/Grenze-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/Grenze-ExtraLightItalic.otf",
+   "400i": "fonts/otf/Grenze-Italic.otf",
+   "300i": "fonts/otf/Grenze-LightItalic.otf",
+   "500i": "fonts/otf/Grenze-MediumItalic.otf",
+   "600i": "fonts/otf/Grenze-SemiBoldItalic.otf",
+   "100i": "fonts/otf/Grenze-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Grenze Gotisch",
+  "category": "Display",
+  "designers": [
+   "Renata Polastri"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Grenze-Gotisch",
+  "sha": "7b5eac166bc3b2a519f98b5c124cb7a11670cc7b",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "700",
+   "800",
+   "200",
+   "300",
+   "500",
+   "400",
+   "600",
+   "100"
+  ],
+  "files": {
+   "100": "fonts/otf/GrenzeGotisch-Thin.otf",
+   "200": "fonts/otf/GrenzeGotisch-ExtraLight.otf",
+   "300": "fonts/otf/GrenzeGotisch-Light.otf",
+   "400": "fonts/otf/GrenzeGotisch-Regular.otf",
+   "500": "fonts/otf/GrenzeGotisch-Medium.otf",
+   "600": "fonts/otf/GrenzeGotisch-SemiBold.otf",
+   "700": "fonts/otf/GrenzeGotisch-Bold.otf",
+   "800": "fonts/otf/GrenzeGotisch-ExtraBold.otf",
+   "900": "fonts/otf/GrenzeGotisch-Black.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Halibut",
+  "category": "Display",
+  "designers": [
+   "Matteo Maggi"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/halibut",
+  "sha": "13df8fd7ea926f9a47049ec1426fcce186909ee8",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400",
+   "100",
+   "400-2",
+   "100-2",
+   "400-3",
+   "100-3"
+  ],
+  "files": {
+   "100": "fonts/Halibut-CondensedThin.otf",
+   "400": "fonts/Halibut-CondensedRegular.otf",
+   "400-2": "fonts/Halibut-ExpandedRegular.otf",
+   "100-2": "fonts/Halibut-ExpandedThin.otf",
+   "400-3": "fonts/Halibut-Regular.otf",
+   "100-3": "fonts/Halibut-Thin.otf"
+  },
+  "names": {
+   "400-2": "Expanded Regular",
+   "100-2": "Expanded Thin",
+   "400-3": "Halibut-Regular",
+   "100-3": "Thin"
+  }
+ },
+ {
+  "family": "Jaldi",
+  "category": "Sans Serif",
+  "designers": [
+   "Pablo Cosgaya and Nicolas Silva"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Jaldi",
+  "sha": "13315457c7dd2cadd03642a2edd9d9552d0c227f",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "700",
+   "400"
+  ],
+  "files": {
+   "400": "fonts/otf/Jaldi-Regular.otf",
+   "700": "fonts/otf/Jaldi-Bold.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Junction",
+  "category": "Sans Serif",
+  "designers": [
+   "Caroline Hadilaksono"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/junction",
+  "sha": "fb73260e86dd301b383cf6cc9ca8e726ef806535",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "700",
+   "300",
+   "500"
+  ],
+  "files": {
+   "300": "Junction-light.otf",
+   "500": "Junction-regular.otf",
+   "700": "Junction-bold.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Knewave",
+  "category": "Handwriting",
+  "designers": [
+   "Tyler Finck"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/knewave",
+  "sha": "f335d5ff1f12e4acf97d4208e1c37b4d386e57fb",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "knewave.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Knewave Outline",
+  "category": "Handwriting",
+  "designers": [
+   "Tyler Finck"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/knewave",
+  "sha": "f335d5ff1f12e4acf97d4208e1c37b4d386e57fb",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "knewave-outline.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Labrada",
+  "category": "Serif",
+  "designers": [
+   "Mercedes Jáuregui"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Labrada",
+  "sha": "b15424f8840bda81f5dfa88f97bb634598faeadc",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/Labrada-Thin.otf",
+   "200": "fonts/otf/Labrada-ExtraLight.otf",
+   "300": "fonts/otf/Labrada-Light.otf",
+   "400": "fonts/otf/Labrada-Regular.otf",
+   "500": "fonts/otf/Labrada-Medium.otf",
+   "600": "fonts/otf/Labrada-SemiBold.otf",
+   "700": "fonts/otf/Labrada-Bold.otf",
+   "800": "fonts/otf/Labrada-ExtraBold.otf",
+   "900": "fonts/otf/Labrada-Black.otf",
+   "900i": "fonts/otf/Labrada-BlackItalic.otf",
+   "700i": "fonts/otf/Labrada-BoldItalic.otf",
+   "800i": "fonts/otf/Labrada-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/Labrada-ExtraLightItalic.otf",
+   "400i": "fonts/otf/Labrada-Italic.otf",
+   "300i": "fonts/otf/Labrada-LightItalic.otf",
+   "500i": "fonts/otf/Labrada-MediumItalic.otf",
+   "600i": "fonts/otf/Labrada-SemiBoldItalic.otf",
+   "100i": "fonts/otf/Labrada-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "League Script Thin",
+  "category": "Handwriting",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "theleagueof/league-script-number-one",
+  "sha": "225add0b37cf8268759ba4572e02630d9fb54ecf",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "LeagueScriptNumberOne.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "League Spartan",
+  "category": "Sans Serif",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "theleagueof/league-spartan",
+  "sha": "27341b9bf93a2c7faa140538a64ce342486c5fb5",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "700",
+   "800",
+   "200",
+   "300",
+   "500",
+   "400",
+   "600",
+   "100"
+  ],
+  "files": {
+   "100": "fonts/otf/LeagueSpartan-Thin.otf",
+   "200": "fonts/otf/LeagueSpartan-ExtraLight.otf",
+   "300": "fonts/otf/LeagueSpartan-Light.otf",
+   "400": "fonts/otf/LeagueSpartan-Regular.otf",
+   "500": "fonts/otf/LeagueSpartan-Medium.otf",
+   "600": "fonts/otf/LeagueSpartan-SemiBold.otf",
+   "700": "fonts/otf/LeagueSpartan-Bold.otf",
+   "800": "fonts/otf/LeagueSpartan-ExtraBold.otf",
+   "900": "fonts/otf/LeagueSpartan-Black.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Leluja Original",
+  "category": "Display",
+  "designers": [
+   "Andrea Kulpas"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Leluja",
+  "sha": "e1b8c6649c7d3a92dc8d90899038b77882e98d47",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "700",
+   "400",
+   "400-2",
+   "400-3"
+  ],
+  "files": {
+   "400": "Leluja-Original/otf/LelujaOriginal-BoldItalic.otf",
+   "700": "Leluja-Original/otf/LelujaOriginal-Bold.otf",
+   "400-2": "Leluja-Original/otf/LelujaOriginal-Italic.otf",
+   "400-3": "Leluja-Original/otf/LelujaOriginal-Regular.otf"
+  },
+  "names": {
+   "400-2": "LelujaOriginal-Italic",
+   "400-3": "LelujaOriginal-Regular"
+  }
+ },
+ {
+  "family": "Linden Hill",
+  "category": "Serif",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "theleagueof/linden-hill",
+  "sha": "a3f7ae6c4cac1b7e5ce5269e1fcc6a2fbb9e31ee",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400i",
+   "400"
+  ],
+  "files": {
+   "400": "Linden Hill.otf",
+   "400i": "Linden Hill Italic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Lment-v02",
+  "category": "Display",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "velvetyne/Lment_",
+  "sha": "5c461b495699ad3d1324ad3d1f307338a24e27f5",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "500"
+  ],
+  "files": {
+   "500": "fonts/Lment-v02.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Manuale",
+  "category": "Serif",
+  "designers": [
+   "Eduardo Tunni / Pablo Cosgaya"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Manuale",
+  "sha": "bc8e304f5e9770d3f98b4ec8ff19873b51dfa294",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i"
+  ],
+  "files": {
+   "300": "fonts/otf/Manuale-Light.otf",
+   "400": "fonts/otf/Manuale-Regular.otf",
+   "500": "fonts/otf/Manuale-Medium.otf",
+   "600": "fonts/otf/Manuale-Semibold.otf",
+   "700": "fonts/otf/Manuale-Bold.otf",
+   "800": "fonts/otf/Manuale-ExtraBold.otf",
+   "700i": "fonts/otf/Manuale-BoldItalic.otf",
+   "800i": "fonts/otf/Manuale-ExtraBoldItalic.otf",
+   "400i": "fonts/otf/Manuale-Italic.otf",
+   "300i": "fonts/otf/Manuale-LightItalic.otf",
+   "500i": "fonts/otf/Manuale-MediumItalic.otf",
+   "600i": "fonts/otf/Manuale-SemiboldItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Mattone",
+  "category": "Sans Serif",
+  "designers": [
+   "Nunzio Mazzaferro"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/mattone",
+  "sha": "b1dc55dc6a432708ab00329d452d8f6907c6e570",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "700",
+   "400"
+  ],
+  "files": {
+   "400": "fonts/Mattone-Regular.otf",
+   "700": "fonts/Mattone-Bold.otf",
+   "900": "fonts/Mattone-Black.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Mazius Display",
+  "category": "Display",
+  "designers": [
+   "Alberto Casagrande & Collletttivo"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/mazius-display",
+  "sha": "5798d69b14f0b7c1691f031f2ecb98ebdb709b54",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "700",
+   "700-2",
+   "400",
+   "400-2"
+  ],
+  "files": {
+   "400": "fonts/MaziusDisplay-Extraitalic.otf",
+   "700": "fonts/MaziusDisplay-Bold.otf",
+   "700-2": "fonts/MaziusDisplay-ExtraItalicBold.otf",
+   "400-2": "fonts/MaziusDisplay-Regular.otf"
+  },
+  "names": {
+   "700-2": "Extra Italic Bold",
+   "400-2": "MaziusDisplay-Regular"
+  }
+ },
+ {
+  "family": "Messapia",
+  "category": "Display",
+  "designers": [
+   "Luca Marsano"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/messapia",
+  "sha": "c7fbc664055d3f16f5d7431271f738ab5cdc6373",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400",
+   "400-2"
+  ],
+  "files": {
+   "400": "fonts/Messapia-Bold.otf",
+   "400-2": "fonts/Messapia-Regular.otf"
+  },
+  "names": {
+   "400-2": "Messapia-Regular"
+  }
+ },
+ {
+  "family": "Mourier",
+  "category": "Display",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "velvetyne/Mourier",
+  "sha": "344849db8495978f01d28cc9230f82a1628da7fe",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "500"
+  ],
+  "files": {
+   "500": "fonts/Mourier.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "MuseoModerno",
+  "category": "Display",
+  "designers": [
+   "Pablo Cosgaya, Héctor Gatti, Marcela Romero, and the Authors of The MuseoModerno Project."
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/MuseoModerno",
+  "sha": "ad2f135bea4525cf6d1f14d488593c0fc6ef82db",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/MuseoModerno-Thin.otf",
+   "200": "fonts/otf/MuseoModerno-ExtraLight.otf",
+   "300": "fonts/otf/MuseoModerno-Light.otf",
+   "400": "fonts/otf/MuseoModerno-Regular.otf",
+   "500": "fonts/otf/MuseoModerno-Medium.otf",
+   "600": "fonts/otf/MuseoModerno-SemiBold.otf",
+   "700": "fonts/otf/MuseoModerno-Bold.otf",
+   "800": "fonts/otf/MuseoModerno-ExtraBold.otf",
+   "900": "fonts/otf/MuseoModerno-Black.otf",
+   "900i": "fonts/otf/MuseoModerno-BlackItalic.otf",
+   "700i": "fonts/otf/MuseoModerno-BoldItalic.otf",
+   "800i": "fonts/otf/MuseoModerno-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/MuseoModerno-ExtraLightItalic.otf",
+   "400i": "fonts/otf/MuseoModerno-Italic.otf",
+   "300i": "fonts/otf/MuseoModerno-LightItalic.otf",
+   "500i": "fonts/otf/MuseoModerno-MediumItalic.otf",
+   "600i": "fonts/otf/MuseoModerno-SemiBoldItalic.otf",
+   "100i": "fonts/otf/MuseoModerno-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Necto Mono",
+  "category": "Monospace",
+  "designers": [
+   "Marco Condello"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/necto-mono",
+  "sha": "db9edb73bace38d64f36f29e698d9c7547045ce6",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/NectoMono-Regular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Orbitron",
+  "category": "Sans Serif",
+  "designers": [
+   "Matt McInerney"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/orbitron",
+  "sha": "13e6a5222aa6818d81c9acd27edd701a2d744152",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "900",
+   "700",
+   "300",
+   "500"
+  ],
+  "files": {
+   "300": "Orbitron Light.otf",
+   "500": "Orbitron Medium.otf",
+   "700": "Orbitron Bold.otf",
+   "900": "Orbitron Black.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Ortica Angular",
+  "category": "Serif",
+  "designers": [
+   "Benedetta Bovani"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/ortica",
+  "sha": "27bf44d3ea5057b7abcd09a8922d43d0b37a4f06",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "700"
+  ],
+  "files": {
+   "700": "fonts/OrticaAngular-Bold.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Ortica Linear",
+  "category": "Serif",
+  "designers": [
+   "Benedetta Bovani"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/ortica",
+  "sha": "27bf44d3ea5057b7abcd09a8922d43d0b37a4f06",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "700",
+   "300",
+   "400"
+  ],
+  "files": {
+   "300": "fonts/OrticaLinear-Light.otf",
+   "400": "fonts/OrticaLinear-Regular.otf",
+   "700": "fonts/OrticaLinear-Bold.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Ostrich Sans",
+  "category": "Sans Serif",
+  "designers": [
+   "Tyler Finck"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/ostrich-sans",
+  "sha": "a949d40d0576d12ba26e2a45e19c91fd0228c964",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "900",
+   "700",
+   "900-2",
+   "300",
+   "400"
+  ],
+  "files": {
+   "300": "OstrichSans-Light.otf",
+   "400": "OstrichSans-Medium.otf",
+   "700": "OstrichSans-Bold.otf",
+   "900": "OstrichSans-Black.otf",
+   "900-2": "OstrichSans-Heavy.otf"
+  },
+  "names": {
+   "900-2": "Heavy"
+  }
+ },
+ {
+  "family": "Ostrich Sans Dashed",
+  "category": "Sans Serif",
+  "designers": [
+   "Tyler Finck"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/ostrich-sans",
+  "sha": "a949d40d0576d12ba26e2a45e19c91fd0228c964",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "500"
+  ],
+  "files": {
+   "500": "OstrichSansDashed-Medium.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Ostrich Sans Inline",
+  "category": "Sans Serif",
+  "designers": [
+   "Tyler Finck"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/ostrich-sans",
+  "sha": "a949d40d0576d12ba26e2a45e19c91fd0228c964",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400i",
+   "400"
+  ],
+  "files": {
+   "400": "OstrichSansInline-Regular.otf",
+   "400i": "OstrichSansInline-Italic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Ostrich Sans Rounded",
+  "category": "Sans Serif",
+  "designers": [
+   "Tyler Finck"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/ostrich-sans",
+  "sha": "a949d40d0576d12ba26e2a45e19c91fd0228c964",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "500"
+  ],
+  "files": {
+   "500": "OstrichSansRounded-Medium.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Pragati",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti, Marcela Romero, Pablo Cosgaya and Nicolas Silva"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/PragatiNarrow",
+  "sha": "829be323c427aab3669e2eb55e253573aeefb1e3",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "700",
+   "400"
+  ],
+  "files": {
+   "400": "SRC/TestPages/Pragati_InDesignFeaturesSheetTest/Document fonts/Pragati-Regular.otf",
+   "700": "SRC/TestPages/Pragati_InDesignFeaturesSheetTest/Document fonts/Pragati-Bold.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Pragati Narrow",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti, Marcela Romero, Pablo Cosgaya and Nicolas Silva"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/PragatiNarrow",
+  "sha": "829be323c427aab3669e2eb55e253573aeefb1e3",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "700",
+   "400"
+  ],
+  "files": {
+   "400": "Fonts/PragatiNarrow-Regular.otf",
+   "700": "Fonts/PragatiNarrow-Bold.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Prociono",
+  "category": "Serif",
+  "designers": [
+   "Barry Schwartz"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/prociono",
+  "sha": "f9d9680de6d6f0c13939f23c9dd14cd7853cf844",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "Prociono.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Resistance",
+  "category": "Display",
+  "designers": [
+   "Velvetyne Type Foundry"
+  ],
+  "popularity": 9999,
+  "repo": "velvetyne/resistance-generale",
+  "sha": "b45a061aa8e7f1fdd783fc3170438bf7238ca656",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/Resistance générale.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Ribes",
+  "category": "Display",
+  "designers": [
+   "Luigi Gorlero"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/ribes",
+  "sha": "e5f58f6ef719ff69b599a3155c66f4cecaed0a0f",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "200",
+   "400"
+  ],
+  "files": {
+   "200": "fonts/Ribes-Light.otf",
+   "400": "fonts/Ribes-Regular.otf",
+   "900": "fonts/Ribes-Black.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Ronzino",
+  "category": "Sans Serif",
+  "designers": [
+   "Nunzio Mazzaferro"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/ronzino",
+  "sha": "24df8cdde479fef13948de629c3b10849e1dffb5",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "700",
+   "700i",
+   "500",
+   "500i",
+   "400i",
+   "400"
+  ],
+  "files": {
+   "400": "fonts/Ronzino-Regular.otf",
+   "500": "fonts/Ronzino-Medium.otf",
+   "700": "fonts/Ronzino-Bold.otf",
+   "700i": "fonts/Ronzino-BoldOblique.otf",
+   "500i": "fonts/Ronzino-MediumOblique.otf",
+   "400i": "fonts/Ronzino-Oblique.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Rosario",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Rosario",
+  "sha": "d8bf83600979c82357d8023243d3d01a386fc7fe",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "700",
+   "700i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i"
+  ],
+  "files": {
+   "300": "fonts/otf/Rosario-Light.otf",
+   "400": "fonts/otf/Rosario-Regular.otf",
+   "500": "fonts/otf/Rosario-Medium.otf",
+   "600": "fonts/otf/Rosario-SemiBold.otf",
+   "700": "fonts/otf/Rosario-Bold.otf",
+   "700i": "fonts/otf/Rosario-BoldItalic.otf",
+   "400i": "fonts/otf/Rosario-Italic.otf",
+   "300i": "fonts/otf/Rosario-LightItalic.otf",
+   "500i": "fonts/otf/Rosario-MediumItalic.otf",
+   "600i": "fonts/otf/Rosario-SemiBoldItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Runic Sans Inline",
+  "category": "Sans Serif",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "velvetyne/runic",
+  "sha": "51ed441fb970b7e536fd3675163b7b43bde96d99",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/Runic_Sans_Inline.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Runic Sans Plain",
+  "category": "Sans Serif",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "velvetyne/runic",
+  "sha": "51ed441fb970b7e536fd3675163b7b43bde96d99",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/Runic_Sans_Plain.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Saintjean",
+  "category": "Display",
+  "designers": [
+   "Collective"
+  ],
+  "popularity": 9999,
+  "repo": "velvetyne/saintjean",
+  "sha": "a5c7a35d478db8da7ecec2085fb47879383708d5",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/saintjean_Desktop_OTF/Saintjean-Regular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Saira",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti with collaboration of the Omnibus-Type team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Saira",
+  "sha": "c9d45ed2d56abb57e97c615cb89d0b9c9319e848",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "Saira/fonts/otf/Saira-Thin.otf",
+   "200": "Saira/fonts/otf/Saira-ExtraLight.otf",
+   "300": "Saira/fonts/otf/Saira-Light.otf",
+   "400": "Saira/fonts/otf/Saira-Regular.otf",
+   "500": "Saira/fonts/otf/Saira-Medium.otf",
+   "600": "Saira/fonts/otf/Saira-SemiBold.otf",
+   "700": "Saira/fonts/otf/Saira-Bold.otf",
+   "800": "Saira/fonts/otf/Saira-ExtraBold.otf",
+   "900": "Saira/fonts/otf/Saira-Black.otf",
+   "900i": "Saira/fonts/otf/Saira-BlackItalic.otf",
+   "700i": "Saira/fonts/otf/Saira-BoldItalic.otf",
+   "800i": "Saira/fonts/otf/Saira-ExtraBoldItalic.otf",
+   "200i": "Saira/fonts/otf/Saira-ExtraLightItalic.otf",
+   "400i": "Saira/fonts/otf/Saira-Italic.otf",
+   "300i": "Saira/fonts/otf/Saira-LightItalic.otf",
+   "500i": "Saira/fonts/otf/Saira-MediumItalic.otf",
+   "600i": "Saira/fonts/otf/Saira-SemiBoldItalic.otf",
+   "100i": "Saira/fonts/otf/Saira-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Saira Condensed",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti with collaboration of the Omnibus-Type team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Saira",
+  "sha": "c9d45ed2d56abb57e97c615cb89d0b9c9319e848",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "Saira/fonts/otf/SairaCondensed-Thin.otf",
+   "200": "Saira/fonts/otf/SairaCondensed-ExtraLight.otf",
+   "300": "Saira/fonts/otf/SairaCondensed-Light.otf",
+   "400": "Saira/fonts/otf/SairaCondensed-Regular.otf",
+   "500": "Saira/fonts/otf/SairaCondensed-Medium.otf",
+   "600": "Saira/fonts/otf/SairaCondensed-SemiBold.otf",
+   "700": "Saira/fonts/otf/SairaCondensed-Bold.otf",
+   "800": "Saira/fonts/otf/SairaCondensed-ExtraBold.otf",
+   "900": "Saira/fonts/otf/SairaCondensed-Black.otf",
+   "900i": "Saira/fonts/otf/SairaCondensed-BlackItalic.otf",
+   "700i": "Saira/fonts/otf/SairaCondensed-BoldItalic.otf",
+   "800i": "Saira/fonts/otf/SairaCondensed-ExtraBoldItalic.otf",
+   "200i": "Saira/fonts/otf/SairaCondensed-ExtraLightItalic.otf",
+   "400i": "Saira/fonts/otf/SairaCondensed-Italic.otf",
+   "300i": "Saira/fonts/otf/SairaCondensed-LightItalic.otf",
+   "500i": "Saira/fonts/otf/SairaCondensed-MediumItalic.otf",
+   "600i": "Saira/fonts/otf/SairaCondensed-SemiBoldItalic.otf",
+   "100i": "Saira/fonts/otf/SairaCondensed-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Saira Expanded",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti with collaboration of the Omnibus-Type team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Saira",
+  "sha": "c9d45ed2d56abb57e97c615cb89d0b9c9319e848",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "Saira/fonts/otf/SairaExpanded-Thin.otf",
+   "200": "Saira/fonts/otf/SairaExpanded-ExtraLight.otf",
+   "300": "Saira/fonts/otf/SairaExpanded-Light.otf",
+   "400": "Saira/fonts/otf/SairaExpanded-Regular.otf",
+   "500": "Saira/fonts/otf/SairaExpanded-Medium.otf",
+   "600": "Saira/fonts/otf/SairaExpanded-SemiBold.otf",
+   "700": "Saira/fonts/otf/SairaExpanded-Bold.otf",
+   "800": "Saira/fonts/otf/SairaExpanded-ExtraBold.otf",
+   "900": "Saira/fonts/otf/SairaExpanded-Black.otf",
+   "900i": "Saira/fonts/otf/SairaExpanded-BlackItalic.otf",
+   "700i": "Saira/fonts/otf/SairaExpanded-BoldItalic.otf",
+   "800i": "Saira/fonts/otf/SairaExpanded-ExtraBoldItalic.otf",
+   "200i": "Saira/fonts/otf/SairaExpanded-ExtraLightItalic.otf",
+   "400i": "Saira/fonts/otf/SairaExpanded-Italic.otf",
+   "300i": "Saira/fonts/otf/SairaExpanded-LightItalic.otf",
+   "500i": "Saira/fonts/otf/SairaExpanded-MediumItalic.otf",
+   "600i": "Saira/fonts/otf/SairaExpanded-SemiBoldItalic.otf",
+   "100i": "Saira/fonts/otf/SairaExpanded-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Saira ExtraCondensed",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti with collaboration of the Omnibus-Type team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Saira",
+  "sha": "c9d45ed2d56abb57e97c615cb89d0b9c9319e848",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "Saira/fonts/otf/SairaExtraCondensed-Thin.otf",
+   "200": "Saira/fonts/otf/SairaExtraCondensed-ExtraLight.otf",
+   "300": "Saira/fonts/otf/SairaExtraCondensed-Light.otf",
+   "400": "Saira/fonts/otf/SairaExtraCondensed-Regular.otf",
+   "500": "Saira/fonts/otf/SairaExtraCondensed-Medium.otf",
+   "600": "Saira/fonts/otf/SairaExtraCondensed-SemiBold.otf",
+   "700": "Saira/fonts/otf/SairaExtraCondensed-Bold.otf",
+   "800": "Saira/fonts/otf/SairaExtraCondensed-ExtraBold.otf",
+   "900": "Saira/fonts/otf/SairaExtraCondensed-Black.otf",
+   "900i": "Saira/fonts/otf/SairaExtraCondensed-BlackItalic.otf",
+   "700i": "Saira/fonts/otf/SairaExtraCondensed-BoldItalic.otf",
+   "800i": "Saira/fonts/otf/SairaExtraCondensed-ExtraBoldItalic.otf",
+   "200i": "Saira/fonts/otf/SairaExtraCondensed-ExtraLightItalic.otf",
+   "400i": "Saira/fonts/otf/SairaExtraCondensed-Italic.otf",
+   "300i": "Saira/fonts/otf/SairaExtraCondensed-LightItalic.otf",
+   "500i": "Saira/fonts/otf/SairaExtraCondensed-MediumItalic.otf",
+   "600i": "Saira/fonts/otf/SairaExtraCondensed-SemiBoldItalic.otf",
+   "100i": "Saira/fonts/otf/SairaExtraCondensed-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Saira SemiCondensed",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti with collaboration of the Omnibus-Type team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Saira",
+  "sha": "c9d45ed2d56abb57e97c615cb89d0b9c9319e848",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "Saira/fonts/otf/SairaSemiCondensed-Thin.otf",
+   "200": "Saira/fonts/otf/SairaSemiCondensed-ExtraLight.otf",
+   "300": "Saira/fonts/otf/SairaSemiCondensed-Light.otf",
+   "400": "Saira/fonts/otf/SairaSemiCondensed-Regular.otf",
+   "500": "Saira/fonts/otf/SairaSemiCondensed-Medium.otf",
+   "600": "Saira/fonts/otf/SairaSemiCondensed-SemiBold.otf",
+   "700": "Saira/fonts/otf/SairaSemiCondensed-Bold.otf",
+   "800": "Saira/fonts/otf/SairaSemiCondensed-ExtraBold.otf",
+   "900": "Saira/fonts/otf/SairaSemiCondensed-Black.otf",
+   "900i": "Saira/fonts/otf/SairaSemiCondensed-BlackItalic.otf",
+   "700i": "Saira/fonts/otf/SairaSemiCondensed-BoldItalic.otf",
+   "800i": "Saira/fonts/otf/SairaSemiCondensed-ExtraBoldItalic.otf",
+   "200i": "Saira/fonts/otf/SairaSemiCondensed-ExtraLightItalic.otf",
+   "400i": "Saira/fonts/otf/SairaSemiCondensed-Italic.otf",
+   "300i": "Saira/fonts/otf/SairaSemiCondensed-LightItalic.otf",
+   "500i": "Saira/fonts/otf/SairaSemiCondensed-MediumItalic.otf",
+   "600i": "Saira/fonts/otf/SairaSemiCondensed-SemiBoldItalic.otf",
+   "100i": "Saira/fonts/otf/SairaSemiCondensed-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Saira SemiExpanded",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti with collaboration of the Omnibus-Type team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Saira",
+  "sha": "c9d45ed2d56abb57e97c615cb89d0b9c9319e848",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "Saira/fonts/otf/SairaSemiExpanded-Thin.otf",
+   "200": "Saira/fonts/otf/SairaSemiExpanded-ExtraLight.otf",
+   "300": "Saira/fonts/otf/SairaSemiExpanded-Light.otf",
+   "400": "Saira/fonts/otf/SairaSemiExpanded-Regular.otf",
+   "500": "Saira/fonts/otf/SairaSemiExpanded-Medium.otf",
+   "600": "Saira/fonts/otf/SairaSemiExpanded-SemiBold.otf",
+   "700": "Saira/fonts/otf/SairaSemiExpanded-Bold.otf",
+   "800": "Saira/fonts/otf/SairaSemiExpanded-ExtraBold.otf",
+   "900": "Saira/fonts/otf/SairaSemiExpanded-Black.otf",
+   "900i": "Saira/fonts/otf/SairaSemiExpanded-BlackItalic.otf",
+   "700i": "Saira/fonts/otf/SairaSemiExpanded-BoldItalic.otf",
+   "800i": "Saira/fonts/otf/SairaSemiExpanded-ExtraBoldItalic.otf",
+   "200i": "Saira/fonts/otf/SairaSemiExpanded-ExtraLightItalic.otf",
+   "400i": "Saira/fonts/otf/SairaSemiExpanded-Italic.otf",
+   "300i": "Saira/fonts/otf/SairaSemiExpanded-LightItalic.otf",
+   "500i": "Saira/fonts/otf/SairaSemiExpanded-MediumItalic.otf",
+   "600i": "Saira/fonts/otf/SairaSemiExpanded-SemiBoldItalic.otf",
+   "100i": "Saira/fonts/otf/SairaSemiExpanded-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Saira Stencil",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti with collaboration of the Omnibus-Type team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Saira_Stencil",
+  "sha": "ac9f6d6dc5365b099c52091d1aa1669d39a00680",
+  "license": "Apache-2.0",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/SairaStencil-Thin.otf",
+   "200": "fonts/otf/SairaStencil-ExtraLight.otf",
+   "300": "fonts/otf/SairaStencil-Light.otf",
+   "400": "fonts/otf/SairaStencil-Regular.otf",
+   "500": "fonts/otf/SairaStencil-Medium.otf",
+   "600": "fonts/otf/SairaStencil-SemiBold.otf",
+   "700": "fonts/otf/SairaStencil-Bold.otf",
+   "800": "fonts/otf/SairaStencil-ExtraBold.otf",
+   "900": "fonts/otf/SairaStencil-Black.otf",
+   "900i": "fonts/otf/SairaStencil-BlackItalic.otf",
+   "700i": "fonts/otf/SairaStencil-BoldItalic.otf",
+   "800i": "fonts/otf/SairaStencil-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/SairaStencil-ExtraLightItalic.otf",
+   "400i": "fonts/otf/SairaStencil-Italic.otf",
+   "300i": "fonts/otf/SairaStencil-LightItalic.otf",
+   "500i": "fonts/otf/SairaStencil-MediumItalic.otf",
+   "600i": "fonts/otf/SairaStencil-SemiBoldItalic.otf",
+   "100i": "fonts/otf/SairaStencil-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Saira Stencil One",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti with collaboration of the Omnibus-Type team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Saira",
+  "sha": "c9d45ed2d56abb57e97c615cb89d0b9c9319e848",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "SairaStencilOne/fonts/otf/SairaStencilOne-Regular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Saira UltraCondensed",
+  "category": "Sans Serif",
+  "designers": [
+   "Hector Gatti with collaboration of the Omnibus-Type team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Saira",
+  "sha": "c9d45ed2d56abb57e97c615cb89d0b9c9319e848",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "Saira/fonts/otf/SairaUltraCondensed-Thin.otf",
+   "200": "Saira/fonts/otf/SairaUltraCondensed-ExtraLight.otf",
+   "300": "Saira/fonts/otf/SairaUltraCondensed-Light.otf",
+   "400": "Saira/fonts/otf/SairaUltraCondensed-Regular.otf",
+   "500": "Saira/fonts/otf/SairaUltraCondensed-Medium.otf",
+   "600": "Saira/fonts/otf/SairaUltraCondensed-SemiBold.otf",
+   "700": "Saira/fonts/otf/SairaUltraCondensed-Bold.otf",
+   "800": "Saira/fonts/otf/SairaUltraCondensed-ExtraBold.otf",
+   "900": "Saira/fonts/otf/SairaUltraCondensed-Black.otf",
+   "900i": "Saira/fonts/otf/SairaUltraCondensed-BlackItalic.otf",
+   "700i": "Saira/fonts/otf/SairaUltraCondensed-BoldItalic.otf",
+   "800i": "Saira/fonts/otf/SairaUltraCondensed-ExtraBoldItalic.otf",
+   "200i": "Saira/fonts/otf/SairaUltraCondensed-ExtraLightItalic.otf",
+   "400i": "Saira/fonts/otf/SairaUltraCondensed-Italic.otf",
+   "300i": "Saira/fonts/otf/SairaUltraCondensed-LightItalic.otf",
+   "500i": "Saira/fonts/otf/SairaUltraCondensed-MediumItalic.otf",
+   "600i": "Saira/fonts/otf/SairaUltraCondensed-SemiBoldItalic.otf",
+   "100i": "Saira/fonts/otf/SairaUltraCondensed-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Sansita",
+  "category": "Sans Serif",
+  "designers": [
+   "Pablo Cosgaya"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Sansita",
+  "sha": "168abd68a378c93d6febb46b453efd67e9ed86f2",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900-2",
+   "700",
+   "700i",
+   "800",
+   "800-2",
+   "400i",
+   "300",
+   "300-2",
+   "500",
+   "500-2",
+   "400"
+  ],
+  "files": {
+   "300": "fonts/otf/Sansita-Light.otf",
+   "400": "fonts/otf/Sansita-Regular.otf",
+   "500": "fonts/otf/Sansita-Medium.otf",
+   "700": "fonts/otf/Sansita-Bold.otf",
+   "800": "fonts/otf/Sansita-ExtraBold.otf",
+   "900": "fonts/otf/Sansita-Black.otf",
+   "900-2": "fonts/otf/Sansita-BlackItalic.otf",
+   "700i": "fonts/otf/Sansita-BoldItalic.otf",
+   "800-2": "fonts/otf/Sansita-ExtraBoldItalic.otf",
+   "400i": "fonts/otf/Sansita-Italic.otf",
+   "300-2": "fonts/otf/Sansita-LightItalic.otf",
+   "500-2": "fonts/otf/Sansita-MediumItalic.otf"
+  },
+  "names": {
+   "900-2": "Black Italic",
+   "800-2": "ExtraBold Italic",
+   "300-2": "Light Italic",
+   "500-2": "Medium Italic"
+  }
+ },
+ {
+  "family": "Sansita Swashed",
+  "category": "Sans Serif",
+  "designers": [
+   "Pablo Cosgaya"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Sansita-Swashed",
+  "sha": "4b18bac65511ce185c1dc687472a8c77bdc6cc4d",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "700",
+   "800",
+   "300",
+   "500",
+   "400",
+   "600"
+  ],
+  "files": {
+   "300": "fonts/otf/SansitaSwashed-Light.otf",
+   "400": "fonts/otf/SansitaSwashed-Regular.otf",
+   "500": "fonts/otf/SansitaSwashed-Medium.otf",
+   "600": "fonts/otf/SansitaSwashed-SemiBold.otf",
+   "700": "fonts/otf/SansitaSwashed-Bold.otf",
+   "800": "fonts/otf/SansitaSwashed-ExtraBold.otf",
+   "900": "fonts/otf/SansitaSwashed-Black.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Sinistre",
+  "category": "Display",
+  "designers": [
+   "Jules Durand"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/sinistre",
+  "sha": "fbf85f1130670ff2e1b944a17ec13872996b4305",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "700",
+   "900",
+   "400"
+  ],
+  "files": {
+   "400": "fonts/Sinistre-Regular.otf",
+   "700": "fonts/Sinistre-Bold.otf",
+   "900": "fonts/Sinistre-Dark.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Sneaky",
+  "category": "Display",
+  "designers": [
+   "JulesDurand"
+  ],
+  "popularity": 9999,
+  "repo": "collletttivo/sneaky-times",
+  "sha": "7094a621508090d479ccb95ce6a6b8827b3f9d4e",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/Sneaky-Times.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Sniglet",
+  "category": "Display",
+  "designers": [
+   "Haley Fiege"
+  ],
+  "popularity": 9999,
+  "repo": "theleagueof/sniglet",
+  "sha": "5c6b0860bdd0d8c4f16222e4de3918c384db17c4",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "Sniglet Regular.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Sorts Mill Goudy",
+  "category": "Serif",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "theleagueof/sorts-mill-goudy",
+  "sha": "06072890c7b05f274215a24f17449655ccb2c8af",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "500i",
+   "500"
+  ],
+  "files": {
+   "500": "OFLGoudyStM.otf",
+   "500i": "OFLGoudyStM-Italic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Sporting Grotesque",
+  "category": "Sans Serif",
+  "designers": [
+   "Lucas LE BIHAN"
+  ],
+  "popularity": 9999,
+  "repo": "velvetyne/Sporting-Grotesque",
+  "sha": "cf0a5a6350d61f9d299ca1c82f42f4c92dc2ff8c",
+  "license": "OFL",
+  "licenseFrom": "revisada",
+  "styles": [
+   "700",
+   "400"
+  ],
+  "files": {
+   "400": "fonts/SportingGrotesque-Regular.otf",
+   "700": "fonts/SportingGrotesque-Bold.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Texturina",
+  "category": "Serif",
+  "designers": [
+   "Guillermo Torres Carreño"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Texturina",
+  "sha": "095dd0a927c9b096be56c3a53be20f1f94aa01fb",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/Texturina-Thin.otf",
+   "200": "fonts/otf/Texturina-ExtraLight.otf",
+   "300": "fonts/otf/Texturina-Light.otf",
+   "400": "fonts/otf/Texturina-Regular.otf",
+   "500": "fonts/otf/Texturina-Medium.otf",
+   "600": "fonts/otf/Texturina-SemiBold.otf",
+   "700": "fonts/otf/Texturina-Bold.otf",
+   "800": "fonts/otf/Texturina-ExtraBold.otf",
+   "900": "fonts/otf/Texturina-Black.otf",
+   "900i": "fonts/otf/Texturina-BlackItalic.otf",
+   "700i": "fonts/otf/Texturina-BoldItalic.otf",
+   "800i": "fonts/otf/Texturina-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/Texturina-ExtraLightItalic.otf",
+   "400i": "fonts/otf/Texturina-Italic.otf",
+   "300i": "fonts/otf/Texturina-LightItalic.otf",
+   "500i": "fonts/otf/Texturina-MediumItalic.otf",
+   "600i": "fonts/otf/Texturina-SemiBoldItalic.otf",
+   "100i": "fonts/otf/Texturina-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Texturina 12pt",
+  "category": "Serif",
+  "designers": [
+   "Guillermo Torres Carreño"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Texturina",
+  "sha": "095dd0a927c9b096be56c3a53be20f1f94aa01fb",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/Texturina12pt-Thin.otf",
+   "200": "fonts/otf/Texturina12pt-ExtraLight.otf",
+   "300": "fonts/otf/Texturina12pt-Light.otf",
+   "400": "fonts/otf/Texturina12pt-Regular.otf",
+   "500": "fonts/otf/Texturina12pt-Medium.otf",
+   "600": "fonts/otf/Texturina12pt-SemiBold.otf",
+   "700": "fonts/otf/Texturina12pt-Bold.otf",
+   "800": "fonts/otf/Texturina12pt-ExtraBold.otf",
+   "900": "fonts/otf/Texturina12pt-Black.otf",
+   "900i": "fonts/otf/Texturina12pt-BlackItalic.otf",
+   "700i": "fonts/otf/Texturina12pt-BoldItalic.otf",
+   "800i": "fonts/otf/Texturina12pt-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/Texturina12pt-ExtraLightItalic.otf",
+   "400i": "fonts/otf/Texturina12pt-Italic.otf",
+   "300i": "fonts/otf/Texturina12pt-LightItalic.otf",
+   "500i": "fonts/otf/Texturina12pt-MediumItalic.otf",
+   "600i": "fonts/otf/Texturina12pt-SemiBoldItalic.otf",
+   "100i": "fonts/otf/Texturina12pt-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Texturina 72pt",
+  "category": "Serif",
+  "designers": [
+   "Guillermo Torres Carreño"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Texturina",
+  "sha": "095dd0a927c9b096be56c3a53be20f1f94aa01fb",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "900i",
+   "700",
+   "700i",
+   "800",
+   "800i",
+   "200",
+   "200i",
+   "400i",
+   "300",
+   "300i",
+   "500",
+   "500i",
+   "400",
+   "600",
+   "600i",
+   "100",
+   "100i"
+  ],
+  "files": {
+   "100": "fonts/otf/Texturina72pt-Thin.otf",
+   "200": "fonts/otf/Texturina72pt-ExtraLight.otf",
+   "300": "fonts/otf/Texturina72pt-Light.otf",
+   "400": "fonts/otf/Texturina72pt-Regular.otf",
+   "500": "fonts/otf/Texturina72pt-Medium.otf",
+   "600": "fonts/otf/Texturina72pt-SemiBold.otf",
+   "700": "fonts/otf/Texturina72pt-Bold.otf",
+   "800": "fonts/otf/Texturina72pt-ExtraBold.otf",
+   "900": "fonts/otf/Texturina72pt-Black.otf",
+   "900i": "fonts/otf/Texturina72pt-BlackItalic.otf",
+   "700i": "fonts/otf/Texturina72pt-BoldItalic.otf",
+   "800i": "fonts/otf/Texturina72pt-ExtraBoldItalic.otf",
+   "200i": "fonts/otf/Texturina72pt-ExtraLightItalic.otf",
+   "400i": "fonts/otf/Texturina72pt-Italic.otf",
+   "300i": "fonts/otf/Texturina72pt-LightItalic.otf",
+   "500i": "fonts/otf/Texturina72pt-MediumItalic.otf",
+   "600i": "fonts/otf/Texturina72pt-SemiBoldItalic.otf",
+   "100i": "fonts/otf/Texturina72pt-ThinItalic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Trickster",
+  "category": "Display",
+  "designers": [
+   "Jean-Baptiste Morizot"
+  ],
+  "popularity": 9999,
+  "repo": "velvetyne/Trickster",
+  "sha": "751b1fa5fd5293614d0eb4df4962ec195fa243ab",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400"
+  ],
+  "files": {
+   "400": "fonts/Trickster-Reg.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Truculenta 12pt",
+  "category": "Sans Serif",
+  "designers": [
+   "Ivan Castro, Eva Sanz & Omnibus-Type Team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Truculenta",
+  "sha": "20770af55368030c8e61d4a49e7094b691bd4391",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "700",
+   "800",
+   "200",
+   "300",
+   "500",
+   "400",
+   "600",
+   "100"
+  ],
+  "files": {
+   "100": "fonts/Truculenta/fonts/otf/Truculenta12pt-Thin.otf",
+   "200": "fonts/Truculenta/fonts/otf/Truculenta12pt-ExtraLight.otf",
+   "300": "fonts/Truculenta/fonts/otf/Truculenta12pt-Light.otf",
+   "400": "fonts/Truculenta/fonts/otf/Truculenta12pt-Regular.otf",
+   "500": "fonts/Truculenta/fonts/otf/Truculenta12pt-Medium.otf",
+   "600": "fonts/Truculenta/fonts/otf/Truculenta12pt-SemiBold.otf",
+   "700": "fonts/Truculenta/fonts/otf/Truculenta12pt-Bold.otf",
+   "800": "fonts/Truculenta/fonts/otf/Truculenta12pt-ExtraBold.otf",
+   "900": "fonts/Truculenta/fonts/otf/Truculenta12pt-Black.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Truculenta 12pt Condensed",
+  "category": "Sans Serif",
+  "designers": [
+   "Ivan Castro, Eva Sanz & Omnibus-Type Team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Truculenta",
+  "sha": "20770af55368030c8e61d4a49e7094b691bd4391",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "700",
+   "800",
+   "200",
+   "300",
+   "500",
+   "400",
+   "600",
+   "100"
+  ],
+  "files": {
+   "100": "fonts/TruculentaCondensed/fonts/otf/Truculenta12ptCondensed-Thin.otf",
+   "200": "fonts/TruculentaCondensed/fonts/otf/Truculenta12ptCondensed-ExtraLight.otf",
+   "300": "fonts/TruculentaCondensed/fonts/otf/Truculenta12ptCondensed-Light.otf",
+   "400": "fonts/TruculentaCondensed/fonts/otf/Truculenta12ptCondensed-Regular.otf",
+   "500": "fonts/TruculentaCondensed/fonts/otf/Truculenta12ptCondensed-Medium.otf",
+   "600": "fonts/TruculentaCondensed/fonts/otf/Truculenta12ptCondensed-SemiBold.otf",
+   "700": "fonts/TruculentaCondensed/fonts/otf/Truculenta12ptCondensed-Bold.otf",
+   "800": "fonts/TruculentaCondensed/fonts/otf/Truculenta12ptCondensed-ExtraBold.otf",
+   "900": "fonts/TruculentaCondensed/fonts/otf/Truculenta12ptCondensed-Black.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Truculenta 12pt Expanded",
+  "category": "Sans Serif",
+  "designers": [
+   "Ivan Castro, Eva Sanz & Omnibus-Type Team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Truculenta",
+  "sha": "20770af55368030c8e61d4a49e7094b691bd4391",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "700",
+   "800",
+   "200",
+   "300",
+   "500",
+   "400",
+   "600",
+   "100"
+  ],
+  "files": {
+   "100": "fonts/TruculentaExpanded/fonts/otf/Truculenta12ptExpanded-Thin.otf",
+   "200": "fonts/TruculentaExpanded/fonts/otf/Truculenta12ptExpanded-ExtraLight.otf",
+   "300": "fonts/TruculentaExpanded/fonts/otf/Truculenta12ptExpanded-Light.otf",
+   "400": "fonts/TruculentaExpanded/fonts/otf/Truculenta12ptExpanded-Regular.otf",
+   "500": "fonts/TruculentaExpanded/fonts/otf/Truculenta12ptExpanded-Medium.otf",
+   "600": "fonts/TruculentaExpanded/fonts/otf/Truculenta12ptExpanded-SemiBold.otf",
+   "700": "fonts/TruculentaExpanded/fonts/otf/Truculenta12ptExpanded-Bold.otf",
+   "800": "fonts/TruculentaExpanded/fonts/otf/Truculenta12ptExpanded-ExtraBold.otf",
+   "900": "fonts/TruculentaExpanded/fonts/otf/Truculenta12ptExpanded-Black.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Truculenta 72pt",
+  "category": "Sans Serif",
+  "designers": [
+   "Ivan Castro, Eva Sanz & Omnibus-Type Team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Truculenta",
+  "sha": "20770af55368030c8e61d4a49e7094b691bd4391",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "700",
+   "800",
+   "200",
+   "300",
+   "500",
+   "400",
+   "600",
+   "100"
+  ],
+  "files": {
+   "100": "fonts/Truculenta/fonts/otf/Truculenta72pt-Thin.otf",
+   "200": "fonts/Truculenta/fonts/otf/Truculenta72pt-ExtraLight.otf",
+   "300": "fonts/Truculenta/fonts/otf/Truculenta72pt-Light.otf",
+   "400": "fonts/Truculenta/fonts/otf/Truculenta72pt-Regular.otf",
+   "500": "fonts/Truculenta/fonts/otf/Truculenta72pt-Medium.otf",
+   "600": "fonts/Truculenta/fonts/otf/Truculenta72pt-SemiBold.otf",
+   "700": "fonts/Truculenta/fonts/otf/Truculenta72pt-Bold.otf",
+   "800": "fonts/Truculenta/fonts/otf/Truculenta72pt-ExtraBold.otf",
+   "900": "fonts/Truculenta/fonts/otf/Truculenta72pt-Black.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Truculenta 72pt Condensed",
+  "category": "Sans Serif",
+  "designers": [
+   "Ivan Castro, Eva Sanz & Omnibus-Type Team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Truculenta",
+  "sha": "20770af55368030c8e61d4a49e7094b691bd4391",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "700",
+   "800",
+   "200",
+   "300",
+   "500",
+   "400",
+   "600",
+   "100"
+  ],
+  "files": {
+   "100": "fonts/TruculentaCondensed/fonts/otf/Truculenta72ptCondensed-Thin.otf",
+   "200": "fonts/TruculentaCondensed/fonts/otf/Truculenta72ptCondensed-ExtraLight.otf",
+   "300": "fonts/TruculentaCondensed/fonts/otf/Truculenta72ptCondensed-Light.otf",
+   "400": "fonts/TruculentaCondensed/fonts/otf/Truculenta72ptCondensed-Regular.otf",
+   "500": "fonts/TruculentaCondensed/fonts/otf/Truculenta72ptCondensed-Medium.otf",
+   "600": "fonts/TruculentaCondensed/fonts/otf/Truculenta72ptCondensed-SemiBold.otf",
+   "700": "fonts/TruculentaCondensed/fonts/otf/Truculenta72ptCondensed-Bold.otf",
+   "800": "fonts/TruculentaCondensed/fonts/otf/Truculenta72ptCondensed-ExtraBold.otf",
+   "900": "fonts/TruculentaCondensed/fonts/otf/Truculenta72ptCondensed-Black.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Truculenta 72pt Expanded",
+  "category": "Sans Serif",
+  "designers": [
+   "Ivan Castro, Eva Sanz & Omnibus-Type Team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Truculenta",
+  "sha": "20770af55368030c8e61d4a49e7094b691bd4391",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "900",
+   "700",
+   "800",
+   "200",
+   "300",
+   "500",
+   "400",
+   "600",
+   "100"
+  ],
+  "files": {
+   "100": "fonts/TruculentaExpanded/fonts/otf/Truculenta72ptExpanded-Thin.otf",
+   "200": "fonts/TruculentaExpanded/fonts/otf/Truculenta72ptExpanded-ExtraLight.otf",
+   "300": "fonts/TruculentaExpanded/fonts/otf/Truculenta72ptExpanded-Light.otf",
+   "400": "fonts/TruculentaExpanded/fonts/otf/Truculenta72ptExpanded-Regular.otf",
+   "500": "fonts/TruculentaExpanded/fonts/otf/Truculenta72ptExpanded-Medium.otf",
+   "600": "fonts/TruculentaExpanded/fonts/otf/Truculenta72ptExpanded-SemiBold.otf",
+   "700": "fonts/TruculentaExpanded/fonts/otf/Truculenta72ptExpanded-Bold.otf",
+   "800": "fonts/TruculentaExpanded/fonts/otf/Truculenta72ptExpanded-ExtraBold.otf",
+   "900": "fonts/TruculentaExpanded/fonts/otf/Truculenta72ptExpanded-Black.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Truculenta Original",
+  "category": "Sans Serif",
+  "designers": [
+   "Ivan Castro, Eva Sanz & Omnibus-Type Team"
+  ],
+  "popularity": 9999,
+  "repo": "Omnibus-Type/Truculenta",
+  "sha": "20770af55368030c8e61d4a49e7094b691bd4391",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "700",
+   "900",
+   "400",
+   "100"
+  ],
+  "files": {
+   "100": "Truculenta-Original/otf/TruculentaOriginal-Thin.otf",
+   "400": "Truculenta-Original/otf/TruculentaOriginal-Regular.otf",
+   "700": "Truculenta-Original/otf/TruculentaOriginal-Bold.otf",
+   "900": "Truculenta-Original/otf/TruculentaOriginal-Dirty.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "Typefesse",
+  "category": "Display",
+  "designers": [
+   "Océane Juvin"
+  ],
+  "popularity": 9999,
+  "repo": "velvetyne/Typefesse",
+  "sha": "3a1d99ace34398547315e55dafb7263310148350",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "400",
+   "400-2"
+  ],
+  "files": {
+   "400": "Fonts/1-otf/Typefesse_Claire-Obscure.otf",
+   "400-2": "Fonts/1-otf/Typefesse_Pleine.otf"
+  },
+  "names": {
+   "400-2": "Pleine"
+  }
+ },
+ {
+  "family": "VTF Victorianna",
+  "category": "Display",
+  "designers": [
+   "Sébastien Hayez"
+  ],
+  "popularity": 9999,
+  "repo": "velvetyne/Victorianna",
+  "sha": "4f23f75a6de0e8a6389e6d48fd642eed24c871ed",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "200i",
+   "200"
+  ],
+  "files": {
+   "200": "fonts/VictoriannaThin_Desktop_OTF/VTF victorianna thin.otf",
+   "200i": "fonts/VictoriannaThin_Desktop_OTF/VTF victorianna thin talic.otf"
+  },
+  "names": {}
+ },
+ {
+  "family": "vtf_hngl",
+  "category": "Display",
+  "designers": [],
+  "popularity": 9999,
+  "repo": "velvetyne/Hangul",
+  "sha": "3f04defa470d19c76d82816aaf4ab18ce4c9f23a",
+  "license": "OFL",
+  "licenseFrom": "github",
+  "styles": [
+   "500"
+  ],
+  "files": {
+   "500": "fonts/hangul_Desktop_OTF/hngl.otf"
+  },
+  "names": {}
+ }
+]

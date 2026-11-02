@@ -17,9 +17,9 @@ import { IconsSidebar, IconsMain, useIcons } from './icons';
 declare global { interface Window { api: any } }
 
 type FontFile = { file: string; folder: string; format: string; family: string; style: string; designer?: string };
-type ProviderId = 'google' | 'fontshare' | 'fontsource';
+type ProviderId = 'google' | 'fontshare' | 'fontsource' | 'libres';
 type Family = { name: string; files: FontFile[]; formats: string; folders: Set<string>; designer: string; provider?: ProviderId; category?: string; popularity?: number; alts?: Family[] };
-type CatalogEntry = { family: string; category: string; designers: string[]; popularity: number; styles: string[] };
+type CatalogEntry = { family: string; category: string; designers: string[]; popularity: number; styles: string[]; names?: Record<string, string> };
 type Filter = { kind: 'all' | 'favorites' | 'active' | 'inactive' } | { kind: 'folder'; folder: string } | { kind: 'provider'; id: ProviderId };
 
 const PAGE = 60;
@@ -79,6 +79,7 @@ const PROVIDERS: { id: ProviderId; name: string; prefix: string; popularity: boo
   { id: 'google', name: 'Google Fonts', prefix: 'gf', popularity: true },
   { id: 'fontshare', name: 'Fontshare', prefix: 'fsh', popularity: true },
   { id: 'fontsource', name: 'Fontsource', prefix: 'fso', popularity: false },
+  { id: 'libres', name: 'Fuentes libres', prefix: 'fl', popularity: false },
 ];
 const providerName = (id?: ProviderId) => PROVIDERS.find((p) => p.id === id)?.name ?? '';
 const CATEGORIES: Record<string, string> = { 'Sans Serif': 'Sans Serif', Serif: 'Serif', Display: 'Display', Handwriting: 'Manuscrita', Monospace: 'Monoespaciada' };
@@ -631,7 +632,7 @@ function App() {
   const providerFamilies = useMemo<Family[]>(() => PROVIDERS.flatMap((p) => (catalogs[p.id] ?? []).map((g) => ({
     name: g.family, provider: p.id, category: g.category, popularity: g.popularity,
     designer: g.designers.join(', '), formats: p.name, folders: new Set([p.id]),
-    files: g.styles.map((st) => ({ file: `${p.prefix}:${g.family}:${st}`, folder: p.id, format: p.name, family: g.family, style: providerStyleName(st) })),
+    files: g.styles.map((st) => ({ file: `${p.prefix}:${g.family}:${st}`, folder: p.id, format: p.name, family: g.family, style: g.names?.[st] ?? providerStyleName(st) })),
   }))), [catalogs]);
 
   const isActiveOne = (fam: Family) => fam.provider
