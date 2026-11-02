@@ -5,7 +5,7 @@ import { Button } from '@/components/arc/button/button';
 import { Select } from '@/components/arc/select/select';
 import { Input } from '@/components/arc/input/input';
 import { ColorButton } from './color';
-import { translateQuery } from './es-en';
+import { translateQueries, needsOnline, cleanTranslation } from './es-en';
 import { Code16Regular, Copy16Regular, ArrowDownload16Regular, CompassNorthwest16Regular, Library16Regular, Heart16Regular } from '@fluentui/react-icons';
 import { Progress } from '@/components/arc/progress/progress';
 import { ContextMenu, type ContextMenuItem } from '@/components/arc/context-menu/context-menu';
@@ -298,6 +298,7 @@ function Collections({ onOpen, libraries, query, children }: {
 
 function SearchResults({ query, color, sel, setSel, size }: { query: string; color: string; sel: Selected | null; setSel: (s: Selected) => void; size: number }) {
   const store = useRemote();
+  const [also, setAlso] = useState('');
   const [icons, setIcons] = useState<string[] | null>(null);
   const [range, setRange] = useState<[number, number]>([0, 0]);
   const [names, setNames] = useState<Record<string, Info>>({});
@@ -307,12 +308,18 @@ function SearchResults({ query, color, sel, setSel, size }: { query: string; col
     setIcons(null);
     // Esperamos a que deje de escribir antes de consultar la API
     // Si se escribe en español, buscamos también la traducción y mezclamos (primero los resultados traducidos)
+    // Si el usuario sigue escribiendo, las respuestas de la búsqueda anterior se descartan
+    let stale = false;
     const t = setTimeout(async () => {
-      const en = translateQuery(query);
-      const lists = await Promise.all([en, query].filter(Boolean).map((q) => api().search(q).catch(() => [] as string[])));
+      const online = needsOnline(query) ? cleanTranslation(await api().translate(query).catch(() => null) ?? '') : '';
+      // La traducción en línea entiende la frase entera, y los nombres de los iconos suelen ir en singular
+      const english = [...new Set([online, online.replace(/([^s])s$/, '$1'), ...translateQueries(query)])].filter((q) => q && q !== query.trim().toLowerCase());
+      const lists = await Promise.all([...english, query].map((q) => api().search(q).catch(() => [] as string[])));
+      if (stale) return;
+      setAlso(english[0] ?? '');
       setIcons([...new Set(lists.flat() as string[])]);
     }, 300);
-    return () => clearTimeout(t);
+    return () => { stale = true; clearTimeout(t); };
   }, [query]);
 
   // Pedimos los iconos visibles agrupados por colección: un lote por colección
@@ -330,7 +337,7 @@ function SearchResults({ query, color, sel, setSel, size }: { query: string; col
   const shown = color === 'currentColor' ? ink() : color;
   return (
     <>
-      <p className="muted-count block">{icons.length >= 999 ? 'Más de 999' : icons.length} resultados para “{query}”{translateQuery(query) && <> · buscando también “{translateQuery(query)}”</>}</p>
+      <p className="muted-count block">{icons.length >= 999 ? 'Más de 999' : icons.length} resultados para “{query}”{also && <> · buscando también “{also}”</>}</p>
       <VirtualGrid className="icon-vgrid labeled" count={icons.length} minCell={Math.max(132, size + 72)} gap={8} cellHeight={size + 74}
         onRange={(a, b) => setRange([a, b])} render={(i) => {
           const full = icons[i];

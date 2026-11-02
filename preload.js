@@ -36,6 +36,8 @@ contextBridge.exposeInMainWorld('api', {
     collections: () => ipcRenderer.invoke('icons:collections'),
     collection: (prefix) => ipcRenderer.invoke('icons:collection', prefix),
     search: (query) => ipcRenderer.invoke('icons:search', query),
+
+    translate: (q) => ipcRenderer.invoke('icons:translate', q),
     data: (prefix, names) => ipcRenderer.invoke('icons:data', prefix, names),
     download: (prefix) => ipcRenderer.invoke('icons:download', prefix),
     libraries: () => ipcRenderer.invoke('icons:libraries'),

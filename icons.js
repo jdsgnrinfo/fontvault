@@ -76,6 +76,19 @@ ipcMain.handle('icons:search', async (_e, query) => {
   return r.icons;
 });
 
+// Lo que el diccionario de la app no conoce se traduce con MyMemory (gratis y sin clave). Si falla, se busca solo el texto original
+const translations = new Map();
+ipcMain.handle('icons:translate', async (_e, query) => {
+  const q = String(query).trim().toLowerCase().slice(0, 100);
+  if (translations.has(q)) return translations.get(q);
+  const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(q)}&langpair=es|en`, { signal: AbortSignal.timeout(4000) });
+  const j = await res.json();
+  // Al agotar la cuota diaria responde con un aviso en lugar de la traducción
+  const text = Number(j.responseStatus) === 200 && !/MYMEMORY WARNING/i.test(j.responseData?.translatedText) ? j.responseData.translatedText : null;
+  if (text) { translations.set(q, text); if (translations.size > 500) translations.delete(translations.keys().next().value); }
+  return text;
+});
+
 // Descarga la colección completa y la guarda como JSON de Iconify para usarla sin conexión
 ipcMain.handle('icons:download', async (e, prefix) => {
   collections ??= await getJSON(`${API}/collections`);
